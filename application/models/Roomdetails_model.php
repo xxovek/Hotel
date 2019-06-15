@@ -1,6 +1,6 @@
 <?php 
 
-class RoomDetails_model extends CI_Model{
+class Roomdetails_model extends CI_Model{
 
     public function __construct(){
         // $this->load->database();
