@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-Class Rooms extends CI_Controller{
+Class Roomdetails extends CI_Controller{
 
     public function index()
 	{
@@ -9,7 +9,7 @@ Class Rooms extends CI_Controller{
 
 		// $data['title'] = $data['post']['title'];
         $this->load->view('templates/header');
-        $this->load->view('pages/roomtypes');
+        $this->load->view('pages/roomdetails');
         $this->load->view('templates/footer');
 	}
 }
