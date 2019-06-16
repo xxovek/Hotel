@@ -63,14 +63,14 @@
                                 <a href="<?php echo site_url();?>"><span class="fa fa-home"></span> Rooms</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Rooms"><span class="fa fa-inbox"></span> Rooms Types</a></li>
-                                    <li><a href="<?php echo site_url();?>/Rooms"><span class="fa fa-file-text"></span> Room Details</a></li>
+                                    <li><a href="<?php echo site_url();?>/Roomdetails"><span class="fa fa-file-text"></span> Room Details</a></li>
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->
                                 </ul>
                             </li>
                             <li class="xn-openable">
                                 <a href="<?php echo site_url();?>"><span class="fa fa-th-list"></span> Orders</a>
                                 <ul>
-                                    <li><a href="<?php echo site_url();?>/Products"><span class="fa fa-list"></span>Products</a></li>
+                                    <li ><a href="<?php echo site_url();?>/Products"><span class="fa fa-list"></span>Products</a></li>
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li> -->
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->
                                 </ul>
@@ -108,7 +108,7 @@
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
                     <!-- TOGGLE NAVIGATION -->
                     <li class="xn-icon-button">
-                        <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+                        <a href="<?php echo site_url();?>" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
                     </li>
                     <!-- END TOGGLE NAVIGATION -->
                     <!-- SEARCH -->
@@ -120,10 +120,11 @@
                     <!-- END SEARCH -->
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
+                        <a href="<?php echo site_url();?>" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
                     </li> 
                     <!-- END SIGN OUT -->
                    
                    
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->        
+               
