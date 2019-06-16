@@ -3,6 +3,8 @@
         </div>
         <!-- END PAGE CONTAINER -->
 
+  
+
         <!-- MESSAGE BOX-->
         <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
             <div class="mb-container">
@@ -54,13 +56,28 @@
         <!-- END THIS PAGE PLUGINS-->        
 
         <!-- START TEMPLATE -->
-        <script type="text/javascript" src="<?php echo base_url();?>js/settings.js"></script>
+        <!-- <script type="text/javascript" src="<?php echo base_url();?>js/settings.js"></script> -->
         
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins.js"></script>        
         <script type="text/javascript" src="<?php echo base_url();?>js/actions.js"></script>
         
         <script type="text/javascript" src="<?php echo base_url();?>js/demo_dashboard.js"></script>
         <!-- END TEMPLATE -->
-    <!-- END SCRIPTS -->         
+    <!-- END SCRIPTS -->   
+    <!-- <script>
+                $('li').removeClass('active');
+                
+
+var regex = /[A-Za-z _]+.php./[A-Za-z _];
+var input = location.pathname;
+alert(input);
+
+if(regex.test(input)) {
+   var matches = input.match(regex);
+   $('a[href="'+matches[0]+'"]').closest('li').addClass('active');
+   $('a[href="'+matches[0]+'"]').closest('ul').closest('li').addClass('xn-openable active');
+}
+                </script>    -->
+   
     </body>
 </html>
