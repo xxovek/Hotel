@@ -56,8 +56,7 @@
         <!-- END THIS PAGE PLUGINS-->  
         
            <!-- START THIS PAGE PLUGINS-->        
-           <script type='text/javascript' src='<?php echo base_url();?>js/plugins/icheck/icheck.min.js'></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+          
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/tableExport.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/jquery.base64.js"></script>
@@ -75,21 +74,15 @@
         
         <script type="text/javascript" src="<?php echo base_url();?>js/demo_dashboard.js"></script>
         <!-- END TEMPLATE -->
-    <!-- END SCRIPTS -->   
-    <!-- <script>
-                $('li').removeClass('active');
-                
-
-var regex = /[A-Za-z _]+.php./[A-Za-z _];
-var input = location.pathname;
-alert(input);
-
-if(regex.test(input)) {
-   var matches = input.match(regex);
-   $('a[href="'+matches[0]+'"]').closest('li').addClass('active');
-   $('a[href="'+matches[0]+'"]').closest('ul').closest('li').addClass('xn-openable active');
-}
-                </script>    -->
+   <!-- THIS PAGE PLUGINS -->
+   
+        
+        
+                   
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap-file-input.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap-select.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+        <!-- END THIS PAGE PLUGINS -->  
    
     </body>
 </html>

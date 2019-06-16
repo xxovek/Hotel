@@ -3,7 +3,6 @@
                     <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
                     <li class="active">Customers</li>
                 </ul>
-               
                 <!-- END BREADCRUMB -->                       
                 <div class="page-title">                    
                     <h2><span class="fa fa-arrow-circle-o-left"></span>Customers Data</h2>
@@ -19,7 +18,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">DataTable Export</h3>
                                     <div class="btn-group pull-right">
-                                        <button class="btn btn-success"><i class="fa fa-bars"></i>New Customer</button>
+                                        <button class="btn btn-success" onclick="window.location='Customer/add_customer'"><i class="fa fa-bars"></i>New Customer</button>
                                     </div>
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
@@ -195,4 +194,4 @@
                         </div>
                     </div>
                 </div>
-               
+            
