@@ -5,11 +5,11 @@ Class Customer extends CI_Controller{
 
     public function index()
 	{
-		// $this->load->view('dashboard');
 
-		// $data['title'] = $data['post']['title'];
+        $data['title'] ='Customer';
+        $data['customers'] = $this->Customer_model->get_customers();
         $this->load->view('templates/header');
-        $this->load->view('pages/customers');
+        $this->load->view('pages/customers',$data);
         $this->load->view('templates/footer');
 	}
 }

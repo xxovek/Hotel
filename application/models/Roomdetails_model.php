@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Roomdetails_model extends CI_Model{
 

@@ -51,7 +51,19 @@
         
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/moment.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- END THIS PAGE PLUGINS-->        
+        <!-- END THIS PAGE PLUGINS-->  
+        
+           <!-- START THIS PAGE PLUGINS-->        
+           <script type='text/javascript' src='<?php echo base_url();?>js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/tableExport.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/jquery.base64.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/html2canvas.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/jspdf/jspdf.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>js/plugins/tableexport/jspdf/libs/base64.js"></script>        
+        <!-- END THIS PAGE PLUGINS-->  
 
         <!-- START TEMPLATE -->
         <script type="text/javascript" src="<?php echo base_url();?>js/settings.js"></script>
