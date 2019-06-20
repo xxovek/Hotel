@@ -18,6 +18,18 @@ Class Customer extends CI_Controller{
         $this->load->view('pages/add_customer',$data);
         $this->load->view('templates/footer');
     }
+
+    public function save_customer(){
+        $filename = 'pic_'.date('YmdHis') . '.jpeg';
+
+$url = '';
+if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
+}
+}
+public function add_details(){
+    $this->Customer_model->add_customer();
+    // redirect('Customer');
+}
 }
 
 
