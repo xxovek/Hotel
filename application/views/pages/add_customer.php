@@ -173,7 +173,7 @@
             url:'<?php echo site_url();?>/Customer/add_details',
             data:formData,
             success:function(response){
-                alert(response);
+                // alert(response);
             },
             error: function(xhr){
         alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
