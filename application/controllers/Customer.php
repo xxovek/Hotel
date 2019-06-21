@@ -28,9 +28,8 @@ if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
 }
 public function add_details(){
     $this->Customer_model->add_customer();
-    // redirect('Customer');
+    redirect('Customer');
 }
 }
-
 
 ?>

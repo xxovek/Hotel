@@ -22,6 +22,9 @@ class Customer_model extends CI_Model{
         $this->db->insert('Customers',$data);
         // // echo $result;
     }
+    public function __destruct() {
+        $this->db->close();
+    }
 }
 
 ?>
