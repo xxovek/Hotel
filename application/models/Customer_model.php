@@ -17,13 +17,12 @@ class Customer_model extends CI_Model{
             'email' => $this->input->post('emailid'),
             'contactNumber' => $this->input->post('contactNumber')
         );
-        // $query = $this->db->get('Customers');
-        // return $query->result_array();
-        $this->db->insert('Customers',$data);
-        // // echo $result;
+       return $this->db->insert('Customers',$data);
     }
-    public function __destruct() {
-        $this->db->close();
+    public function remove_customer($customerId){
+        $this->db->where('customerId',$customerId);
+        $this->db->delete('Customers');
+        return true;
     }
 }
 

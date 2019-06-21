@@ -13,7 +13,7 @@
         <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="<?php echo base_url();?>css/theme-default.css"/>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery.min.js"></script>
-        <!-- EOF CSS INCLUDE -->
+
     </head>
     <body>
         <!-- START PAGE CONTAINER -->

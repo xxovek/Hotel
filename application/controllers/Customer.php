@@ -30,6 +30,11 @@ public function add_details(){
     $this->Customer_model->add_customer();
     redirect('Customer');
 }
+public function remove_customer(){
+    $customerId = $this->input->post('customerId');
+    $this->Customer_model->remove_customer($customerId);
+    redirect('Customer');
+}
 }
 
 ?>
