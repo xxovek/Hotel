@@ -198,7 +198,7 @@
                   data:data,
                   success:function(data){
                     // $("#Tbl_paymenttypes_body").reload();
-                    $("#Tbl_paymenttypes").table("refresh");
+                   // $("#Tbl_paymenttypes").table("refresh");
                     alert("ok"); // here what you want to do with response
                   }
                   }); 
