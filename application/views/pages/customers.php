@@ -55,23 +55,8 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="customerData">
 
-                                            <?php foreach($customers as $c):?>
-                                            <tr>
-                                                <td><?php echo ucfirst($c['FirstName'].' '.$c['lastName']);?></td>
-                                                <td><?php echo ucwords($c['address']);?></td>
-                                                <td><?php echo $c['contactNumber'];?></td>
-                                                <td><?php echo $c['email'];?></td>
-                                                <td><?php echo $c['created_at'];?></td>
-                                                <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-default" onclick="edit_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-edit"></i></button>
-                                                    <button  class="btn btn-default" onclick="remove_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-times"></i></button>
-                                                </div>
-                                                </td>
-                                            </tr>
-                                    <?php endforeach;?>
                                         </tbody>
                                     </table>
 
@@ -81,7 +66,34 @@
                         </div>
                     </div>
                 </div>
-            <script>
+            <script> 
+            show_customers();
+                function show_customers(){
+                    $.ajax({
+                        type:'ajax',
+                        url:'<?php echo site_url('/Customer/get_customer');?>',
+                        async : true,
+                        dataType:'json',
+                         success:function(response){
+                    var html = '';
+                    var i;
+                    for(i=0; i<response.length; i++){
+                        html += '<tr>'+
+                                '<td>'+response[i].FirstName+' '+response[i].lastName+'</td>'+
+                                '<td>'+response[i].address+'</td>'+
+                                '<td>'+response[i].contactNumber+'</td>'+
+                                '<td>'+response[i].email+'</td>'+
+                                '<td>'+response[i].created_at+'</td>'+
+                                '<td><div class="btn-group">'+
+                                '<button class="btn btn-default" onclick="edit_customer('+response[i].customerId+');"><i class="fa fa-edit"></i></button>'+
+                                '<button  class="btn btn-default" onclick="remove_customer('+response[i].customerId+');"><i class="fa fa-times"></i></button>'+
+                                '</div></td></tr>';
+                    }
+                   $('#customerData').html(html);
+                    $('#customers2').DataTable();
+                    }
+                    });
+                }
                 function remove_customer(customerId){
                     $.ajax({
                         type:'POST',
