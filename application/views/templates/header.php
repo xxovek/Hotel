@@ -12,12 +12,8 @@
 
         <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="<?php echo base_url();?>css/theme-default.css"/>
-<<<<<<< HEAD
-        <!-- EOF CSS INCLUDE -->
-=======
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery.min.js"></script>
-        <!-- EOF CSS INCLUDE -->                                    
->>>>>>> 4291ede26193a0a531e16f8139709e1e220425db
+        <!-- EOF CSS INCLUDE -->
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
