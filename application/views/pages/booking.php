@@ -1,9 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type='text/javascript'>
 // getcustomer();
-$(document).ready(function(){
+// $(document).ready(function(){
     getcustomer();
-});
+
 function getcustomer(){
 
  $.ajax({
@@ -63,7 +63,7 @@ function checkroomavability(){
            }
            else {
              $("#notificationmsg").html("<font color='red'>Room is UnAvailable</font>");
-                $("#notificationval").val("");
+             $("#notificationval").val("");
            }
 
         }
@@ -107,7 +107,8 @@ function saveBookingDetail(){
         {
 
         }
-        else{
+        else
+        {
         $.ajax({
         type : "POST",
         url  : "<?=base_url()?>index.php/Booking/saveBookingDetail",
@@ -129,6 +130,9 @@ function saveBookingDetail(){
   }
  }
 }
+
+
+
 </script>
 
     <ul class="breadcrumb">
@@ -236,6 +240,9 @@ function saveBookingDetail(){
                           </div>
                         </div>
                     </div>
+
+      
+
                     <div class="panel-footer">
                         <button class="btn btn-default">Clear Form</button>
                         <button class="btn btn-primary pull-right" type="button" onclick="saveBookingDetail()">Submit</button>

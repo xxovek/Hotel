@@ -1,18 +1,18 @@
     <!-- START BREADCRUMB -->
     <ul class="breadcrumb">
-                    <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
+                    <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>
                     <li class="active">Customers</li>
                 </ul>
-                <!-- END BREADCRUMB -->                       
-                <div class="page-title">                    
+                <!-- END BREADCRUMB -->
+                <div class="page-title">
                     <h2><span class="fa fa-arrow-circle-o-left"></span>Customers Data</h2>
                 </div>
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-              
+
                 <div class="row">
                         <div class="col-md-12">
-                            
+
                             <!-- START DATATABLE EXPORT -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -40,8 +40,8 @@
                                             <li><a href="#" onClick ="$('#customers2').tableExport({type:'png',escape:'false'});"><img src='<?php echo base_url();?>img/icons/png.png' width="24"/> PNG</a></li>
                                             <li><a href="#" onClick ="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src='<?php echo base_url();?>img/icons/pdf.png' width="24"/> PDF</a></li>
                                         </ul>
-                                    </div>                                    
-                                    
+                                    </div>
+
                                 </div>
                                 <div class="panel-body">
                                     <table id="customers2" class="table">
@@ -55,18 +55,33 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="customerData">
-                                           
-                                            
+                                        <tbody>
+
+                                            <?php foreach($customers as $c):?>
+                                            <tr>
+                                                <td><?php echo ucfirst($c['FirstName'].' '.$c['lastName']);?></td>
+                                                <td><?php echo ucwords($c['address']);?></td>
+                                                <td><?php echo $c['contactNumber'];?></td>
+                                                <td><?php echo $c['email'];?></td>
+                                                <td><?php echo $c['created_at'];?></td>
+                                                <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default" onclick="edit_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-edit"></i></button>
+                                                    <button  class="btn btn-default" onclick="remove_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-times"></i></button>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                    <?php endforeach;?>
                                         </tbody>
-                                    </table>                                    
-                                    
+                                    </table>
+
                                 </div>
                             </div>
-                            <!-- END DATATABLE EXPORT -->                            
+                            <!-- END DATATABLE EXPORT -->
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
             <script> 
             show_customers();
                 function show_customers(){
@@ -95,13 +110,16 @@
                     }
                     });
                 }
+=======
+            <script>
+>>>>>>> 7c0a5c9fab72363493bfe0776a17ebbc7ccdc6d4
                 function remove_customer(customerId){
                     $.ajax({
                         type:'POST',
                         url:'<?php echo site_url('/Customer/remove_customer');?>',
                         data:{customerId:customerId},
                          success:function(response){
-                          show_customers();
+                             window.location.reload();
                             }
                     });
                 }
