@@ -55,23 +55,8 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="customerData">
 
-                                            <?php foreach($customers as $c):?>
-                                            <tr>
-                                                <td><?php echo ucfirst($c['FirstName'].' '.$c['lastName']);?></td>
-                                                <td><?php echo ucwords($c['address']);?></td>
-                                                <td><?php echo $c['contactNumber'];?></td>
-                                                <td><?php echo $c['email'];?></td>
-                                                <td><?php echo $c['created_at'];?></td>
-                                                <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-default" onclick="edit_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-edit"></i></button>
-                                                    <button  class="btn btn-default" onclick="remove_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-times"></i></button>
-                                                </div>
-                                                </td>
-                                            </tr>
-                                    <?php endforeach;?>
                                         </tbody>
                                     </table>
 
@@ -81,7 +66,6 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             <script> 
             show_customers();
                 function show_customers(){
@@ -110,9 +94,6 @@
                     }
                     });
                 }
-=======
-            <script>
->>>>>>> 7c0a5c9fab72363493bfe0776a17ebbc7ccdc6d4
                 function remove_customer(customerId){
                     $.ajax({
                         type:'POST',
