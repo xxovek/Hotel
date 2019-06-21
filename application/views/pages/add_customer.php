@@ -1,118 +1,221 @@
   <!-- START BREADCRUMB -->
+  <style type="text/css">
+        #results { padding:1px; border:1px solid; background:#ccc; }
+    </style>
   <ul class="breadcrumb">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Forms Stuff</a></li>
-                    <li><a href="#">Form Layout</a></li>
-                    <li class="active">One Column</li>
+                    <li><a href="#">Customer</a></li>
+                    <li class="active"><a href="#">add custmer</a></li>
+                
                 </ul>
                 <!-- END BREADCRUMB -->
                 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-                
-                    <div class="row">
+                <div class="row">
                         <div class="col-md-12">
                             
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" id="jvalidate" role="form">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><strong>One Column</strong> Layout</h3>
+                                    <h3 class="panel-title"><strong>New Guest</strong> Registration</h3>
                                     <ul class="panel-controls">
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul>
                                 </div>
-                                <div class="panel-body">
-                                    <p>This is non libero bibendum, scelerisque arcu id, placerat nunc. Integer ullamcorper rutrum dui eget porta. Fusce enim dui, pulvinar a augue nec, dapibus hendrerit mauris. Praesent efficitur, elit non convallis faucibus, enim sapien suscipit mi, sit amet fringilla felis arcu id sem. Phasellus semper felis in odio convallis, et venenatis nisl posuere. Morbi non aliquet magna, a consectetur risus. Vivamus quis tellus eros. Nulla sagittis nisi sit amet orci consectetur laoreet. Vivamus volutpat erat ac vulputate laoreet. Phasellus eu ipsum massa.</p>
-                                </div>
+                               
                                 <div class="panel-body">                                                                        
                                     
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">First Name</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control" name="firstname"/>
-                                            </div>                                            
-                                            <span class="help-block">Enter Guest First Name atleast two characters long</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Last Name</label>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">First Name</label>
+                                                <div class="col-md-6 col-xs-12">                                            
+                                                    <div class="input-group">
+                                                       
+                                                        <input type="text" class="form-control" name="firstname" id="firstname"/>
+                                                    </div>                                            
+                                                    <span class="help-block">min size = 2, max size = 8</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">                                        
+                                                <label class="col-md-4 control-label">Last Name</label>
+                                                <div class="col-md-6 col-xs-12">
+                                                    <div class="input-group">
+                                                       
+                                                        <input type="text" class="form-control" name="lastname" id="lastname"/>
+                                                    </div>            
+                                                    <span class="help-block">Password field sample</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Address</label>
+                                                <div class="col-md-6 col-xs-12">                                            
+                                                    <textarea class="form-control" rows="5" name="address" id="address"></textarea>
+                                                    <span class="help-block">Default textarea field</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">                                        
+                                        <label class="col-md-4 col-xs-12 control-label">Registration Date</label>
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                                <input type="text" class="form-control" name="lastname"/>
-                                            </div>            
-                                            <span class="help-block">Enter Guest Last Name atleast two characters long</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Datepicker</label>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                                <input type="text" class="form-control datepicker" value="2014-11-01">                                            
+                                              
+                                                <input type="text" class="form-control datepicker" value="2014-11-01" name="regDate" id="regDate">                                            
                                             </div>
                                             <span class="help-block">Click on input field to get datepicker</span>
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Textarea</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <textarea class="form-control" rows="5"></textarea>
-                                            <span class="help-block">Default textarea field</span>
+                                    <div class="form-group">                                        
+                                        <label class="col-md-4 col-xs-12 control-label">Email Id</label>
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                                
+                                                <input type="email" class="form-control" name="emailid" id="emailid"/>
+                                            </div>            
+                                            <span class="help-block">Enter correct email-id of Guest</span>
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Tags</label>
-                                        <div class="col-md-6 col-xs-12">                                                                                            
-                                            <input type="text" class="tagsinput" value="First,Second,Third"/>
-                                            <span class="help-block">Default textarea field</span>
+                                    <div class="form-group">                                        
+                                        <label class="col-md-4 col-xs-12 control-label">Contact Number</label>
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                               
+                                                <input type="text" class="form-control" name="contactNumber" id="contactNumber"/>
+                                            </div>            
+                                            <span class="help-block">Enter Guest Last Name atleast two characters long</span>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Select</label>
-                                        <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
-                                            <span class="help-block">Select box example</span>
+                                    </div>  
                                         </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            
+                                        <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">File</label>
-                                        <div class="col-md-6 col-xs-12">                                                                                                                                        
-                                            <input type="file" class="fileinput btn-primary" name="filename" id="filename" title="Browse file"/>
+                                        <div class="col-md-6 col-xs-12">
+                                        <div id="my_camera"></div>                                                                                                                                        
+                                            <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
                                             <span class="help-block">Input type file</span>
+                                            <input type="hidden" name="image" class="image-tag">
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
-                                        <div class="col-md-6 col-xs-12">                                                                                                                                        
-                                            <label class="check"><input type="checkbox" class="icheckbox" checked="checked"/> Checkbox title</label>
+                                        <div class="col-md-3 col-xs-3">                                                                                                                                        
+                                        <div id="results">Your captured image will appear here...</div>
                                             <span class="help-block">Checkbox sample, easy to use</span>
                                         </div>
+                                    </div>
+                                            
+                                        </div>
+                                        
                                     </div>
 
                                 </div>
                                 <div class="panel-footer">
                                     <button class="btn btn-default">Clear Form</button>                                    
-                                    <button class="btn btn-primary pull-right">Submit</button>
+                                    <button class="btn btn-primary pull-right"  type="button" onclick="saveSnap()">Submit</button>
                                 </div>
                             </div>
                             </form>
                             
                         </div>
-                    </div>  
+                    </div>       
+                
+                    
                 </div>
+             
+                <script type='text/javascript' src='<?php echo base_url();?>js/plugins/jquery-validation/jquery.validate.js'></script> 
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+<script language="JavaScript">
+    Webcam.set({
+        width: 325,
+        height: 250,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    Webcam.attach( '#my_camera' );
+
+    function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img id="imageprev" src="'+data_uri+'"/>';
+            
+        } );
+    }
+   
+    function saveSnap(){
+        $("#jvalidate").valid();
+			// Get base64 value from <img id='imageprev'> source
+          
+
+			var base64image =  document.getElementById("imageprev").src;
+
+			 Webcam.upload( base64image, '<?php echo site_url();?>/Customer/save_customer', function(code, text) {
+				 console.log('Save successfully');
+            });
+           
+            var formData = {
+             fname:$('#firstname').val(),
+             lname: $('#lastname').val(),
+             address: $('#address').val(),
+             emailid:$('#emailid').val(),
+             contactNumber: $('#contactNumber').val()
+            };
+          $.ajax({
+            type:'POST',
+            url:'<?php echo site_url();?>/Customer/add_details',
+            data:formData,
+            success:function(response){
+                alert(response);
+            },
+            error: function(xhr){
+        alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+    }
+          });
+
+		}
+   
+    $(function() {
+        var jvalidate = $("#jvalidate").validate({
+                ignore: [],
+                rules: {                                            
+                        firstname: {
+                                required: true,
+                                minlength: 2,
+                                maxlength: 8
+                        },
+                        lastname: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 20
+                        },
+                        age: {
+                                required: true,
+                                min: 18,
+                                max: 100
+                        },
+                        emailid: {
+                                required: true,
+                                email: true
+                        },
+                        regDate: {
+                                required: true,
+                                date: true
+                        },
+                        contactNumber: {
+                                required: true,
+                                number: true
+                        }
+                    }                                        
+                });
+            });
+                
+        
+</script>
