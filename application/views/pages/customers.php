@@ -44,7 +44,7 @@
                                     
                                 </div>
                                 <div class="panel-body">
-                                    <table id="customers2" class="table datatable">
+                                    <table id="customers2" class="table">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -67,13 +67,12 @@
                         </div>
                     </div>
                 </div>
-            <script>
+            <script> 
             show_customers();
-            $('#customers2').addClass('table datatable');
                 function show_customers(){
                     $.ajax({
                         type:'ajax',
-                        url:'<?php echo site_url();?>/Customer/get_customer',
+                        url:'<?php echo site_url('/Customer/get_customer');?>',
                         async : true,
                         dataType:'json',
                          success:function(response){
@@ -92,14 +91,14 @@
                                 '</div></td></tr>';
                     }
                    $('#customerData').html(html);
+                    $('#customers2').DataTable();
                     }
                     });
                 }
                 function remove_customer(customerId){
-                    alert(customerId);
                     $.ajax({
                         type:'POST',
-                        url:'<?php echo site_url();?>/Customer/remove_customer',
+                        url:'<?php echo site_url('/Customer/remove_customer');?>',
                         data:{customerId:customerId},
                          success:function(response){
                           show_customers();
@@ -107,6 +106,6 @@
                     });
                 }
                 function edit_customer(customerId){
-                    // alert(customerId);
+                    window.location = "<?php echo site_url('Customer/edit_customer/');?>"+customerId;
                 }
                 </script>
