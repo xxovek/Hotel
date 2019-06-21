@@ -32,7 +32,7 @@
 
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-
+        <!-- <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery.min.js"></script> -->
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap.min.js"></script>
         <!-- END PLUGINS -->
@@ -48,7 +48,7 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/rickshaw/rickshaw.min.js"></script>
         <script type='text/javascript' src='<?php echo base_url();?>js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
         <script type='text/javascript' src='<?php echo base_url();?>js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>
-        <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-datepicker.js'></script>                
+        <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-datepicker.js'></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/owl/owl.carousel.min.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/moment.min.js"></script>
@@ -75,9 +75,6 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/demo_dashboard.js"></script>
         <!-- END TEMPLATE -->
    <!-- THIS PAGE PLUGINS -->
-
-
-
 
 
 

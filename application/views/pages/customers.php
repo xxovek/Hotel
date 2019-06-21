@@ -1,18 +1,18 @@
     <!-- START BREADCRUMB -->
     <ul class="breadcrumb">
-                    <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
+                    <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>
                     <li class="active">Customers</li>
                 </ul>
-                <!-- END BREADCRUMB -->                       
-                <div class="page-title">                    
+                <!-- END BREADCRUMB -->
+                <div class="page-title">
                     <h2><span class="fa fa-arrow-circle-o-left"></span>Customers Data</h2>
                 </div>
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-              
+
                 <div class="row">
                         <div class="col-md-12">
-                            
+
                             <!-- START DATATABLE EXPORT -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -40,8 +40,8 @@
                                             <li><a href="#" onClick ="$('#customers2').tableExport({type:'png',escape:'false'});"><img src='<?php echo base_url();?>img/icons/png.png' width="24"/> PNG</a></li>
                                             <li><a href="#" onClick ="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src='<?php echo base_url();?>img/icons/pdf.png' width="24"/> PDF</a></li>
                                         </ul>
-                                    </div>                                    
-                                    
+                                    </div>
+
                                 </div>
                                 <div class="panel-body">
                                     <table id="customers2" class="table datatable">
@@ -56,7 +56,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
+
                                             <?php foreach($customers as $c):?>
                                             <tr>
                                                 <td><?php echo ucfirst($c['FirstName'].' '.$c['lastName']);?></td>
@@ -73,11 +73,11 @@
                                             </tr>
                                     <?php endforeach;?>
                                         </tbody>
-                                    </table>                                    
-                                    
+                                    </table>
+
                                 </div>
                             </div>
-                            <!-- END DATATABLE EXPORT -->                            
+                            <!-- END DATATABLE EXPORT -->
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         url:'<?php echo site_url();?>/Customer/remove_customer',
                         data:{customerId:customerId},
                          success:function(response){
-                            
+                             window.location.reload();
                             }
                     });
                 }
