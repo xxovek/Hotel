@@ -50,5 +50,3 @@ public function update_details(){
     redirect('Customer');
 }
 }
-
-?>
