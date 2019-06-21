@@ -12,7 +12,10 @@
         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="<?php echo base_url();?>css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                    
+        <!-- EOF CSS INCLUDE -->     
+
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery.min.js"></script>
+
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
