@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
+    <head>
         <!-- META SECTION -->
-        <title>Hotel Admin - Dashboard</title>            
+        <title>Hotel Admin - Dashboard</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+
         <link rel="icon" href="<?php echo base_url();?>favicon.ico" type="image/x-icon" />
         <!-- END META SECTION -->
-        
-        <!-- CSS INCLUDE -->        
+
+        <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="<?php echo base_url();?>css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                    
+        <!-- EOF CSS INCLUDE -->
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
-            
+
             <!-- START PAGE SIDEBAR -->
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
@@ -42,21 +42,21 @@
                                 <a href="<?php echo base_url();?>pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
                                 <a href="<?php echo base_url();?>pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                             </div> -->
-                        </div>                                                                        
+                        </div>
                     </li>
                     <li class="xn-title">Navigation</li>
 
                     <li class="active">
-                        <a href="<?php echo site_url();?>/Dashboard"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a>                        
-                    </li>    
+                        <a href="<?php echo site_url();?>/Dashboard"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a>
+                    </li>
                     <li class="">
-                        <a href="<?php echo site_url();?>/Booking"><span class="fa fa-list"></span> <span class="xn-text">Bookings</span></a>                        
-                    </li>    
+                        <a href="<?php echo site_url();?>/Booking"><span class="fa fa-list"></span> <span class="xn-text">Bookings</span></a>
+                    </li>
                     <li class="">
-                        <a href="<?php echo site_url();?>/Customer"><span class="fa fa-users"></span> <span class="xn-text">Customers</span></a>                        
-                    </li>   
+                        <a href="<?php echo site_url();?>/Customer"><span class="fa fa-users"></span> <span class="xn-text">Customers</span></a>
+                    </li>
                     <!-- <li class="">
-                        <a href="<?php echo site_url();?>/Customers"><span class="fa fa-desktop"></span> <span class="xn-text">Orders</span></a>                        
+                        <a href="<?php echo site_url();?>/Customers"><span class="fa fa-desktop"></span> <span class="xn-text">Orders</span></a>
                     </li>   -->
 
                     <li class="xn-openable">
@@ -94,16 +94,16 @@
                             </li>
 
 
-                                                    
-                    
+
+
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
-            
+
             <!-- PAGE CONTENT -->
             <div class="page-content">
-                
+
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
                     <!-- TOGGLE NAVIGATION -->
@@ -116,15 +116,14 @@
                         <form role="form">
                             <input type="text" name="search" placeholder="Search..."/>
                         </form>
-                    </li>   
+                    </li>
                     <!-- END SEARCH -->
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
-                        <a href="<?php echo site_url();?>" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
-                    </li> 
+                        <a href="<?php echo site_url();?>" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+                    </li>
                     <!-- END SIGN OUT -->
-                   
-                   
+
+
                 </ul>
-                <!-- END X-NAVIGATION VERTICAL -->        
-               
+                <!-- END X-NAVIGATION VERTICAL -->
