@@ -81,38 +81,7 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-            <script> 
-            show_customers();
-                function show_customers(){
-                    $.ajax({
-                        type:'ajax',
-                        url:'<?php echo site_url('/Customer/get_customer');?>',
-                        async : true,
-                        dataType:'json',
-                         success:function(response){
-                    var html = '';
-                    var i;
-                    for(i=0; i<response.length; i++){
-                        html += '<tr>'+
-                                '<td>'+response[i].FirstName+' '+response[i].lastName+'</td>'+
-                                '<td>'+response[i].address+'</td>'+
-                                '<td>'+response[i].contactNumber+'</td>'+
-                                '<td>'+response[i].email+'</td>'+
-                                '<td>'+response[i].created_at+'</td>'+
-                                '<td><div class="btn-group">'+
-                                '<button class="btn btn-default" onclick="edit_customer('+response[i].customerId+');"><i class="fa fa-edit"></i></button>'+
-                                '<button  class="btn btn-default" onclick="remove_customer('+response[i].customerId+');"><i class="fa fa-times"></i></button>'+
-                                '</div></td></tr>';
-                    }
-                   $('#customerData').html(html);
-                    $('#customers2').DataTable();
-                    }
-                    });
-                }
-=======
             <script>
->>>>>>> 7c0a5c9fab72363493bfe0776a17ebbc7ccdc6d4
                 function remove_customer(customerId){
                     $.ajax({
                         type:'POST',
