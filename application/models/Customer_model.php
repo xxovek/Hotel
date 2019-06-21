@@ -17,13 +17,7 @@ class Customer_model extends CI_Model{
             'email' => $this->input->post('emailid'),
             'contactNumber' => $this->input->post('contactNumber')
         );
-        // $query = $this->db->get('Customers');
-        // return $query->result_array();
-        $this->db->insert('Customers',$data);
-        // // echo $result;
-    }
-    public function __destruct() {
-        $this->db->close();
+       return $this->db->insert('Customers',$data);
     }
 }
 
