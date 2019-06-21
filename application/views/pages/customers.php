@@ -84,9 +84,9 @@
                             '<td>' + response[i].contactNumber + '</td>' +
                             '<td>' + response[i].email + '</td>' +
                             '<td>' + response[i].created_at + '</td>' +
-                            '<td><div class="btn-group">' +
-                            '<button class="btn btn-default" onclick="edit_customer(' + response[i].customerId + ');"><i class="fa fa-edit"></i></button>' +
-                            '<button  class="btn btn-default" onclick="remove_customer(' + response[i].customerId + ');"><i class="fa fa-times"></i></button>' +
+                            '<td><div class="btn-group btn-group-sm">' +
+                            '<button class="btn btn-default btn-rounded btn-sm" title="Edit Customers Details" onclick="edit_customer(' + response[i].customerId + ');"><i class="fa fa-edit"></i></button>' +
+                            '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Customers Details" onclick="remove_customer(' + response[i].customerId + ');"><i class="fa fa-times"></i></button>' +
                             '</div></td></tr>';
                     }
                     $('#customerData').html(html);
@@ -103,7 +103,7 @@
                     customerId: customerId
                 },
                 success: function(response) {
-                    window.location.reload();
+                    show_customers();
                 }
             });
         }
