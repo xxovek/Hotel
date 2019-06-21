@@ -97,25 +97,26 @@
                                   </div>
                               </div>
                               <div class="col-md-6">
+                                  <button type="button" class="btn btn-primary" onClick="start_camera()" id="startC">start Camera</button>
+                                  <div id="cam">
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">File</label>
+                                          <div class="col-md-6 col-xs-12">
+                                              <div id="my_camera"></div>
+                                              <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
+                                              <span class="help-block">Input type file</span>
+                                              <input type="hidden" name="image" class="image-tag">
+                                          </div>
+                                      </div>
 
-                                  <div class="form-group">
-                                      <label class="col-md-3 col-xs-12 control-label">File</label>
-                                      <div class="col-md-6 col-xs-12">
-                                          <div id="my_camera"></div>
-                                          <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
-                                          <span class="help-block">Input type file</span>
-                                          <input type="hidden" name="image" class="image-tag">
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
+                                          <div class="col-md-3 col-xs-3">
+                                              <div id="results">Your captured image will appear here...</div>
+                                              <span class="help-block">Checkbox sample, easy to use</span>
+                                          </div>
                                       </div>
                                   </div>
-
-                                  <div class="form-group">
-                                      <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
-                                      <div class="col-md-3 col-xs-3">
-                                          <div id="results">Your captured image will appear here...</div>
-                                          <span class="help-block">Checkbox sample, easy to use</span>
-                                      </div>
-                                  </div>
-
                               </div>
 
                           </div>
@@ -137,6 +138,7 @@
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
+      $('#cam').hide();
       Webcam.set({
           width: 325,
           height: 250,
@@ -144,7 +146,11 @@
           jpeg_quality: 90
       });
 
-      Webcam.attach('#my_camera');
+      function start_camera() {
+          $('#cam').show();
+          Webcam.attach('#my_camera');
+          $('#startC').hide();
+      }
 
       function take_snapshot() {
           Webcam.snap(function(data_uri) {
