@@ -107,6 +107,6 @@
                     });
                 }
                 function edit_customer(customerId){
-                    alert(customerId);
+                    // alert(customerId);
                 }
                 </script>
