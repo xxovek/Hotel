@@ -52,7 +52,7 @@
                                                 <th>Contact</th>
                                                 <th>Email</th>
                                                 <th>Registration Date</th>
-                                        
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,6 +64,12 @@
                                                 <td><?php echo $c['contactNumber'];?></td>
                                                 <td><?php echo $c['email'];?></td>
                                                 <td><?php echo $c['created_at'];?></td>
+                                                <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default" onclick="edit_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-edit"></i></button>
+                                                    <button  class="btn btn-default" onclick="remove_customer('<?php echo $c['customerId'];?>');"><i class="fa fa-times"></i></button>
+                                                </div>
+                                                </td>
                                             </tr>
                                     <?php endforeach;?>
                                         </tbody>
@@ -75,4 +81,19 @@
                         </div>
                     </div>
                 </div>
-            
+            <script>
+                function remove_customer(customerId){
+                    alert(customerId);
+                    $.ajax({
+                        type:'POST',
+                        url:'<?php echo site_url();?>/Customer/remove_customer',
+                        data:{customerId:customerId},
+                         success:function(response){
+                            
+                            }
+                    });
+                }
+                function edit_customer(customerId){
+                    alert(customerId);
+                }
+                </script>

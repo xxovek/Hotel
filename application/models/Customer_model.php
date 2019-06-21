@@ -19,6 +19,11 @@ class Customer_model extends CI_Model{
         );
        return $this->db->insert('Customers',$data);
     }
+    public function remove_customer($customerId){
+        $this->db->where('customerId',$customerId);
+        $this->db->delete('Customers');
+        return true;
+    }
 }
 
 ?>
