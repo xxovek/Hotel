@@ -55,6 +55,7 @@ $route['default_controller'] = 'Login';
 // $route['sonali'] = 'Dashboard';
 // $route['pages/dashboard'] = 'Dashboard';
 $route['booking'] = 'Booking';
-
+$route['customername'] = '';
+$route['search'] = "search/index";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -32,6 +32,10 @@
         
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
+<<<<<<< HEAD
+=======
+     
+>>>>>>> 2303104261f8c6629b328319a2d979c5dc724cc3
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap.min.js"></script>        
         <!-- END PLUGINS -->
@@ -75,7 +79,10 @@
         <!-- END TEMPLATE -->
    <!-- THIS PAGE PLUGINS -->
    
-        
+ 
+       
+
+       
         
                    
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap-file-input.js"></script>
