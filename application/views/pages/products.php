@@ -1,21 +1,3 @@
-  <script type="text/javascript" src="<?php echo base_url();?>js/plugins/jquery/jquery.min.js"></script>
-        <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-datepicker.js'></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/daterangepicker/daterangepicker.js"></script>
-
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker6').datetimepicker();
-                $('#datetimepicker7').datetimepicker({
-                    useCurrent: false //Important! See issue #1075
-                });
-                $("#datetimepicker6").on("dp.change", function (e) {
-                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-                });
-                $("#datetimepicker7").on("dp.change", function (e) {
-                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-                });
-            });
-        </script>
     <!-- START BREADCRUMB -->
     <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>
@@ -26,29 +8,8 @@
 
                <!-- PAGE CONTENT WRAPPER -->
                <div class="page-content-wrap">
-                 <div class="container">
-     <div class='col-md-5'>
-         <div class="form-group">
-             <div class='input-group date' id='datetimepicker6'>
-                 <input type='text' class="form-control" />
-                 <span class="input-group-addon">
-                     <span class="glyphicon glyphicon-calendar"></span>
-                 </span>
-             </div>
-         </div>
-     </div>
-     <div class='col-md-5'>
-         <div class="form-group">
-             <div class='input-group date' id='datetimepicker7'>
-                 <input type='text' class="form-control" />
-                 <span class="input-group-addon">
-                     <span class="glyphicon glyphicon-calendar"></span>
-                 </span>
-             </div>
-         </div>
-     </div>
- </div>
-                <!-- <div class="row">
+
+                <div class="row">
                     <div class="col-md-12">
 
                         <form class="form-horizontal">
@@ -134,6 +95,7 @@
                                         <span class="help-block">Input type file</span>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
                                     <div class="col-md-6 col-xs-12">
@@ -141,6 +103,7 @@
                                         <span class="help-block">Checkbox sample, easy to use</span>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="panel-footer">
                                 <button class="btn btn-default">Clear Form</button>
@@ -150,21 +113,7 @@
                         </form>
 
                     </div>
-                </div>                     -->
+                </div>
 
             </div>
             <!-- END PAGE CONTENT WRAPPER -->
-            <!-- <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker6').datetimepicker();
-                    $('#datetimepicker7').datetimepicker({
-                        useCurrent: false //Important! See issue #1075
-                    });
-                    $("#datetimepicker6").on("dp.change", function (e) {
-                        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-                    });
-                    $("#datetimepicker7").on("dp.change", function (e) {
-                        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-                    });
-                });
-            </script> -->
