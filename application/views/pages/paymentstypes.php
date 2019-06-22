@@ -61,12 +61,12 @@
                 </div>      
                 
 
+                <div class="row">
+            <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <!-- <div class="panel-heading">
                         <h3 class="panel-title">DataTable Export</h3>
-                        <!-- <div class="btn-group pull-right">
-                            <button class="btn btn-success" onclick="window.location='Customer/add_customer'"><i class="fa fa-bars"></i>New Customer</button>
-                        </div> -->
+                      
                         <div class="btn-group pull-right">
                             <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                             <ul class="dropdown-menu">
@@ -89,8 +89,8 @@
                             </ul>
                         </div>
 
-                    </div>
-                <div class="panel-body">
+                    </div> -->
+                               <div class="panel-body">
                                     <table id="Tbl_paymenttypes" class="table">
                                         <thead>
                                             <tr>
@@ -109,6 +109,9 @@
                               </div>
 
                 </div>
+            </div>
+        </div>
+
 
 <!-- onclick="edit_row('<?php echo $pt['paymentTypeId'];?>'',''<?php echo $pt['paymentType'];?>');" -->
             </div>
