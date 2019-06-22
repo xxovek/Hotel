@@ -16,7 +16,7 @@ Class Payments extends CI_Controller{
 	
 		//Check type exists
 		// public function check_type_exists1($typeName){
-		// 	$response['status'] = '';
+		// 	//$response['status'] = '';
 		// 	$typeName = $this->input->post('type');
 		// 	$this->form_validation->set_message('check_type_exists', 'That Type is already taken. Please Add different one');
 		// 	if($this->Payment_model->check_type_exists($typeName)){
@@ -77,21 +77,23 @@ Class Payments extends CI_Controller{
             //     // 'user_id' => $this->session->userdata('user_id')
 			// );
 			
-			// $type = $this->input->post('typename');
-            // $ret = check_type_exists1($type);
-           $this->form_validation->set_rules('paymenttypeName', 'Payment Type', 'required|callback_check_type_exists');
-				// if($ret === FALSE){
-			if($this->form_validation->run() === FALSE){
+			$type = $this->input->post('typename');
+			$ret = $this->check_type_exists($type);
+			// echo $ret;
+         // $this->form_validation->set_rules('paymenttypeName', 'Payment Type', 'required|callback_check_type_exists');
+				if($ret === false){
+			// if($this->form_validation->run() === FALSE){
 
             // $data['paymenttypes'] = $this->Payment_model->get_paymentstypes();
+			// $this->form_validation->set_message('check_type_exists', 'That Type is already taken. Please Add different one');
                 
             //     $this->load->view('templates/header');
 			// 	$this->load->view('pages/paymentstypes',$data);
 			// 	$this->load->view('templates/footer');
-				// redirect('Payments');
-				$this->load->view('templates/header');
-				$this->load->view('pages/paymentstypes');
-				$this->load->view('templates/footer');
+				redirect('Payments');
+				// $this->load->view('templates/header');
+				// $this->load->view('pages/paymentstypes');
+				// $this->load->view('templates/footer');
 
 			} else {
 				$this->Payment_model->create_paymentstypes();
@@ -99,7 +101,7 @@ Class Payments extends CI_Controller{
 			     // 	// Set message
 			     // 	// $this->session->set_flashdata('category_created', 'Your category has been created');
 
-				// redirect('Payments');
+				redirect('Payments');
 			}
 
         }
@@ -121,8 +123,8 @@ Class Payments extends CI_Controller{
 			} else {
 				$this->Payment_model->update_type();//call to model function update_post
            // $this->session->set_flashdata('post_updated', 'Your Post has been updated');
-                  redirect('Payments');
 			}
+			redirect('Payments');
        
             
           }
