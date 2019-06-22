@@ -17,15 +17,6 @@ class Payment_model extends CI_Model{
     }
 
 
-    // public function create_paymentstypes(){
-    //     $data = array(
-    //         'paymentType' => $this->input->post('paymenttypeName')
-    //         // 'user_id' => $this->session->userdata('user_id')
-    //     );
-
-    //     return $this->db->insert('PaymentTypes', $data);
-    // }
-
     public function create_paymentstypes(){
         $data = array(
             'paymentType' => $this->input->post('typename')
@@ -36,12 +27,11 @@ class Payment_model extends CI_Model{
     }
 
     public function update_type(){
+        $typeid = $this->input->post('typeid');
         $data = array(
-            'paymentType' => $this->input->post('paymenttypeName1')
-
+            'paymentType' => $this->input->post('typename')
           );
-
-          $this->db->where('paymentTypeId',$this->input->post('id'));
+          $this->db->where('paymentTypeId',$typeid);
           return $this->db->update('PaymentTypes',$data);
     }
 
