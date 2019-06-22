@@ -185,7 +185,7 @@
               url: '<?php echo site_url(); ?>/Customer/add_details',
               data: formData,
               success: function(response) {
-                  // alert(response);
+                 window.location = '<?php echo site_url('/Customer');?>';
               },
               error: function(xhr) {
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
