@@ -71,6 +71,7 @@
                             <li class="xn-openable">
                                 <a href="<?php echo site_url();?>"><span class="fa fa-th-list"></span> Orders</a>
                                 <ul>
+                                    <li ><a href="<?php echo site_url();?>/Orders"><span class="fa fa-list"></span>Orders</a></li>
                                     <li ><a href="<?php echo site_url();?>/Products"><span class="fa fa-list"></span>Products</a></li>
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li> -->
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->

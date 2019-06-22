@@ -51,8 +51,8 @@
         <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-datepicker.js'></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/owl/owl.carousel.min.js"></script>
 
-        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/moment.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- <script type="text/javascript" src="<?php echo base_url();?>js/plugins/moment.min.js"></script> -->
+        <!-- <script type="text/javascript" src="<?php echo base_url();?>js/plugins/daterangepicker/daterangepicker.js"></script> -->
         <!-- END THIS PAGE PLUGINS-->
 
            <!-- START THIS PAGE PLUGINS-->

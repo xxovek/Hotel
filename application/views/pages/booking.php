@@ -1,139 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type='text/javascript'>
-// getcustomer();
-// $(document).ready(function(){
-    getcustomer();
-
-function getcustomer(){
-
- $.ajax({
- type : "POST",
- url  : "<?=base_url()?>index.php/Booking/customerDetails",
-  dataType: 'json',
- success: function(response){
-  var len = response.length;
-  var i=0,html="";
-  if(len > 0){
-   for(var i=0;i<len;i++){
-    html+='<option value="'+response[i].customerId+'">'+response[i].FirstName+' '+response[i].lastName+'</option>';
-   }
-   alert(html);
-    // $("#customerName").html(html);
-  }else{
-  }
- }
- });
-}
-function checkroomavability(){
-  var FromDate =$("#FromDate").val();
-  var UptoDate =$("#UptoDate").val();
-  var roomNo =$("#roomno").val();
-  if(FromDate===""){
-  $("#errmsgfromdate").html("<font color='red'>Please Select From Date</font>");
-  }
-  else
-  {
-  $("#errmsgfromdate").html("");
-  if(UptoDate===""){
-  $("#errmsguptodate").html("<font color='red'>Please Select Upto Date</font>");
-  }
-  else
-  {
-      $("#errmsguptodate").html("");
-      if(roomNo===""){
-      $("#errmsgroomno").html("<font color='red'>Please Select Room No</font>");
-      }
-      else
-      {
-        $("#errmsgroomno").html("");
-        $.ajax({
-        type : "POST",
-        url  : "<?=base_url()?>index.php/Booking/checkroomavaiableBookingDetail",
-         dataType: 'json',
-         data :{
-           roomNo:roomNo,
-           FromDate:FromDate,
-           UptoDate:UptoDate
-         },
-        success: function(response){
-           // alert(response);
-           if(response===0){
-             $("#notificationmsg").html("<font color='blue'>Room is Available</font>");
-             $("#notificationval").val(1);
-           }
-           else {
-             $("#notificationmsg").html("<font color='red'>Room is UnAvailable</font>");
-             $("#notificationval").val("");
-           }
-
-        }
-        });
-      }
-    }
-  }
-}
-function saveBookingDetail(){
- var customerName =$("#customerName").val();
- // alert(customerName);
- var roomNo =$("#roomno").val();
- var FromDate =$("#FromDate").val();
- var UptoDate =$("#UptoDate").val();
- var notificationval = $("#notificationval").val();
- // alert(notificationval);
- if(customerName===""){
-   $("#errmsgcustomername").html("<font color='red'>Please Select Customer Name</font>");
- }
- else{
-  $("#errmsgcustomername").html("");
-  if(FromDate===""){
-  $("#errmsgfromdate").html("<font color='red'>Please Select From Date</font>");
-  }
-  else
-  {
-  $("#errmsgfromdate").html("");
-  if(UptoDate===""){
-  $("#errmsguptodate").html("<font color='red'>Please Select Upto Date</font>");
-  }
-  else
-  {
-      $("#errmsguptodate").html("");
-      if(roomNo===""){
-      $("#errmsgroomno").html("<font color='red'>Please Select Room No</font>");
-      }
-      else
-      {
-        $("#errmsgroomno").html("");
-        if(notificationval=="")
-        {
-
-        }
-        else
-        {
-        $.ajax({
-        type : "POST",
-        url  : "<?=base_url()?>index.php/Booking/saveBookingDetail",
-         // dataType: 'json',
-         data :{
-           customerName:customerName,
-           roomNo:roomNo,
-           FromDate:FromDate,
-           UptoDate:UptoDate
-         },
-        success: function(response){
-
-        $("#showbtn").click();
-        }
-        });
-      }
-    }
-  }
-  }
- }
-}
-
-
-
-</script>
 
     <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>">Home</a></li>
@@ -179,17 +43,13 @@ function saveBookingDetail(){
                                 <span id="errmsgcustomername"></span>
                                 <select class="form-control select" name="customerName" data-live-search="true" id="customerName">
                                    <option value="">Select Customer </option>
-
                                    <?php
-
                                   foreach($customername as $row)
                                   {
                                   echo '<option value="'.$row->customerId.'">'.$row->FirstName.'-'.$row->lastName.'</option>';
                                   }
                                   ?>
                                 </select>
-
-
                                 <span class="help-block">Select box example</span>
                             </div>
                         </div>
@@ -200,7 +60,7 @@ function saveBookingDetail(){
                                 <span id="errmsgfromdate"></span>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                    <input type="text" class="form-control datepicker" value="" id="FromDate" >
+                                    <input type="text" class="form-control" value=""  id="startDate" onchange="checkroomavability()">
                                 </div>
                                 <span class="help-block">Click on input field to get datepicker</span>
                             </div>
@@ -211,7 +71,7 @@ function saveBookingDetail(){
                               <span id="errmsguptodate"></span>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                    <input type="text" class="form-control datepicker" value="" id="UptoDate" >
+                                    <input type="text" class="form-control" value=""  id="endDate" onchange="checkroomavability()">
                                 </div>
                                 <span class="help-block">Click on input field to get datepicker</span>
                             </div>
@@ -241,7 +101,7 @@ function saveBookingDetail(){
                         </div>
                     </div>
 
-      
+
 
                     <div class="panel-footer">
                         <button class="btn btn-default">Clear Form</button>
@@ -254,3 +114,242 @@ function saveBookingDetail(){
         </div>
 
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script type='text/javascript'>
+    // getcustomer();
+    var bindDateRangeValidation = function (f, s, e) {
+        if(!(f instanceof jQuery)){
+    			console.log("Not passing a jQuery object");
+        }
+
+        var jqForm = f,
+            startDateId = s,
+            endDateId = e;
+
+        var checkDateRange = function (startDate, endDate) {
+            var isValid = (startDate != "" && endDate != "") ? startDate <= endDate : true;
+            return isValid;
+        }
+
+        var bindValidator = function () {
+            var bstpValidate = jqForm.data('bootstrapValidator');
+            var validateFields = {
+                startDate: {
+                    validators: {
+                        notEmpty: { message: 'This field is required.' },
+                        callback: {
+                            message: 'Start Date must less than or equal to End Date.',
+                            callback: function (startDate, validator, $field) {
+                                return checkDateRange(startDate, $('#' + endDateId).val())
+                            }
+                        }
+                    }
+                },
+                endDate: {
+                    validators: {
+                        notEmpty: { message: 'This field is required.' },
+                        callback: {
+                            message: 'End Date must greater than or equal to Start Date.',
+                            callback: function (endDate, validator, $field) {
+                                return checkDateRange($('#' + startDateId).val(), endDate);
+                            }
+                        }
+                    }
+                },
+              	customize: {
+                    validators: {
+                        customize: { message: 'customize.' }
+                    }
+                }
+            }
+            if (!bstpValidate) {
+                jqForm.bootstrapValidator({
+                    excluded: [':disabled'],
+                })
+            }
+
+            jqForm.bootstrapValidator('addField', startDateId, validateFields.startDate);
+            jqForm.bootstrapValidator('addField', endDateId, validateFields.endDate);
+
+        };
+
+        var hookValidatorEvt = function () {
+            var dateBlur = function (e, bundleDateId, action) {
+                jqForm.bootstrapValidator('revalidateField', e.target.id);
+            }
+
+            $('#' + startDateId).on("dp.change dp.update blur", function (e) {
+                $('#' + endDateId).data("DateTimePicker").setMinDate(e.date);
+                dateBlur(e, endDateId);
+            });
+
+            $('#' + endDateId).on("dp.change dp.update blur", function (e) {
+                $('#' + startDateId).data("DateTimePicker").setMaxDate(e.date);
+                dateBlur(e, startDateId);
+            });
+        }
+
+        bindValidator();
+        hookValidatorEvt();
+    };
+
+
+    $(function () {
+        var sd = new Date(), ed = new Date();
+
+        $('#startDate').datetimepicker({
+          pickTime: false,
+          format: "YYYY/MM/DD",
+          defaultDate: sd,
+          maxDate: ed
+        });
+
+        $('#endDate').datetimepicker({
+          pickTime: false,
+          format: "YYYY/MM/DD",
+          defaultDate: ed,
+          minDate: sd
+        });
+
+        //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
+        bindDateRangeValidation($("#form"), 'startDate', 'endDate');
+    });
+    // $(document).ready(function(){
+        getcustomer();
+
+    function getcustomer(){
+
+     $.ajax({
+     type : "POST",
+     url  : "<?=base_url()?>index.php/Booking/customerDetails",
+      dataType: 'json',
+     success: function(response){
+      var len = response.length;
+      var i=0,html="";
+      if(len > 0){
+       for(var i=0;i<len;i++){
+        html+='<option value="'+response[i].customerId+'">'+response[i].FirstName+' '+response[i].lastName+'</option>';
+       }
+
+        // $("#customerName").html(html);
+      }else{
+      }
+     }
+     });
+    }
+    function checkroomavability(){
+      var FromDate =$("#startDate").val();
+      var UptoDate =$("#endDate").val();
+      var roomNo =$("#roomno").val();
+      if(FromDate===""){
+      $("#errmsgfromdate").html("<font color='red'>Please Select From Date</font>");
+      }
+      else
+      {
+      $("#errmsgfromdate").html("");
+      if(UptoDate===""){
+      $("#errmsguptodate").html("<font color='red'>Please Select Upto Date</font>");
+      }
+      else
+      {
+          $("#errmsguptodate").html("");
+          if(roomNo===""){
+          $("#errmsgroomno").html("<font color='red'>Please Select Room No</font>");
+          }
+          else
+          {
+            $("#errmsgroomno").html("");
+            $.ajax({
+            type : "POST",
+            url  : "<?=base_url()?>index.php/Booking/checkroomavaiableBookingDetail",
+             dataType: 'json',
+             data :{
+               roomNo:roomNo,
+               FromDate:FromDate,
+               UptoDate:UptoDate
+             },
+            success: function(response){
+               // alert(response);
+               if(response===0){
+                 $("#notificationmsg").html("<font color='blue'>Room is Available</font>");
+                 $("#notificationval").val(1);
+               }
+               else {
+                 $("#notificationmsg").html("<font color='red'>Room is UnAvailable</font>");
+                 $("#notificationval").val("");
+               }
+
+            }
+            });
+          }
+        }
+      }
+    }
+    function saveBookingDetail(){
+     var customerName =$("#customerName").val();
+     // alert(customerName);
+     var roomNo =$("#roomno").val();
+     var FromDate =$("#startDate").val();
+     var UptoDate =$("#endDate").val();
+     var notificationval = $("#notificationval").val();
+     // alert(notificationval);
+     if(customerName===""){
+       $("#errmsgcustomername").html("<font color='red'>Please Select Customer Name</font>");
+     }
+     else{
+      $("#errmsgcustomername").html("");
+      if(FromDate===""){
+      $("#errmsgfromdate").html("<font color='red'>Please Select From Date</font>");
+      }
+      else
+      {
+      $("#errmsgfromdate").html("");
+      if(UptoDate===""){
+      $("#errmsguptodate").html("<font color='red'>Please Select Upto Date</font>");
+      }
+      else
+      {
+          $("#errmsguptodate").html("");
+          if(roomNo===""){
+          $("#errmsgroomno").html("<font color='red'>Please Select Room No</font>");
+          }
+          else
+          {
+            $("#errmsgroomno").html("");
+            if(notificationval=="")
+            {
+
+            }
+            else
+            {
+            $.ajax({
+            type : "POST",
+            url  : "<?=base_url()?>index.php/Booking/saveBookingDetail",
+             // dataType: 'json',
+             data :{
+               customerName:customerName,
+               roomNo:roomNo,
+               FromDate:FromDate,
+               UptoDate:UptoDate
+             },
+            success: function(response){
+
+            $("#showbtn").click();
+            window.location.reload();
+            }
+            });
+          }
+        }
+      }
+      }
+     }
+    }
+
+
+
+    </script>
