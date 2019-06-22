@@ -73,7 +73,9 @@
                                     <div class="col-md-6 col-xs-12">                                            
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control" name="paymenttypeName" required/>
+                                            <input type="text" class="form-control" name="paymenttypeName" />
+                                          
+                                            <!-- <input type="text" onblur="checkTypeExists(this.value);" class="form-control" name="paymenttypeName" required/> -->
                                         </div>        
 
                                         <span class="help-block">Add Payment Type as Cash,Card etc.</span>&nbsp;<?php echo validation_errors(); ?>
@@ -85,7 +87,7 @@
                             </div>
                             <div class="panel-footer">
                                 <button class="btn btn-default" type="reset">Clear Form</button>                                    
-                                <button type="submit" id="submitbtn" class="btn btn-primary pull-right">Submit</button>
+                                <button type="submit" id="submitbtn"  class="btn btn-primary pull-right">Submit</button>
                             </div>
                         </div>
 
@@ -150,7 +152,7 @@
                                             <tr>
                                                 <!-- <th>#</th> -->
 
-                                            <th>Type</th>
+                                                <th>Type</th>
                                                 <th>Created Date</th>
                                                 <th>Action</th>
                                         
@@ -158,20 +160,7 @@
                                         </thead>
                                         <tbody id="Tbl_paymenttypes_body">
                                           
-                                            <?php foreach($paymenttypes as $pt):?>
-                                            <tr>
-                                                <td><?php echo ucfirst($pt['paymentType']);?></td>
-                                                <td><?php echo $pt['created_at'];?></td>
-                                                <td><div class="btn-group btn-group-sm"> 
-                                                <button class="btn btn-default btn-rounded btn-sm" onclick='edit_row("<?php echo $pt['paymentTypeId']; ?>" , "<?php echo $pt['paymentType'];?>");' ><span class="fa fa-pencil"></span></button>
-                                                <button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('<?php echo $pt['paymentTypeId']; ?>');"><span class="fa fa-times"></span></button>
-                                                <!-- <?php echo form_open('/Payments/delete/'.$pt['paymentTypeId']); ?>
-                                                <button type="submit" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></button>
-                                                </form> -->
-                                                </div></td>
-                                            </tr>
-                                    <?php endforeach;?> 
-                                        </tbody>
+                                         </tbody>
 </table> 
 </div>
 <!-- onclick="edit_row('<?php echo $pt['paymentTypeId'];?>'',''<?php echo $pt['paymentType'];?>');" -->
@@ -190,8 +179,35 @@
                 $("#div_submitFrm").hide();
             }
 
+            // function checkTypeExists(type){
+            //  // alert(type);
+            //  var base_url='<?php echo base_url(); ?>';
+            //     $.ajax({
+            //             type:'POST',
+            //             url:base_url+'index.php/Payments/check_type_exists/type',
+            //             data:{type:type},
+            //             dataType:'json',
+            //              success:function(response){
+            //                 // window.location.reload();
+            //                 if(response.status === true){
+            //                     $("#errmsg").html("That Type is already taken. Please Add different one.");
+            //                   // $('#submitFrm')[0].reset();
+
+            //                     setTimeout(function(){
+            //                     $("#errmsg").html("");
+            //                    // $('#submitFrm')[0].reset();
+
+            //                   //   window.location.reload(1);
+            //                     }, 5000);
+            //                 }else{
+
+            //                 }
+            //                 }
+            //         });
+            // }
+
             function delete_row(typeid){
-                alert(typeid);
+                //alert(typeid);
                 var base_url='<?php echo base_url(); ?>';
                 $.ajax({
                         type:'POST',
@@ -205,21 +221,27 @@
 
             $('#submitbtn').on('click',function(e){
                 // alert("ok");
+                    // $("#Tbl_paymenttypes_body").reload();
+
                e.preventDefault();
                var data = $('#submitFrm').serialize();
                var typename = $('input[name="paymenttypeName"]').val();
-              alert(typename);
+            //   alert(typename);
+
                if(typename != ""){
                 var base_url='<?php echo base_url(); ?>'
                 // action="<?php echo site_url();?>/Payments/create"
                 $.ajax({
                   url:base_url+'index.php/Payments/create',
                   type:'POST',
-                  data:data,
+                //   data:data,
+                data:{typename:typename},
                   success:function(data){
-                    // $("#Tbl_paymenttypes_body").reload();
-                   // $("#Tbl_paymenttypes").table("refresh");
-                    alert("ok"); // here what you want to do with response
+
+                  $('#submitFrm')[0].reset();
+
+                LoadTBLData();
+                   // alert("ok"); // here what you want to do with response
                   }
                   }); 
               return false;
@@ -236,10 +258,14 @@
 
 
 
+            // functionname(\''+ issue_id +'\',\''+response[i]['IssuesDate']+'\')
             function LoadTBLData(){
+                var base_url='<?php echo base_url();?>';
                     $.ajax({
                         type:'ajax',
-                        url:'<?php echo site_url('/Customer/get_customer');?>',
+                        // url:base_url+'<?php echo site_url('/Payments/getTypes');?>',
+                        url:base_url+'index.php/Payments/getTypes',
+
                         async : true,
                         dataType:'json',
                          success:function(response){
@@ -247,37 +273,18 @@
                     var i;
                     for(i=0; i<response.length; i++){
                         html += '<tr>'+
-                                '<td>'+response[i].FirstName+' '+response[i].lastName+'</td>'+
-                                '<td>'+response[i].address+'</td>'+
-                                '<td>'+response[i].contactNumber+'</td>'+
-                                '<td>'+response[i].email+'</td>'+
+                                '<td>'+response[i].paymentType+'</td>'+
                                 '<td>'+response[i].created_at+'</td>'+
-                                '<td><div class="btn-group">'+
-                                '<button class="btn btn-default" onclick="edit_customer('+response[i].customerId+');"><i class="fa fa-edit"></i></button>'+
-                                '<button  class="btn btn-default" onclick="remove_customer('+response[i].customerId+');"><i class="fa fa-times"></i></button>'+
+                                '<td><div class="btn-group">'+  
+                                '<button class="btn btn-default btn-rounded btn-sm" onclick="edit_row(\''+response[i].paymentTypeId+'\',\''+response[i].paymentType+'\');"><span class="fa fa-edit"></span></button>'+
+                                '<button  class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('+response[i].paymentTypeId+');"><span class="fa fa-times"></span></button>'+
                                 '</div></td></tr>';
                     }
-                   $('#customerData').html(html);
-                    $('#customers2').DataTable();
+                   $('#Tbl_paymenttypes_body').html(html);
+                    $('#Tbl_paymenttypes').DataTable();
                     }
                     });
                 }
 
 
-
-
-            function LoadTBLData(){
-                   //alert("ok");
-                var base_url='<?php echo base_url();?>'
-                   
-                   $.ajax({
-                    url:base_url+'index.php/Payments/getTypes',
-                    type:'POST',
-                    dataType:'json',
-                    success:function(response){
-                        alert(response[0].paymentTypeId); // here what you want to do with response
-                    }
-
-                   });
-               }
             </script>
