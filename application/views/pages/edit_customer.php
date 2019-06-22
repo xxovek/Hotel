@@ -38,8 +38,8 @@
                                       <label class="col-md-4 control-label">First Name</label>
                                       <div class="col-md-6 col-xs-12">
                                           <div class="input-group">
-
-                                              <input type="text" class="form-control" name="firstname" id="firstname" />
+                                              <input type="hidden" id="customerId" value="<?php echo $customer['customerId']; ?>" />
+                                              <input type="text" class="form-control" name="firstname" id="firstname" value="<?php echo $customer['FirstName']; ?>" />
                                           </div>
                                           <span class="help-block">min size = 2, max size = 8</span>
                                       </div>
@@ -50,7 +50,7 @@
                                       <div class="col-md-6 col-xs-12">
                                           <div class="input-group">
 
-                                              <input type="text" class="form-control" name="lastname" id="lastname" />
+                                              <input type="text" class="form-control" name="lastname" id="lastname" value="<?php echo $customer['lastName']; ?>" />
                                           </div>
                                           <span class="help-block">Password field sample</span>
                                       </div>
@@ -59,7 +59,7 @@
                                   <div class="form-group">
                                       <label class="col-md-4 control-label">Address</label>
                                       <div class="col-md-6 col-xs-12">
-                                          <textarea class="form-control" rows="5" name="address" id="address"></textarea>
+                                          <textarea class="form-control" rows="5" name="address" id="address"><?php echo $customer['address']; ?></textarea>
                                           <span class="help-block">Default textarea field</span>
                                       </div>
                                   </div>
@@ -79,7 +79,7 @@
                                       <div class="col-md-6 col-xs-12">
                                           <div class="input-group">
 
-                                              <input type="email" class="form-control" name="emailid" id="emailid" />
+                                              <input type="email" class="form-control" name="emailid" id="emailid" value="<?php echo $customer['email']; ?>" />
                                           </div>
                                           <span class="help-block">Enter correct email-id of Guest</span>
                                       </div>
@@ -90,7 +90,7 @@
                                       <div class="col-md-6 col-xs-12">
                                           <div class="input-group">
 
-                                              <input type="text" class="form-control" name="contactNumber" id="contactNumber" />
+                                              <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?php echo $customer['contactNumber']; ?>" />
                                           </div>
                                           <span class="help-block">Enter Guest Last Name atleast two characters long</span>
                                       </div>
@@ -101,7 +101,6 @@
                                   <div id="cam">
                                       <div class="form-group">
                                           <label class="col-md-3 col-xs-12 control-label">File</label>
-
                                           <div class="col-md-6 col-xs-12">
                                               <div id="my_camera"></div>
                                               <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
@@ -124,7 +123,7 @@
 
                       </div>
                       <div class="panel-footer">
-                          <button class="btn btn-default">Clear Form</button>
+                          <button class="btn btn-default" type="reset">Clear Form</button>
                           <button class="btn btn-primary pull-right" type="button" onclick="saveSnap()">Submit</button>
                       </div>
                   </div>
@@ -153,7 +152,6 @@
           $('#startC').hide();
       }
 
-
       function take_snapshot() {
           Webcam.snap(function(data_uri) {
               $(".image-tag").val(data_uri);
@@ -172,20 +170,20 @@
           Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
               console.log('Save successfully');
           });
-
           var formData = {
               fname: $('#firstname').val(),
               lname: $('#lastname').val(),
               address: $('#address').val(),
               emailid: $('#emailid').val(),
-              contactNumber: $('#contactNumber').val()
+              contactNumber: $('#contactNumber').val(),
+              customerId: $('#customerId').val()
           };
           $.ajax({
               type: 'POST',
-              url: '<?php echo site_url(); ?>/Customer/add_details',
+              url: '<?php echo site_url(); ?>/Customer/update_details',
               data: formData,
               success: function(response) {
-                  // alert(response);
+                
               },
               error: function(xhr) {
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
@@ -208,9 +206,9 @@
                       minlength: 3,
                       maxlength: 20
                   },
-                  address: {
+                  age: {
                       required: true,
-                      min: 5,
+                      min: 18,
                       max: 100
                   },
                   emailid: {

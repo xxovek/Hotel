@@ -77,6 +77,8 @@
                                         </div>        
 
                                         <span class="help-block">Add Payment Type as Cash,Card etc.</span>&nbsp;<?php echo validation_errors(); ?>
+                                    <br>
+                                    <span id="errmsg" ></span>
                                     </div>
                                 </div>
                        
@@ -162,10 +164,10 @@
                                                 <td><?php echo $pt['created_at'];?></td>
                                                 <td><div class="btn-group btn-group-sm"> 
                                                 <button class="btn btn-default btn-rounded btn-sm" onclick='edit_row("<?php echo $pt['paymentTypeId']; ?>" , "<?php echo $pt['paymentType'];?>");' ><span class="fa fa-pencil"></span></button>
-                                                
-                                                <?php echo form_open('/Payments/delete/'.$pt['paymentTypeId']); ?>
+                                                <button class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('<?php echo $pt['paymentTypeId']; ?>');"><span class="fa fa-times"></span></button>
+                                                <!-- <?php echo form_open('/Payments/delete/'.$pt['paymentTypeId']); ?>
                                                 <button type="submit" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></button>
-                                                </form>
+                                                </form> -->
                                                 </div></td>
                                             </tr>
                                     <?php endforeach;?> 
@@ -176,6 +178,8 @@
             </div>
             <!-- END PAGE CONTENT WRAPPER -->       
             <script>
+               LoadTBLData();
+
             function edit_row(typeid,typename){
                
                 // document.getElementsByName("id").value = typeid;
@@ -186,11 +190,27 @@
                 $("#div_submitFrm").hide();
             }
 
+            function delete_row(typeid){
+                alert(typeid);
+                var base_url='<?php echo base_url(); ?>';
+                $.ajax({
+                        type:'POST',
+                        url:base_url+'index.php/Payments/delete',
+                        data:{typeid:typeid},
+                         success:function(response){
+                             window.location.reload();
+                            }
+                    });
+            }
+
             $('#submitbtn').on('click',function(e){
                 // alert("ok");
                e.preventDefault();
                var data = $('#submitFrm').serialize();
-               var base_url='<?php echo base_url(); ?>'
+               var typename = $('input[name="paymenttypeName"]').val();
+              alert(typename);
+               if(typename != ""){
+                var base_url='<?php echo base_url(); ?>'
                 // action="<?php echo site_url();?>/Payments/create"
                 $.ajax({
                   url:base_url+'index.php/Payments/create',
@@ -203,7 +223,61 @@
                   }
                   }); 
               return false;
+               }else{
+                $("#errmsg").html("Type is Required.");
 
-
+                setTimeout(function(){
+                    $("#errmsg").html("");
+                //   window.location.reload(1);
+                  }, 5000);
+               }
+             
             });
+
+
+
+            function LoadTBLData(){
+                    $.ajax({
+                        type:'ajax',
+                        url:'<?php echo site_url('/Customer/get_customer');?>',
+                        async : true,
+                        dataType:'json',
+                         success:function(response){
+                    var html = '';
+                    var i;
+                    for(i=0; i<response.length; i++){
+                        html += '<tr>'+
+                                '<td>'+response[i].FirstName+' '+response[i].lastName+'</td>'+
+                                '<td>'+response[i].address+'</td>'+
+                                '<td>'+response[i].contactNumber+'</td>'+
+                                '<td>'+response[i].email+'</td>'+
+                                '<td>'+response[i].created_at+'</td>'+
+                                '<td><div class="btn-group">'+
+                                '<button class="btn btn-default" onclick="edit_customer('+response[i].customerId+');"><i class="fa fa-edit"></i></button>'+
+                                '<button  class="btn btn-default" onclick="remove_customer('+response[i].customerId+');"><i class="fa fa-times"></i></button>'+
+                                '</div></td></tr>';
+                    }
+                   $('#customerData').html(html);
+                    $('#customers2').DataTable();
+                    }
+                    });
+                }
+
+
+
+
+            function LoadTBLData(){
+                   //alert("ok");
+                var base_url='<?php echo base_url();?>'
+                   
+                   $.ajax({
+                    url:base_url+'index.php/Payments/getTypes',
+                    type:'POST',
+                    dataType:'json',
+                    success:function(response){
+                        alert(response[0].paymentTypeId); // here what you want to do with response
+                    }
+
+                   });
+               }
             </script>

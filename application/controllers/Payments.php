@@ -25,6 +25,10 @@ Class Payments extends CI_Controller{
 			}
 		}
 
+		public function getTypes(){
+			$data['paymenttypes'] = $this->Payment_model->get_paymentstypes();
+			echo json_encode($data);
+		}
 
 		// public function create(){
 		// 	// Check login
@@ -59,20 +63,20 @@ Class Payments extends CI_Controller{
             // );
             
             //$this->form_validation->set_rules('paymenttypeName', 'Payment Type', 'required|callback_check_type_exists');
-				if($this->form_validation->run() === FALSE){
-            $data['paymenttypes'] = $this->Payment_model->get_paymentstypes();
+			// 	if($this->form_validation->run() === FALSE){
+            // $data['paymenttypes'] = $this->Payment_model->get_paymentstypes();
                 
-                $this->load->view('templates/header');
-				$this->load->view('pages/paymentstypes',$data);
-				$this->load->view('templates/footer');
-			} else {
+            //     $this->load->view('templates/header');
+			// 	$this->load->view('pages/paymentstypes',$data);
+			// 	$this->load->view('templates/footer');
+			// } else {
 				$this->Payment_model->create_paymentstypes();
 
 			     // 	// Set message
 			     // 	// $this->session->set_flashdata('category_created', 'Your category has been created');
 
-				redirect('Payments');
-			}
+			// 	redirect('Payments');
+			// }
 
         }
         
@@ -103,16 +107,23 @@ Class Payments extends CI_Controller{
           }
 
 
-          public function delete($id){
-            // if(!$this->session->userdata('logged_in')){
-            //   redirect('users/login');
-            // }
+        //   public function delete($id){
+        //     // if(!$this->session->userdata('logged_in')){
+        //     //   redirect('users/login');
+        //     // }
       
-            $this->Payment_model->delete_type($id);
-            // $this->session->set_flashdata('post_deleted', 'Your Post has been Deleted');
+        //     $this->Payment_model->delete_type($id);
+        //     // $this->session->set_flashdata('post_deleted', 'Your Post has been Deleted');
       
-            redirect('Payments');
-          }
+        //     redirect('Payments');
+		//   }
+		  
+
+		  public function delete(){
+			$typeid = $this->input->post('typeid');
+			$this->Payment_model->delete_type($typeid);
+			redirect('Payments');
+		}
 }
 
 ?>

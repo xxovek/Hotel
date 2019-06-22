@@ -38,6 +38,15 @@ public function remove_customer(){
     $this->Customer_model->remove_customer($customerId);
     redirect('Customer');
 }
+public function edit_customer($customerId){
+    $data['customer'] = $this->Customer_model->get_customers($customerId);
+    $this->load->view('templates/header');
+    $this->load->view('pages/edit_customer',$data);
+    $this->load->view('templates/footer');
 }
-
-?>
+public function update_details(){
+    $customerId = $this->input->post('customerId');
+    $this->Customer_model->update_customer($customerId);
+    redirect('Customer');
+}
+}
