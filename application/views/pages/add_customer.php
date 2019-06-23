@@ -202,7 +202,7 @@
           });
           }
 
-      }
+
 
       $(function() {
           var jvalidate = $("#jvalidate").validate({
