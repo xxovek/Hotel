@@ -11,21 +11,23 @@ class Documents_model extends CI_Model{
 
     public function create_documentstypes(){
         $data = array(
-            'DocumentType' => $this->input->post('documenttypeName')
+            'DocumentType' => $this->input->post('typename')
             // 'user_id' => $this->session->userdata('user_id')
         );
 
         return $this->db->insert('Documents', $data);
     }
 
+ 
     public function update_type(){
+        $typeid = $this->input->post('typeid');
         $data = array(
-            'DocumentType' => $this->input->post('documenttypeName1')
+            'DocumentType' => $this->input->post('typename')
           );
-
-          $this->db->where('DocumentId',$this->input->post('id'));
+          $this->db->where('DocumentId',$typeid);
           return $this->db->update('Documents',$data);
     }
+
 
     // Check username exists
 		public function check_type_exists($typeName){

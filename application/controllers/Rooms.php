@@ -5,9 +5,7 @@ Class Rooms extends CI_Controller{
 
     public function index()
 	{
-		// $this->load->view('dashboard');
         $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
-		// $data['title'] = $data['post']['title'];
         $this->load->view('templates/header');
         $this->load->view('pages/roomtypes',$data);
         $this->load->view('templates/footer');
@@ -22,68 +20,45 @@ Class Rooms extends CI_Controller{
 		}
 	}
    
+
+	public function getTypes(){
+		$data = $this->Rooms_model->get_roomtypes();
+		echo json_encode($data);
+	}
+
+
 		public function create(){
-            // echo "in create" ;
-			// Check login
-			// if(!$this->session->userdata('logged_in')){
-			// 	redirect('users/login');
-			// }
-
-
-			$this->form_validation->set_rules('roomtypeName', 'Room Type', 'required|callback_check_type_exists');
-
-			if($this->form_validation->run() === FALSE){
-            $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
-                
-                $this->load->view('templates/header');
-				$this->load->view('pages/roomtypes',$data);
-				$this->load->view('templates/footer');
+			$type = $this->input->post('typename');
+			$ret = $this->check_type_exists($type);
+				if($ret === false){
+				$response['msg'] = false; 
+				echo json_encode($response);
 			} else {
 				$this->Rooms_model->create_roomtype();
+				$response['msg'] = true; 
+				echo json_encode($response);
+			     // 	// Set message
+			     // 	// $this->session->set_flashdata('category_created', 'Your category has been created');
 
-			// 	// Set message
-			// 	// $this->session->set_flashdata('category_created', 'Your category has been created');
-
-				redirect('Rooms');
 			}
+
 		}
 
 
-		public function update(){
-            // if(!$this->session->userdata('logged_in')){
-            //   redirect('users/login');
-            // }
-            // echo "Updated";
+		
+		  public function update(){
+			$this->Rooms_model->update_type();//call to model function update_post
+			$response['msg'] = true; 
+			echo json_encode($response);
+		}
+   
 
-
-            $this->form_validation->set_rules('roomtypeName1', 'Room Type', 'required|callback_check_type_exists');
-
-			if($this->form_validation->run() === FALSE){
-            $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
-                
-                $this->load->view('templates/header');
-				$this->load->view('pages/roomtypes',$data);
-				$this->load->view('templates/footer');
-			} else {
-				$this->Rooms_model->update_type();//call to model function update_post
-           // $this->session->set_flashdata('post_updated', 'Your Post has been updated');
-      
-                  redirect('Rooms');
-			}
-       
-            
-		  }
-		  
-		  public function delete($id){
-            // if(!$this->session->userdata('logged_in')){
-            //   redirect('users/login');
-            // }
-      
-            $this->Rooms_model->delete_type($id);
-            // $this->session->set_flashdata('post_deleted', 'Your Post has been Deleted');
-      
-            redirect('Rooms');
-          }
+			  
+		  public function delete(){
+			$typeid = $this->input->post('typeid');
+			$this->Rooms_model->delete_type($typeid);
+			redirect('Rooms');
+		}
 
 		
 }
