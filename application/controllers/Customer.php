@@ -22,12 +22,9 @@ Class Customer extends CI_Controller{
         $this->load->view('templates/footer');
     }
 
-    public function save_customer(){
-        $filename = 'pic_'.'2'.'.jpeg';
-
-$url = '';
-if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
-}
+public function save_customer($customerId){
+        $filename = 'pic_'.$customerId.'.jpeg';
+if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){}
 }
 public function add_details(){
     $data = $this->Customer_model->add_customer();
