@@ -97,8 +97,7 @@
                                   </div>
                               </div>
                               <div class="col-md-6">
-                                  <button type="button" class="btn btn-primary" onClick="start_camera()" id="startC">start Camera</button>
-                                  <div id="cam">
+                                 
                                       <div class="form-group">
                                           <label class="col-md-3 col-xs-12 control-label">File</label>
                                           <div class="col-md-6 col-xs-12">
@@ -112,21 +111,17 @@
                                       <div class="form-group">
                                           <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
                                           <div class="col-md-3 col-xs-3">
-                                              <div id="results">Your captured image will appear here...</div>
-                                              <span class="help-block">Checkbox sample, easy to use</span>
+                                              <div id="results">
+                                                  <?php 
+                                                  $url = 'upload/pic_'.$customer['customerId'].'.jpeg';
+                                                  if(!file_exists(base_url($url))){?>
+                                                    <img id="imageprev" src="<?php echo base_url($url);?>"/>
+                                                  <?php }else{}?>
+                                              </div>
+                                              <span class="help-block">File</span>
                                           </div>
                                       </div>
-                                  </div>
-                                  <div class="col-md-3">
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <h3><span class="fa fa-download"></span> Mini dropzone</h3>                                    
-                                    <p>Add form with class <code>dropzone dropzone-mini</code> to get mini dropzone box</p>
-                                    <form action="#" class="dropzone dropzone-mini"></form>
-                                </div>
-                            </div>
-
+                                  
                         </div>
                               </div>
 
@@ -149,33 +144,25 @@
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
-      $('#cam').hide();
       Webcam.set({
           width: 325,
           height: 250,
           image_format: 'jpeg',
           jpeg_quality: 90
       });
-
-      function start_camera() {
-          $('#cam').show();
-          Webcam.attach('#my_camera');
-          $('#startC').hide();
-      }
+     
+    Webcam.attach('#my_camera');
 
       function take_snapshot() {
           Webcam.snap(function(data_uri) {
               $(".image-tag").val(data_uri);
               document.getElementById('results').innerHTML = '<img id="imageprev" src="' + data_uri + '"/>';
-
           });
       }
 
       function saveSnap() {
           var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
-
-
           if(returnVal){
           var formData = {
               fname: $('#firstname').val(),
@@ -190,19 +177,16 @@
               url: '<?php echo site_url(); ?>/Customer/update_details',
               data: formData,
               success: function(response) {
-                window.location = '<?php echo site_url('/Customer');?>';
+                var base64image = document.getElementById("imageprev").src;
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer'+customerId, function(code, text) {
+              console.log('Save successfully');
+          });
               },
               error: function(xhr) {
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
               }
-          });
-          var base64image = document.getElementById("imageprev").src;
-
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
-              console.log('Save successfully');
-          });
+          }); 
           }
-
       }
 
       $(function() {

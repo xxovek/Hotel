@@ -179,7 +179,6 @@
               data: formData,
               dataType:'json',
               success: function(response) {
-                alert(response);
                 var base64image = document.getElementById("imageprev").src;
 
           Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/"+response.customerId, function(code, text) {
@@ -225,7 +224,9 @@
                   },
                   contactNumber: {
                       required: true,
-                      number: true
+                      number: true,
+                      minlength: 10,
+                      maxlength: 11
                   }
               }
           });
