@@ -29,18 +29,7 @@ Class Documents extends CI_Controller{
 		}
 	
 
-<<<<<<< HEAD
-			if($this->Payment_model>form_validation->run() === FALSE){
-            $data['DocumentType'] = $this->Documents_model->get_documenttypes();
-                
-                $this->load->view('templates/header');
-				$this->load->view('pages/documentstypes',$data);
-				$this->load->view('templates/footer');
-			} else {
-				$this->Documents_model->create_documentstypes();
-=======
 	
->>>>>>> 4b71b15e2d3fc9b26c43951c7079e52d4b481a97
 
 	public function create(){
 		$type = $this->input->post('typename');

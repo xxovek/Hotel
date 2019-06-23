@@ -21,7 +21,13 @@ class Customer_model extends CI_Model{
             'email' => $this->input->post('emailid'),
             'contactNumber' => $this->input->post('contactNumber')
         );
-       return $this->db->insert('Customers',$data);
+       $this->db->insert('Customers',$data);
+       $last = $this->db->order_by('customerId',"desc");
+       $this->db->limit(1);
+       $this->db->get('Customers');
+       $this->db->row();
+       return $last;
+
     }
     public function update_customer($customerId){
         $data = array(
