@@ -14,7 +14,7 @@ Class Customer extends CI_Controller{
         $data = $this->Customer_model->get_customers();
         echo json_encode($data);
     }
-    
+
     public function add_customer(){
         $data['title'] = 'Add New Guest';
         $this->load->view('templates/header');
@@ -22,16 +22,16 @@ Class Customer extends CI_Controller{
         $this->load->view('templates/footer');
     }
 
-    public function save_customer(){
-        $filename = 'pic_'.date('YmdHis') . '.jpeg';
+    public function save_customer($customerId){
+        $filename = 'pic_'.$customerId . '.jpeg';
 
 $url = '';
 if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
 }
 }
 public function add_details(){
-    $this->Customer_model->add_customer();
-    redirect('Customer');
+    $data = $this->Customer_model->add_customer();
+    echo json_encode($data);
 }
 public function remove_customer(){
     $customerId = $this->input->post('customerId');

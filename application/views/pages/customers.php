@@ -80,7 +80,7 @@
                     for (i = 0; i < response.length; i++) {
                         html += '<tr>' +
                             '<td>' + response[i].FirstName + ' ' + response[i].lastName + '</td>' +
-                            '<td>' + response[i].address + '</td>' +
+                            '<td>' + response[i].address+'</td>' +
                             '<td>' + response[i].contactNumber + '</td>' +
                             '<td>' + response[i].email + '</td>' +
                             '<td>' + response[i].created_at + '</td>' +

@@ -13,7 +13,7 @@
 
   </ul>
   <!-- END BREADCRUMB -->
-
+  <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/dropzone/dropzone.min.js"></script>
   <!-- PAGE CONTENT WRAPPER -->
   <div class="page-content-wrap">
       <div class="row">
@@ -117,6 +117,17 @@
                                           </div>
                                       </div>
                                   </div>
+                                  <div class="col-md-3">
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3><span class="fa fa-download"></span> Mini dropzone</h3>                                    
+                                    <p>Add form with class <code>dropzone dropzone-mini</code> to get mini dropzone box</p>
+                                    <form action="#" class="dropzone dropzone-mini"></form>
+                                </div>
+                            </div>
+
+                        </div>
                               </div>
 
                           </div>
@@ -134,7 +145,7 @@
 
 
   </div>
-
+  
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
@@ -161,11 +172,11 @@
       }
 
       function saveSnap() {
-          $("#jvalidate").valid();
+          var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
 
 
-          
+          if(returnVal){
           var formData = {
               fname: $('#firstname').val(),
               lname: $('#lastname').val(),
@@ -190,13 +201,13 @@
           Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
               console.log('Save successfully');
           });
+          }
 
       }
 
       $(function() {
           var jvalidate = $("#jvalidate").validate({
-              debug:true,
-            //   ignore: [],
+            ignore: [],
               rules: {
                   firstname: {
                       required: true,
@@ -208,10 +219,10 @@
                       minlength: 3,
                       maxlength: 20
                   },
-                  age: {
+                  address: {
                       required: true,
-                      min: 18,
-                      max: 100
+                      minlength: 18,
+                      maxlength: 100
                   },
                   emailid: {
                       required: true,
