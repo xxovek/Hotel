@@ -23,7 +23,7 @@ Class Customer extends CI_Controller{
     }
 
     public function save_customer($customerId){
-        $filename = 'pic_'.date('YmdHis') . '.jpeg';
+        $filename = 'pic_'.$customerId . '.jpeg';
 
 $url = '';
 if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
