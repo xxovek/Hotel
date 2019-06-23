@@ -30,8 +30,8 @@ if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
 }
 }
 public function add_details(){
-    $data=$this->Customer_model->add_customer();
-      echo json_encode($data);
+    $data = $this->Customer_model->add_customer();
+    echo json_encode($data);
 }
 public function remove_customer(){
     $customerId = $this->input->post('customerId');
