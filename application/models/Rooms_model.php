@@ -14,20 +14,21 @@ class Rooms_model extends CI_Model{
 
     public function create_roomtype(){
         $data = array(
-            'roomType' => $this->input->post('roomtypeName')
+            'roomType' => $this->input->post('typename')
             // 'user_id' => $this->session->userdata('user_id')
         );
 
         return $this->db->insert('RoomTypes', $data);
     }
 
+ 
+
     public function update_type(){
+        $typeid = $this->input->post('typeid');
         $data = array(
-            'roomType' => $this->input->post('roomtypeName1')
-
+            'roomType' => $this->input->post('typename')
           );
-
-          $this->db->where('roomId',$this->input->post('id'));
+          $this->db->where('roomId',$typeid);
           return $this->db->update('RoomTypes',$data);
     }
 

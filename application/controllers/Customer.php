@@ -22,7 +22,7 @@ Class Customer extends CI_Controller{
         $this->load->view('templates/footer');
     }
 
-    public function save_customer(){
+    public function save_customer($customerId){
         $filename = 'pic_'.date('YmdHis') . '.jpeg';
 
 $url = '';
