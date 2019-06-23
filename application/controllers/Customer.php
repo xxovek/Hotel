@@ -14,7 +14,7 @@ Class Customer extends CI_Controller{
         $data = $this->Customer_model->get_customers();
         echo json_encode($data);
     }
-    
+
     public function add_customer(){
         $data['title'] = 'Add New Guest';
         $this->load->view('templates/header');

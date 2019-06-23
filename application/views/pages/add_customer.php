@@ -187,6 +187,13 @@
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
               }
           });
+          var base64image = document.getElementById("imageprev").src;
+
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
+              console.log('Save successfully');
+          });
+        }
+
 
           var base64image = document.getElementById("imageprev").src;
 
@@ -230,5 +237,6 @@
                   }
               }
           });
+
       });
   </script>

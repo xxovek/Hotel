@@ -16,8 +16,8 @@ class Booking_model extends CI_Model{
     }
     function insertBookingDetail(){
       $data=array(
-    
-        'customerId'        => $this->input->post('customerName'),
+
+        'customerId'    => $this->input->post('customerName'),
         'roomId'        => $this->input->post('roomNo'),
         'FromDate'       => $this->input->post('FromDate'),
         'UptoDate'       => $this->input->post('UptoDate')
@@ -39,7 +39,26 @@ class Booking_model extends CI_Model{
       }else{
           return 0;
       }
+    }
+    public function get_bookingdetails($bookingId=FALSE){
+        if($bookingId==FALSE){
+            $this->db->select("Bookings.BookingId,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
+            Customers.lastName,Customers.contactNumber,RoomDetails.roomNumber,RoomTypes.roomType");
+            $this->db->from('Bookings');
+            $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
+            $this->db->join('RoomDetails', 'RoomDetails.roomId = Bookings.roomId','left');
+            $this->db->join('RoomTypes', 'RoomTypes.roomId = RoomDetails.roomId','left');
 
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('Bookings',array('BookingId'=>$bookingId));
+        return $query->row_array();
+    }
+    public function remove_booking($bookingId){
+      $this->db->where('BookingId',$bookingId);
+      $this->db->delete('Bookings');
+      return true;
     }
 }
 ?>
