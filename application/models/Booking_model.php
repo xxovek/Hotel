@@ -52,7 +52,14 @@ class Booking_model extends CI_Model{
             $query = $this->db->get();
             return $query->result_array();
         }
-        $query = $this->db->get_where('Bookings',array('BookingId'=>$bookingId));
+        $this->db->select("Bookings.BookingId,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
+        Customers.lastName,Customers.contactNumber,RoomDetails.roomNumber,RoomTypes.roomType");
+        $this->db->from('Bookings');
+        $this->db->where('Bookings.BookingId',$bookingId);
+        $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
+        $this->db->join('RoomDetails', 'RoomDetails.roomId = Bookings.roomId','left');
+        $this->db->join('RoomTypes', 'RoomTypes.roomId = RoomDetails.roomId','left');
+        $query = $this->db->get();
         return $query->row_array();
     }
     public function remove_booking($bookingId){

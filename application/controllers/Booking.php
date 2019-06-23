@@ -42,10 +42,12 @@ Class Booking extends CI_Controller{
           $this->Booking_model->remove_booking($bookingId);
           redirect('Booking');
       }
-      public function edit_booking($customerId){
-          $data['customer'] = $this->Booking_model->get_customers($customerId);
+      public function edit_booking($bookingId){
+        $data['customername'] = $this->Booking_model->getCustomername();
+        $data['roomname'] = $this->Booking_model->getRoomname();
+        $data['bookingid'] = $this->Booking_model->get_bookingdetails($bookingId);
           $this->load->view('templates/header');
-          $this->load->view('pages/edit_customer',$data);
+          $this->load->view('pages/edit_booking',$data);
           $this->load->view('templates/footer');
       }
       // public function update_details(){
