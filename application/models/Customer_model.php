@@ -31,7 +31,7 @@ class Customer_model extends CI_Model{
        $this->db->order_by('customerId',"desc");
        $this->db->limit(1);
        $query = $this->db->get();
-       
+
        // $query = $this->db->get_where('Customers',array('customerId'=>5));
        return $query->row_array();
 
