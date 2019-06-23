@@ -179,19 +179,21 @@
               type: 'POST',
               url: '<?php echo site_url(); ?>/Customer/add_details',
               data: formData,
+              dataType:'json',
               success: function(response) {
                 //  window.location = '<?php echo site_url('/Customer');?>';
                 alert(response);
+                var base64image = document.getElementById("imageprev").src;
+
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer('+response.customerId+'), function(code, text) {
+              console.log('Save successfully');
+          });
               },
               error: function(xhr) {
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
               }
           });
-          var base64image = document.getElementById("imageprev").src;
-
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
-              console.log('Save successfully');
-          });
+          
         }
 
 

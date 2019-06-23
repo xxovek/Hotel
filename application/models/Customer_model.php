@@ -22,17 +22,11 @@ class Customer_model extends CI_Model{
             'contactNumber' => $this->input->post('contactNumber')
         );
        $this->db->insert('Customers',$data);
-       // $query = $this->db->order_by('customerId',"desc");
-       // $this->db->limit(1);
-       // $this->db->get('Customers');
-       // return $query->result_array();
        $this->db->select("Customers.customerId");
        $this->db->from('Customers');
        $this->db->order_by('customerId',"desc");
        $this->db->limit(1);
        $query = $this->db->get();
-
-       // $query = $this->db->get_where('Customers',array('customerId'=>5));
        return $query->row_array();
 
     }
