@@ -165,8 +165,6 @@
       function saveSnap() {
           var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
-
-
           if(returnVal){
           var formData = {
               fname: $('#firstname').val(),
@@ -181,11 +179,10 @@
               data: formData,
               dataType:'json',
               success: function(response) {
-                //  window.location = '<?php echo site_url('/Customer');?>';
                 alert(response);
                 var base64image = document.getElementById("imageprev").src;
 
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer('+response.customerId+'), function(code, text) {
+          Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/"+response.customerId, function(code, text) {
               console.log('Save successfully');
           });
               },
@@ -194,15 +191,8 @@
               }
           });
           
-        }
-
-
-          var base64image = document.getElementById("imageprev").src;
-
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
-              console.log('Save successfully');
-          });
-          }
+        }  
+    }
 
 
 
