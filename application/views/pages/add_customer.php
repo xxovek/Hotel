@@ -163,16 +163,11 @@
       }
 
       function saveSnap() {
-          $("#jvalidate").valid();
+          var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
 
 
-          var base64image = document.getElementById("imageprev").src;
-
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
-              console.log('Save successfully');
-          });
-
+          if(returnVal){
           var formData = {
               fname: $('#firstname').val(),
               lname: $('#lastname').val(),
@@ -192,6 +187,13 @@
               }
           });
 
+          var base64image = document.getElementById("imageprev").src;
+
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
+              console.log('Save successfully');
+          });
+          }
+
       }
 
       $(function() {
@@ -210,8 +212,8 @@
                   },
                   address: {
                       required: true,
-                      min: 5,
-                      max: 100
+                      minlength: 5,
+                      maxlength: 100
                   },
                   emailid: {
                       required: true,

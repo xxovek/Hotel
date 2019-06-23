@@ -32,7 +32,7 @@ Class Documents extends CI_Controller{
 
 			$this->form_validation->set_rules('documenttypeName', 'Document Type', 'required|callback_check_type_exists');
 
-			if($this-Payment_model>form_validation->run() === FALSE){
+			if($this->Payment_model>form_validation->run() === FALSE){
             $data['DocumentType'] = $this->Documents_model->get_documenttypes();
                 
                 $this->load->view('templates/header');
