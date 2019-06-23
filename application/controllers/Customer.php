@@ -22,8 +22,8 @@ Class Customer extends CI_Controller{
         $this->load->view('templates/footer');
     }
 
-    public function save_customer($customerId){
-        $filename = 'pic_'.$customerId . '.jpeg';
+    public function save_customer(){
+        $filename = 'pic_'.'2'.'.jpeg';
 
 $url = '';
 if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){
