@@ -163,16 +163,10 @@
       }
 
       function saveSnap() {
-          $("#jvalidate").valid();
+        var value = $("#jvalidate").valid();
+        alert(value);
           // Get base64 value from <img id='imageprev'> source
-
-
-          var base64image = document.getElementById("imageprev").src;
-
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
-              console.log('Save successfully');
-          });
-
+        if(value){
           var formData = {
               fname: $('#firstname').val(),
               lname: $('#lastname').val(),
@@ -191,6 +185,13 @@
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
               }
           });
+          var base64image = document.getElementById("imageprev").src;
+
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer', function(code, text) {
+              console.log('Save successfully');
+          });
+        }
+
 
       }
 
@@ -227,5 +228,6 @@
                   }
               }
           });
+        
       });
   </script>

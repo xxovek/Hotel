@@ -7,7 +7,7 @@ class Authentication_model extends CI_Model{
     public function authenticate($username,$password){
         $this->db->where('userName',$username);
         $this->db->where('password',$password);
-        $this->db->where('Flag',0);
+        // $this->db->where('Flag',0);
         $result = $this->db->get('UserMaster');
         if($result->num_rows()==1){
             return $result->row(0)->UserId;

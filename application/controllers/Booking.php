@@ -8,10 +8,9 @@ Class Booking extends CI_Controller{
 		// $this->load->view('dashboard');
 
 		// $data['title'] = $data['post']['title'];
-        $data['customername'] = $this->Booking_model->getCustomername();
-        $data['roomname'] = $this->Booking_model->getRoomname();
+
         $this->load->view('templates/header');
-        $this->load->view('pages/booking',$data);
+        $this->load->view('pages/booking');
         $this->load->view('templates/footer');
 	}
   public function customerDetails(){ //insert record method
@@ -26,6 +25,34 @@ Class Booking extends CI_Controller{
         $data = $this->Booking_model->checkroomavaiableBookingDetail();
          echo json_encode($data);
       }
+      public function add_booking(){
+          $data['title'] = 'Add New Guest';
+          $data['customername'] = $this->Booking_model->getCustomername();
+          $data['roomname'] = $this->Booking_model->getRoomname();
+          $this->load->view('templates/header');
+          $this->load->view('pages/add_booking',$data);
+          $this->load->view('templates/footer');
+      }
+      public function get_booking(){
+          $data = $this->Booking_model->get_bookingdetails();
+          echo json_encode($data);
+      }
+      public function remove_booking(){
+          $bookingId = $this->input->post('bookingId');
+          $this->Booking_model->remove_booking($bookingId);
+          redirect('Booking');
+      }
+      public function edit_booking($customerId){
+          $data['customer'] = $this->Booking_model->get_customers($customerId);
+          $this->load->view('templates/header');
+          $this->load->view('pages/edit_customer',$data);
+          $this->load->view('templates/footer');
+      }
+      // public function update_details(){
+      //     $customerId = $this->input->post('customerId');
+      //     $this->Customer_model->update_customer($customerId);
+      //     redirect('Customer');
+      // }
 }
 
 
