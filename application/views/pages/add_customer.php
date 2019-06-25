@@ -79,9 +79,9 @@
                                       <div class="col-md-6 col-xs-12">
                                           <div class="input-group">
 
-                                              <input type="email" class="form-control" name="emailid" id="emailid" />
+                                              <input type="email" class="form-control" name="emailid" id="emailid" onchange="checkAvailablity(this.value);" />
                                           </div>
-                                          <span class="help-block">Enter correct email-id of Guest</span>
+                                          <span class="help-block" id="help">Enter correct email-id of Guest</span>
                                       </div>
                                   </div>
 
@@ -90,9 +90,9 @@
                                       <div class="col-md-6 col-xs-12">
                                           <div class="input-group">
 
-                                              <input type="text" class="form-control" name="contactNumber" id="contactNumber" />
+                                              <input type="text" class="form-control" name="contactNumber" id="contactNumber" onchange="checkAvailablityContact(this.value);" />
                                           </div>
-                                          <span class="help-block">Enter Guest Last Name atleast two characters long</span>
+                                          <span class="help-block" id="help1">Enter Guest Last Name atleast two characters long</span>
                                       </div>
                                   </div>
                               </div>
@@ -139,6 +139,44 @@
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
+      function checkAvailablity(emailId) {
+          $.ajax({
+              url: '<?php echo site_url(); ?>/Customer/checkAvailablity',
+              type: 'POST',
+              data: {
+                  emailId: emailId
+              },
+              dataType: 'json',
+              success: function(response) {
+                  if (response.flag) {
+                      $('#help').html('<code>Email Id allready Exists <u>' + emailId + '</u></code>');
+                      $('#emailid').val('');
+                  } else {
+                      $('#help').css('color', 'green').html('Username Available');
+                  }
+              }
+          });
+      }
+
+      function checkAvailablityContact(contactNumber) {
+          $.ajax({
+              url: '<?php echo site_url(); ?>/Customer/checkAvailablityContact',
+              type: 'POST',
+              data: {
+                  contactNumber: contactNumber
+              },
+              dataType: 'json',
+              success: function(response) {
+                  if (response.flag) {
+                      $('#help1').html('<code>Contact Number allready Exists <u>' + contactNumber + '</u></code>');
+                      $('#contactNumber').val('');
+                  } else {
+                      $('#help1').html(' ');
+                  }
+              }
+          });
+      }
+
       $('#cam').hide();
       Webcam.set({
           width: 325,
@@ -165,36 +203,33 @@
       function saveSnap() {
           var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
-          if(returnVal){
-          var formData = {
-              fname: $('#firstname').val(),
-              lname: $('#lastname').val(),
-              address: $('#address').val(),
-              emailid: $('#emailid').val(),
-              contactNumber: $('#contactNumber').val()
-          };
-          $.ajax({
-              type: 'POST',
-              url: '<?php echo site_url(); ?>/Customer/add_details',
-              data: formData,
-              dataType:'json',
-              success: function(response) {
-                var base64image = document.getElementById("imageprev").src;
+          if (returnVal) {
+              var formData = {
+                  fname: $('#firstname').val(),
+                  lname: $('#lastname').val(),
+                  address: $('#address').val(),
+                  emailid: $('#emailid').val(),
+                  contactNumber: $('#contactNumber').val()
+              };
+              $.ajax({
+                  type: 'POST',
+                  url: '<?php echo site_url(); ?>/Customer/add_details',
+                  data: formData,
+                  dataType: 'json',
+                  success: function(response) {
+                      var base64image = document.getElementById("imageprev").src;
 
-          Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/"+response.customerId, function(code, text) {
-              console.log('Save successfully');
-          });
-              },
-              error: function(xhr) {
-                  alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-              }
-          });
+                      Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" + response.customerId, function(code, text) {
+                          console.log('Save successfully');
+                      });
+                  },
+                  error: function(xhr) {
+                      alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                  }
+              });
 
-        }
-    }
-
-
-
+          }
+      }
       $(function() {
           var jvalidate = $("#jvalidate").validate({
               ignore: [],

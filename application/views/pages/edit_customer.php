@@ -133,20 +133,20 @@
                   </div>
           </div>
           </form>
-         
+
           <div class="row">
-                        <div class="col-md-9">
-                        <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <h3><span class="fa fa-download"></span> Documents Of Customer</h3>
-                                    <p>Click here and browse file or image from your machine </p>
-                                    <form action="<?php echo site_url('Customer/add_documents/'.$customer['customerId']);?>" class="dropzone dropzone-mini"></form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                        </div>
-                    
+              <div class="col-md-9">
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <h3><span class="fa fa-download"></span> Documents Of Customer</h3>
+                          <p>Click here and browse file or image from your machine </p>
+                          <form action="<?php echo site_url('Customer/add_documents/' . $customer['customerId']); ?>" class="dropzone dropzone-mini"></form>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3">
+              </div>
+
           </div>
       </div>
   </div>

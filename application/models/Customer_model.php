@@ -47,6 +47,22 @@ class Customer_model extends CI_Model{
         $this->db->delete('Customers');
         return true;
     }
+    public function checkAvailablity($email){
+        $this->db->where('email',$email);
+        $result = $this->db->get('Customers');
+        if($result->num_rows()==1){
+            return $result->row(0)->customerId;
+        }else{
+            return false;
+        }
+    }
+    public function checkAvailablityContact($contactNumber){
+        $this->db->where('contactNumber',$contactNumber);
+        $result = $this->db->get('Customers');
+        if($result->num_rows()==1){
+            return $result->row(0)->customerId;
+        }else{
+            return false;
+        }
+    }
 }
-
-?>
