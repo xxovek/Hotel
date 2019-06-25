@@ -46,4 +46,12 @@ public function update_details(){
     $this->Customer_model->update_customer($customerId);
     redirect('Customer');
 }
+public function add_documents($customerId){
+    $uploadDir = 'Documents';
+if (!empty($_FILES)) {
+ $tmpFile = $_FILES['file']['tmp_name'];
+ $filename = $uploadDir.'/Doc_'.$customerId.'-'. $_FILES['file']['name'];
+ move_uploaded_file($tmpFile,$filename);
+}
+}
 }
