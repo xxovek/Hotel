@@ -1,6 +1,6 @@
        
-               <script type='text/javascript' src='js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
-        <script type='text/javascript' src='js/plugins/validationengine/jquery.validationEngine.js'></script>     
+               <!-- <script type='text/javascript' src='js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
+        <script type='text/javascript' src='js/plugins/validationengine/jquery.validationEngine.js'></script>      -->
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
@@ -29,7 +29,7 @@
                             <div class="panel-body">
                                 <p></p>
                             </div>
-                            <div class="panel-body">                                                                        
+                                <div class="panel-body">                                                                        
                                 
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Room No.</label>
@@ -39,6 +39,7 @@
                                             <input type="text" id="roomno_input" class="form-control"/>
                                         </div>                                            
                                         <span class="help-block">This is room no of text field</span>
+                                        <br><span id="roomno_input_err"></span>
                                     </div>
                                 </div>
 
@@ -179,6 +180,7 @@ $("#submit_form").on("submit",function(e){
     // alert("ok");
 
     var roomno_input = ($('#roomno_input').val().toUpperCase()).trim();
+    alert(roomno_input);
     var roomtype_input = ($('#roomtype_input').val().toUpperCase()).trim();
     var roomprice_input = ($('#roomprice_input').val().toUpperCase()).trim();
     var roomlimit_input = ($('#roomlimit_input').val().toUpperCase()).trim();

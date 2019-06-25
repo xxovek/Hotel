@@ -27,21 +27,22 @@ Class Roomdetails extends CI_Controller{
 
     public function create(){
         // echo "inserted";
-        // $type = $this->input->post('roomno_input');
-		// $ret = $this->check_type_exists($type);
-		// 	if($ret === false){
-		// 	$response['msg'] = false; 
+        $type = $this->input->post('roomno_input');
+		$ret = $this->check_type_exists($type);
+			if($ret === false){
+			$response['msg'] = false; 
 		// 	echo json_encode($response);
-		// } else {
+		} else {
         // url:base_url+'index.php/Roomdetails/create',
 			$this->Roomdetails_model->create_roomDetails();
-			// $response['msg'] = true; 
+            $response['msg'] = true; 
+        }
 			echo json_encode($response);
 			 // 	// Set message
 			 // 	// $this->session->set_flashdata('category_created', 'Your category has been created');
 
 		// }
-            return true;
+            // return true;
     }
 
     public function update(){

@@ -13,7 +13,12 @@ class Roomdetails_model extends CI_Model{
 
     public function create_roomDetails(){
         $data = array(
-            'roomNumber' => $this->input->post('typename')
+            'roomNumber' => $this->input->post('roomno_input'),
+            'roomTypeId' => $this->input->post('roomtype_input') ,
+            'pricePerNight' =>$this->input->post('roomprice_input') ,
+            'maxPersons' => $this->input->post('roomlimit_input'),
+            'isAvailable' => $this->input->post('checkbox_input')
+            // 'status'     => $this->input->post('typename')
             // 'user_id' => $this->session->userdata('user_id')
         );
 
