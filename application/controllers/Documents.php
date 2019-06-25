@@ -3,8 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 Class Documents extends CI_Controller{
 
-    public function index()
-	{
+    public function index(){
 		
         $data['DocumentType'] = $this->Documents_model->get_documenttypes();
         $this->load->view('templates/header');
@@ -23,10 +22,10 @@ Class Documents extends CI_Controller{
 		}
 
 
-		public function getTypes(){
-			$data = $this->Documents_model->get_documenttypes();
-			echo json_encode($data);
-		}
+	public function getTypes(){
+		$data = $this->Documents_model->get_documenttypes();
+		echo json_encode($data);
+	}
 	
 
 	

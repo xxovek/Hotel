@@ -146,7 +146,7 @@
             $('#updateBtn').on('click',function(e){
               
               e.preventDefault();
-              var typename = $('input[name="paymenttypeName"]').val();
+              var typename = ($('input[name="paymenttypeName"]').val().toUpperCase()).trim();
               var typeid = $('#id').val();
               if(typename != ""){
                var base_url='<?php echo base_url(); ?>'
@@ -180,7 +180,7 @@
             $('#submitbtn').on('click',function(e){
               
                e.preventDefault();
-               var typename = $('input[name="paymenttypeName"]').val();
+               var typename = ($('input[name="paymenttypeName"]').val().toUpperCase()).trim();
 
                if(typename != ""){
                 var base_url='<?php echo base_url(); ?>'

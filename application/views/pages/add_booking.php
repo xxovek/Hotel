@@ -290,6 +290,8 @@
         }
       }
     }
+
+    
     function saveBookingDetail(){
      var customerName =$("#customerName").val();
      // alert(customerName);
