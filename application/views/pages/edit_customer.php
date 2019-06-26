@@ -97,40 +97,43 @@
                                   </div>
                               </div>
                               <div class="col-md-6">
-
-                                  <div class="form-group">
-                                      <label class="col-md-3 col-xs-12 control-label">File</label>
-                                      <div class="col-md-6 col-xs-12">
-                                          <div id="my_camera"></div>
-                                          <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
-                                          <span class="help-block">Input type file</span>
-                                          <input type="hidden" name="image" class="image-tag">
-                                      </div>
-                                  </div>
-
-                                  <div class="form-group">
-                                      <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
-                                      <div class="col-md-3 col-xs-3">
-                                          <div id="results">
-                                              <?php
-                                                $url = 'upload/pic_' . $customer['customerId'] . '.jpeg';
-                                                if (!file_exists(base_url($url))) { ?>
-                                                  <img id="imageprev" src="<?php echo base_url($url); ?>" />
-                                              <?php } else { } ?>
+                                 
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">File</label>
+                                          <div class="col-md-6 col-xs-12">
+                                              <div id="my_camera"></div>
+                                              <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
+                                              <span class="help-block">Input type file</span>
+                                              <input type="hidden" name="image" class="image-tag">
                                           </div>
-                                          <span class="help-block">File</span>
                                       </div>
-                                  </div>
 
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
+                                          <div class="col-md-3 col-xs-3">
+                                              <div id="results">
+                                                  <?php 
+                                                  $url = 'upload/pic_'.$customer['customerId'].'.jpeg';
+                                                  if(!file_exists(base_url($url))){?>
+                                                    <img id="imageprev" src="<?php echo base_url($url);?>"/>
+                                                  <?php }else{}?>
+                                              </div>
+                                              <span class="help-block">File</span>
+                                          </div>
+                                      </div>
+                                  
+                        </div>
                               </div>
+
                           </div>
 
                       </div>
+                      <div class="panel-footer">
+                          <button class="btn btn-default" type="reset">Clear Form</button>
+                          <button class="btn btn-primary pull-right" type="button" onclick="saveSnap()">Submit</button>
+                      </div>
                   </div>
-                  <div class="panel-footer">
-                      <button class="btn btn-default" type="reset">Clear Form</button>
-                      <button class="btn btn-primary pull-right" type="button" onclick="saveSnap()">Submit</button>
-                  </div>
+                  
           </div>
           </form>
 
@@ -146,12 +149,14 @@
               </div>
               <div class="col-md-3">
               </div>
+              </form>
 
           </div>
       </div>
-  </div>
-  </div>
 
+
+  </div>
+  
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
@@ -161,8 +166,8 @@
           image_format: 'jpeg',
           jpeg_quality: 90
       });
-
-      Webcam.attach('#my_camera');
+     
+    Webcam.attach('#my_camera');
 
       function take_snapshot() {
           Webcam.snap(function(data_uri) {
@@ -174,35 +179,35 @@
       function saveSnap() {
           var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
-          if (returnVal) {
-              var formData = {
-                  fname: $('#firstname').val(),
-                  lname: $('#lastname').val(),
-                  address: $('#address').val(),
-                  emailid: $('#emailid').val(),
-                  contactNumber: $('#contactNumber').val(),
-                  customerId: $('#customerId').val()
-              };
-              $.ajax({
-                  type: 'POST',
-                  url: '<?php echo site_url(); ?>/Customer/update_details',
-                  data: formData,
-                  success: function(response) {
-                      var base64image = document.getElementById("imageprev").src;
-                      Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer' + customerId, function(code, text) {
-                          console.log('Save successfully');
-                      });
-                  },
-                  error: function(xhr) {
-                      alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-                  }
-              });
+          if(returnVal){
+          var formData = {
+              fname: $('#firstname').val(),
+              lname: $('#lastname').val(),
+              address: $('#address').val(),
+              emailid: $('#emailid').val(),
+              contactNumber: $('#contactNumber').val(),
+              customerId: $('#customerId').val()
+          };
+          $.ajax({
+              type: 'POST',
+              url: '<?php echo site_url(); ?>/Customer/update_details',
+              data: formData,
+              success: function(response) {
+                var base64image = document.getElementById("imageprev").src;
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer'+customerId, function(code, text) {
+              console.log('Save successfully');
+          });
+              },
+              error: function(xhr) {
+                  alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+              }
+          }); 
           }
       }
 
       $(function() {
           var jvalidate = $("#jvalidate").validate({
-              ignore: [],
+            ignore: [],
               rules: {
                   firstname: {
                       required: true,
