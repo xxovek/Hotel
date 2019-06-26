@@ -53,7 +53,7 @@ class Booking_model extends CI_Model{
             return $query->result_array();
         }
         $this->db->select("Bookings.BookingId,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
-        Customers.lastName,Customers.contactNumber,RoomDetails.roomNumber,RoomTypes.roomType");
+        Customers.lastName,Customers.customerId,RoomDetails.roomId,Customers.contactNumber,RoomDetails.roomNumber,RoomTypes.roomType");
         $this->db->from('Bookings');
         $this->db->where('Bookings.BookingId',$bookingId);
         $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
@@ -66,6 +66,16 @@ class Booking_model extends CI_Model{
       $this->db->where('BookingId',$bookingId);
       $this->db->delete('Bookings');
       return true;
+    }
+    public function update_booking($bookingId){
+      $data = array(
+          'customerId' => $this->input->post('customerName'),
+          'FromDate'  => $this->input->post('FromDate'),
+          'UptoDate' => $this->input->post('UptoDate'),
+          'roomId' => $this->input->post('roomNo')
+      );
+      $this->db->where('BookingId',$bookingId);
+     return $this->db->update('Bookings',$data);
     }
 }
 ?>

@@ -14,14 +14,12 @@
             <form class="form-horizontal">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>One Column</strong> Layout</h3>
+                    <h3 class="panel-title"><strong>New Order</strong></h3>
                     <ul class="panel-controls">
                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                     </ul>
                 </div>
-                <!-- <div class="panel-body">
-                    <p>This is non libero bibendum, scelerisque arcu id, placerat nunc. Integer ullamcorper rutrum dui eget porta. Fusce enim dui, pulvinar a augue nec, dapibus hendrerit mauris. Praesent efficitur, elit non convallis faucibus, enim sapien suscipit mi, sit amet fringilla felis arcu id sem. Phasellus semper felis in odio convallis, et venenatis nisl posuere. Morbi non aliquet magna, a consectetur risus. Vivamus quis tellus eros. Nulla sagittis nisi sit amet orci consectetur laoreet. Vivamus volutpat erat ac vulputate laoreet. Phasellus eu ipsum massa.</p>
-                </div> -->
+
                 <div class="message-box message-box-success animated fadeIn" id="message-box-success">
                     <div class="mb-container">
                         <div class="mb-middle">
@@ -153,7 +151,7 @@ function saveOrderDetail(){
         success: function(response){
 
         $("#showbtn").click();
-        window.location.reload();
+        // window.location.reload();
         }
         });
 

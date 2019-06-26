@@ -40,7 +40,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Customer Name</label>
                         <div class="col-md-6 col-xs-12">
                             <span id="errmsgcustomername"></span>
-                            <select class="form-control select" name="customerName" data-live-search="true" id="customerName">
+                            <select class="form-control select" name="customerName" data-live-search="true" id="customerName" value="">
                                <option value="">Select Customer </option>
                                <?php
                               foreach($customername as $row)
@@ -59,7 +59,7 @@
                             <span id="errmsgfromdate"></span>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                <input type="text" class="form-control" value=""  id="startDate" onchange="checkroomavability()" value="<?php echo $customer['customerId']; ?>">
+                                <input type="text" class="form-control"   id="startDate" onchange="checkroomavability()" value="">
                             </div>
                             <span class="help-block">Click on input field to get datepicker</span>
                         </div>
@@ -70,7 +70,7 @@
                           <span id="errmsguptodate"></span>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                <input type="text" class="form-control" value=""  id="endDate" onchange="checkroomavability()" value="<?php echo $customer['customerId']; ?>">
+                                <input type="text" class="form-control"  id="endDate" onchange="checkroomavability()" value="">
                             </div>
                             <span class="help-block">Click on input field to get datepicker</span>
                         </div>
@@ -219,29 +219,48 @@ $(function () {
     bindDateRangeValidation($("#form"), 'startDate', 'endDate');
 });
 // $(document).ready(function(){
-    getcustomer();
-
-function getcustomer(){
-
- $.ajax({
- type : "POST",
- url  : "<?=base_url()?>index.php/Booking/customerDetails",
-  dataType: 'json',
- success: function(response){
-  // alert(response);
-  // var len = response.length;
-  // var i=0,html="";
-  // if(len > 0){
-  //  for(var i=0;i<len;i++){
-  //   html+='<option value="'+response[i].customerId+'">'+response[i].FirstName+' '+response[i].lastName+'</option>';
-  //  }
-  //
-  //   // $("#customerName").html(html);
-  // }else{
-  // }
- }
- });
+    // getcustomer();
+getbooking();
+function getbooking(){
+  var bookid = <?php echo $bookid; ?>;
+  $.ajax({
+  type : "POST",
+  url  : "<?=base_url()?>index.php/Booking/bookingDetail",
+  data :{
+    bookingId:bookid
+  },
+   dataType: 'json',
+  success: function(response){
+    // alert(response.customerId);
+    $("#customerName").val(response.customerId).trigger('change');
+    $("#roomno").val(response.roomId).trigger('change');
+    $("#startDate").val(response.FromDate);
+    $("#endDate").val(response.UptoDate);
+  }
+});
 }
+// function getcustomer(){
+//
+//  $.ajax({
+//  type : "POST",
+//  url  : "<?=base_url()?>index.php/Booking/customerDetails",
+//   dataType: 'json',
+//
+//  success: function(response){
+//   // alert(response);
+//   // var len = response.length;
+//   // var i=0,html="";
+//   // if(len > 0){
+//   //  for(var i=0;i<len;i++){
+//   //   html+='<option value="'+response[i].customerId+'">'+response[i].FirstName+' '+response[i].lastName+'</option>';
+//   //  }
+//   //
+//   //   // $("#customerName").html(html);
+//   // }else{
+//   // }
+//  }
+//  });
+// }
 function checkroomavability(){
   var FromDate =$("#startDate").val();
   var UptoDate =$("#endDate").val();
@@ -291,6 +310,8 @@ function checkroomavability(){
   }
 }
 function saveBookingDetail(){
+ var bookid = <?php echo $bookid; ?>;
+
  var customerName =$("#customerName").val();
  // alert(customerName);
  var roomNo =$("#roomno").val();
@@ -329,9 +350,10 @@ function saveBookingDetail(){
         {
         $.ajax({
         type : "POST",
-        url  : "<?=base_url()?>index.php/Booking/saveBookingDetail",
+        url  : "<?=base_url()?>index.php/Booking/updateBookingDetail",
          // dataType: 'json',
          data :{
+           bookingId:bookid,
            customerName:customerName,
            roomNo:roomNo,
            FromDate:FromDate,
@@ -340,7 +362,7 @@ function saveBookingDetail(){
         success: function(response){
 
         $("#showbtn").click();
-        window.location.reload();
+        // window.location.reload();
         }
         });
       }
