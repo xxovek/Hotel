@@ -6,7 +6,6 @@ class Rooms_model extends CI_Model{
         $this->load->database();
     }
 
-
     public function get_roomtypes(){
         $query = $this->db->get('RoomTypes');
         return $query->result_array();
@@ -20,9 +19,18 @@ class Rooms_model extends CI_Model{
 
         return $this->db->insert('RoomTypes', $data);
     }
-
  
 
+    public function fetch_roomtypes(){
+        $query = $this->db->get('RoomTypes');
+        $output = '<option value="">Select Room Type</option>';
+        foreach ($query -> result() as $row){
+            $output .= '<option value="'.$row->roomId.'">'.$row->roomType.'</option>';
+            // <option value="'..'">'.$row->roomType.'</option>';
+        }
+        return $output;
+    }
+    
     public function update_type(){
         $typeid = $this->input->post('typeid');
         $data = array(
