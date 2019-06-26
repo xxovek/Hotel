@@ -87,30 +87,4 @@ class Customer extends CI_Controller
         }
         echo json_encode($response);
     }
-=======
-public function save_customer($customerId){
-        $filename = 'pic_'.$customerId.'.jpeg';
-if( move_uploaded_file($_FILES['webcam']['tmp_name'],'upload/'.$filename) ){}
-}
-public function add_details(){
-    $data = $this->Customer_model->add_customer();
-    echo json_encode($data);
-}
-public function remove_customer(){
-    $customerId = $this->input->post('customerId');
-    $this->Customer_model->remove_customer($customerId);
-    redirect('Customer');
-}
-public function edit_customer($customerId){
-    $data['customer'] = $this->Customer_model->get_customers($customerId);
-    $this->load->view('templates/header');
-    $this->load->view('pages/edit_customer',$data);
-    $this->load->view('templates/footer');
-}
-public function update_details(){
-    $customerId = $this->input->post('customerId');
-    $this->Customer_model->update_customer($customerId);
-    redirect('Customer');
-}
->>>>>>> eca2fc87d7e71309d0f1185785ccbb560aea159b
 }
