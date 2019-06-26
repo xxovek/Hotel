@@ -51,6 +51,8 @@
                                             <input type="text" id="roomtype_input" class="form-control"/>
                                         </div>                                            
                                         <span class="help-block">This is room type of text field</span>
+                                        <br><span id="roomtype_input_err"></span>
+
                                     </div>
                                 </div>
                                 
@@ -66,17 +68,39 @@
                                                 <span class="input-group-addon">.00</span>
                                             </div>                                           
                                         <span class="help-block">This is room price of text field</span>
+                                        <br><span id="roomprice_input_err"></span>
+
                                     </div>
                                 </div>
+
+
+                                <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Room No</label>
+                        <div class="col-md-6 col-xs-12">
+                            <span id="errmsgroomno"></span>
+                            <select class="form-control select" data-live-search="true" name="roomno" id="roomno" >
+                               <option value="">Select Room No </option>
+                              <?php
+                              foreach($roomname as $row)
+                              {
+                              echo '<option value="'.$row->roomId.'">'.$row->roomNumber.'</option>';
+                              }
+                              ?>
+                            </select>
+                            <span class="help-block">Select box example</span>
+                        </div>
+                    </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Max Person Limit</label>
                                     <div class="col-md-6 col-xs-12">                                            
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" id="roomlimit_input" class="form-control"/>
+                                            <input type="text" id="roomlimit_input" onkeypress="return isNumberKey(event);" class="form-control"/>
                                         </div>                                            
                                         <span class="help-block">This is room persons limit of text field</span>
+                                        <br><span id="roomlimit_input_err"></span>
+                                   
                                     </div>
                                 </div>
 
@@ -163,6 +187,13 @@
 </div>
 <script>
 
+function isNumberKey(event) {
+  var charCode = (window.event) ? event.keyCode  : event.which ;
+ if (charCode > 31 && (charCode < 48|| charCode > 57) && charCode!=46 )
+ return false;
+ return true;
+}
+
 function show_form(){
     $("#submit_formRow").show();
     $("#tbl_row").hide();
@@ -180,13 +211,42 @@ $("#submit_form").on("submit",function(e){
     // alert("ok");
 
     var roomno_input = ($('#roomno_input').val().toUpperCase()).trim();
-    alert(roomno_input);
     var roomtype_input = ($('#roomtype_input').val().toUpperCase()).trim();
     var roomprice_input = ($('#roomprice_input').val().toUpperCase()).trim();
     var roomlimit_input = ($('#roomlimit_input').val().toUpperCase()).trim();
-    var checkbox_input = ($('#checkbox_input').val().toUpperCase()).trim();
+    // var checkbox_input = ($('#checkbox_input').val().toUpperCase()).trim();
+    var checkbox_input = '';
+    if(document.getElementById("checkbox_input").checked){
+        checkbox_input = 'YES';
+    }else{
+        checkbox_input = 'NO';
+    }
+    // alert(checkbox_input);
 
-    if(roomno_input != ""){
+    if(roomno_input === ""){
+         $("#roomno_input_err").html("Room Number is required.");
+                //       setTimeout(function(){
+                //     $("#roomno_input_err").html("");
+                //   }, 5000);
+                  }else{
+                    $("#roomno_input_err").html("");
+                      if(roomtype_input === ""){
+         $("#roomtype_input_err").html("Room Type is required.");
+
+                      }else{
+                    $("#roomtype_input_err").html("");
+                    if(roomprice_input === ""){
+         $("#roomprice_input_err").html("Room Price is required.");
+
+                      }else{
+                    $("#roomprice_input_err").html("");
+                    if(roomlimit_input === ""){
+         $("#roomlimit_input_err").html("Room Capacity/Limit is required.");
+
+                      }
+                    else{
+                        $("#roomlimit_input_err").html("");
+                   
     var base_url='<?php echo base_url(); ?>';
     $.ajax({
         url:base_url+'index.php/Roomdetails/create',
@@ -196,21 +256,30 @@ $("#submit_form").on("submit",function(e){
         roomlimit_input:roomlimit_input,checkbox_input:checkbox_input
                 },
                 success:function(response){
+                    alert(response.msg);
                    if(response.msg == false){
-                    //   $("#errmsg").html("That Type is already taken. Please Add different one");
+                      $("#roomno_input_err").html("That Room Number is already taken. Please Add different one.");
                       setTimeout(function(){
-                    // $("#errmsg").html("");
+                    $("#roomno_input_err").html("");
                   }, 5000);
                    }
                   else{
                         $('#submit_form')[0].reset();
                         // $("#errmsg").html("");
+                        $("#tbl_row").show();
+                        $("#submit_formRow").hide();
                         show_RoomDetails();
                       }
                   }
                   }); 
-                    return false;
+                  //  return false;
             }
+        }
+
+}
+
+}
+// }
                     //  else{
                     // $("#errmsg").html("Type is Required.");
 

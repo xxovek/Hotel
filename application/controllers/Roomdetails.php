@@ -25,10 +25,20 @@ Class Roomdetails extends CI_Controller{
     //     $this->load->view('templates/footer');
     // }
 
+    	//Check type exists
+	public function check_type_exists($roomNo){
+		// $this->form_validation->set_message('check_type_exists', 'That Type is already taken. Please Add different one');
+		if($this->Roomdetails_model->check_type_exists($roomNo)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
     public function create(){
         // echo "inserted";
-        $type = $this->input->post('roomno_input');
-		$ret = $this->check_type_exists($type);
+        $roomNo = $this->input->post('roomno_input');
+		$ret = $this->check_type_exists($roomNo);
 			if($ret === false){
 			$response['msg'] = false; 
 		// 	echo json_encode($response);
