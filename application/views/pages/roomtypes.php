@@ -39,7 +39,7 @@
 
                                         <span class="help-block">Add Room Type as Single,Double etc.</span>&nbsp;<?php echo validation_errors(); ?>
                                         <br>
-                                    <span id="errmsg" ></span>
+                                    <span id="errmsg" style="color: red;" ></span>
                                     </div>
                                 </div>
 
@@ -123,7 +123,7 @@
             $('#updateBtn').on('click',function(e){
               
               e.preventDefault();
-              var typename = $('input[name="roomtypeName"]').val();
+              var typename = ($('input[name="roomtypeName"]').val().toUpperCase()).trim();
               var typeid = $('#id').val();
               if(typename != ""){
                var base_url='<?php echo base_url(); ?>'
@@ -159,7 +159,7 @@
             $('#submitbtn').on('click',function(e){
               
                e.preventDefault();
-               var typename = $('input[name="roomtypeName"]').val();
+               var typename = ($('input[name="roomtypeName"]').val().toUpperCase()).trim();
 
                if(typename != ""){
                 var base_url='<?php echo base_url(); ?>'
