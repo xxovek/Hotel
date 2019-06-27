@@ -143,7 +143,7 @@
                       <div class="panel-body">
                           <h3><span class="fa fa-download"></span> Documents Of Customer</h3>
                           <p>Click here and browse file or image from your machine </p>
-                          <form action="<?php echo site_url('Customer/add_documents/' . $customer['customerId']); ?>" class="dropzone dropzone-mini"></form>
+                          <form action="<?php echo site_url('Customer/add_documents/' . $customer['customerId']); ?>" class="dropzone dropzone-mini" id="my-dropzone"></form>
                       </div>
                   </div>
               </div>
@@ -239,4 +239,18 @@
               }
           });
       });
+
+    Dropzone.options.myDropzone = {
+    init: function() {
+        thisDropzone = this;
+        $.get('<?php echo site_url(); ?>/Customer/fetch', function(data) {
+            $.each(data, function(key,value){
+                var mockFile = { name: value.name, size: value.size };
+                thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?php echo base_url();?>/Documents/"+value.name);
+            });
+             
+        });
+    }
+};
   </script>
