@@ -21,16 +21,22 @@ class Rooms_model extends CI_Model{
     }
  
 
-    public function fetch_roomtypes(){
-        $query = $this->db->get('RoomTypes');
-        $output = '<option value="">Select Room Type</option>';
-        foreach ($query -> result() as $row){
-            $output .= '<option value="'.$row->roomId.'">'.$row->roomType.'</option>';
-            // <option value="'..'">'.$row->roomType.'</option>';
-        }
-        return $output;
-    }
+    // public function fetch_roomtypes(){
+    //     $query = $this->db->get('RoomTypes');
+    //     $output = '<option value="">Select Room Type</option>';
+    //     foreach ($query -> result() as $row){
+    //         $output .= '<option value="'.$row->roomId.'">'.$row->roomType.'</option>';
+    //     }
+    //     return $output;
+    // }
     
+
+    function fetch_roomtypes() {
+        $this->db->select('roomId,roomType');
+        $query = $this->db->get('RoomTypes');
+        return $query->result();
+}
+
     public function update_type(){
         $typeid = $this->input->post('typeid');
         $data = array(
@@ -55,5 +61,28 @@ class Rooms_model extends CI_Model{
             $this->db->delete('RoomTypes');
           return true;
         }
+
+    //     public function fetch_roomtypename($roomid){
+    //         $this->db->select('roomId,roomType');
+    //         $this->db->where('roomId',$roomid);
+    //         $query = $this->db->get('RoomTypes');
+    //         // $query = $this->db->get('RoomTypes');
+    //        return $query->result_array();
+    //    }
+       public function fetch_roomtypename($id){
+        //    echo $id ;
+           $sql = 'SELECT roomId,roomType FROM RoomTypes WHERE roomId = "$id"';
+        $query = $this->db->query($sql);
+         return $query->result_array();
+        }
+       
+
+
+    //    function getRoomname(){
+    //     $this->db->select('roomId,roomNumber');
+    //     $query = $this->db->get('RoomDetails');
+    //     return $query->result();
+    //   }
+
 }
 ?>
