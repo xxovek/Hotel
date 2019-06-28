@@ -123,6 +123,26 @@
 
     <script type='text/javascript'>
     // getcustomer();
+    $(function () {
+        var sd = new Date(), ed = new Date();
+
+        $('#startDate').datetimepicker({
+          pickTime: false,
+          format: "YYYY/MM/DD",
+          defaultDate: sd,
+          maxDate: ed
+        });
+
+        $('#endDate').datetimepicker({
+          pickTime: false,
+          format: "YYYY/MM/DD",
+          defaultDate: ed,
+          minDate: sd
+        });
+
+        //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
+        bindDateRangeValidation($("#form"), 'startDate', 'endDate');
+    });
     var bindDateRangeValidation = function (f, s, e) {
         if(!(f instanceof jQuery)){
     			console.log("Not passing a jQuery object");
@@ -200,26 +220,7 @@
     };
 
 
-    $(function () {
-        var sd = new Date(), ed = new Date();
 
-        $('#startDate').datetimepicker({
-          pickTime: false,
-          format: "YYYY/MM/DD",
-          defaultDate: sd,
-          maxDate: ed
-        });
-
-        $('#endDate').datetimepicker({
-          pickTime: false,
-          format: "YYYY/MM/DD",
-          defaultDate: ed,
-          minDate: sd
-        });
-
-        //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
-        bindDateRangeValidation($("#form"), 'startDate', 'endDate');
-    });
     // $(document).ready(function(){
         getcustomer();
 
