@@ -97,7 +97,7 @@
                                   </div>
                               </div>
                               <div class="col-md-6">
-                                 
+
                                       <div class="form-group">
                                           <label class="col-md-3 col-xs-12 control-label">File</label>
                                           <div class="col-md-6 col-xs-12">
@@ -112,7 +112,7 @@
                                           <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
                                           <div class="col-md-3 col-xs-3">
                                               <div id="results">
-                                                  <?php 
+                                                  <?php
                                                   $url = 'upload/pic_'.$customer['customerId'].'.jpeg';
                                                   if(!file_exists(base_url($url))){?>
                                                     <img id="imageprev" src="<?php echo base_url($url);?>"/>
@@ -121,7 +121,7 @@
                                               <span class="help-block">File</span>
                                           </div>
                                       </div>
-                                  
+
                         </div>
                               </div>
 
@@ -133,7 +133,7 @@
                           <button class="btn btn-primary pull-right" type="button" onclick="saveSnap()">Submit</button>
                       </div>
                   </div>
-                  
+
           </div>
           </form>
 
@@ -156,7 +156,7 @@
 
 
   </div>
-  
+
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
@@ -166,7 +166,7 @@
           image_format: 'jpeg',
           jpeg_quality: 90
       });
-     
+
     Webcam.attach('#my_camera');
 
       function take_snapshot() {
@@ -201,7 +201,7 @@
               error: function(xhr) {
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
               }
-          }); 
+          });
           }
       }
 
@@ -247,9 +247,9 @@
             $.each(data, function(key,value){
                 var mockFile = { name: value.name, size: value.size };
                 thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-                thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?php echo base_url();?>/Documents/"+value.name);
+                thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?php echo base_url();?>/"+value.name);
             });
-             
+
         });
     }
 };
