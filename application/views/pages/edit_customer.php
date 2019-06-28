@@ -253,4 +253,21 @@
         });
     }
 };
+Dropzone.autoDiscover = false;
+$(".dropzone").dropzone({
+ addRemoveLinks: true,
+ removedfile: function(file) {
+   var name = file.name; 
+   $.ajax({
+    type: 'POST',
+    url: '<?php echo site_url(); ?>/Customer/remove_customer_doc',
+    data: {name:name},
+    success: function(response) {
+       
+    }
+    });
+   var b;
+   return file.previewElement && null != (b = file.previewElement) && b.parentNode.removeChild(file.previewElement), this._updateMaxFilesReachedClass()
+ }
+});
   </script>

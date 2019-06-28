@@ -88,4 +88,9 @@ class Customer_model extends CI_Model{
         $query = $this->db->get_where('CustomerProfile',array('customerId'=>$customerId));
         return $query->result_array();
     }
+    public function remove_customer_doc($file){
+        $this->db->where('attachement',$file);
+        $this->db->delete('CustomerProfile');
+        return true;
+    }
 }

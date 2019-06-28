@@ -90,19 +90,6 @@ class Customer extends CI_Controller
         echo json_encode($response);
     }
     public function fetch($customerId){
-    //     $result  = array();
-    //     $ds          = DIRECTORY_SEPARATOR; 
-    //     $storeFolder = 'Documents';  
-    // $files = scandir($storeFolder);                 
-    // if ( false!==$files ) {
-    //     foreach ( $files as $file ) {
-    //         if ( '.'!=$file && '..'!=$file) {      
-    //             $obj['name'] = $file;
-    //             $obj['size'] = filesize($storeFolder.$ds.$file);
-    //             $result[] = $obj;
-    //         }
-    //     }
-    // }
     $data = $this->Customer_model->fetch_customer_doc($customerId);
     $result  = array();
     foreach ( $data as $file ) {
@@ -114,5 +101,11 @@ class Customer extends CI_Controller
     header('Content-type: application/json');
     echo json_encode($result);
     }
+   public function remove_customer_doc(){
+       $filename = $this->input->post('name');
+       $file = $this->Customer_model->remove_customer_doc($filename);
+       if($file)
+        unlink($filename);
+   } 
 
 }
