@@ -11,6 +11,20 @@ class Roomdetails_model extends CI_Model{
         return $query->result_array();
     }
 
+    // public function getroomtypes(){
+    //     $query = $this->db->get('RoomTypes');
+    //     return $query->result_array();
+    // }
+
+    public function check_type_exists($roomNo){
+        $query = $this->db->get_where('RoomDetails', array('roomNumber' => $roomNo));
+        if(empty($query->row_array())){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function create_roomDetails(){
         $data = array(
             'roomNumber' => $this->input->post('roomno_input'),
