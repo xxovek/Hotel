@@ -38,6 +38,7 @@ Class Orders extends CI_Controller{
         $this->load->view('templates/header');
         $this->load->view('pages/add_orders',$data);
         $this->load->view('templates/footer');
+        // redirect('Orders');
     }
 
     public function remove_order(){

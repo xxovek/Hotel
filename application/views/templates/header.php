@@ -80,6 +80,7 @@
                             <li class="xn-openable">
                                 <a href="<?php echo site_url();?>"><span class="fa fa-money"></span> Payments</a>
                                 <ul>
+                                    <li><a href="<?php echo site_url();?>/Payment"><span class="fa fa-money"></span>Payment</a></li>
                                     <li><a href="<?php echo site_url();?>/Payments"><span class="fa fa-money"></span>Payments Types</a></li>
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li> -->
                                     <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->

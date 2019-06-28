@@ -114,6 +114,7 @@
         </div>
 
     </div>
+    <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-datepicker.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script>
@@ -291,13 +292,15 @@
       }
     }
 
-    
+
     function saveBookingDetail(){
      var customerName =$("#customerName").val();
      // alert(customerName);
      var roomNo =$("#roomno").val();
      var FromDate =$("#startDate").val();
+     alert("FromDate"+FromDate);
      var UptoDate =$("#endDate").val();
+      alert("UptoDate"+UptoDate);
      var notificationval = $("#notificationval").val();
      // alert(notificationval);
      if(customerName===""){
