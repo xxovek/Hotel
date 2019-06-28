@@ -16,6 +16,8 @@ class Roomdetails_model extends CI_Model{
     //     return $query->result_array();
     // }
 
+  
+
     public function check_type_exists($roomNo){
         $query = $this->db->get_where('RoomDetails', array('roomNumber' => $roomNo));
         if(empty($query->row_array())){
@@ -37,6 +39,23 @@ class Roomdetails_model extends CI_Model{
         );
 
         return $this->db->insert('RoomDetails', $data);
+    }
+
+    public function delete_room($id){
+        $this->db->where('roomId',$id);
+        $this->db->delete('RoomDetails');
+      return true;
+    }
+
+    public function fetch_roomtypeid($roomid){
+        // echo $roomid ;
+        $sql = 'SELECT roomTypeId FROM RoomDetails WHERE roomId = "$roomid"';
+        // $this->db->select('roomTypeId');
+        // $this->db->where('roomId',$roomid);
+    //     $query = $this->db->get('RoomDetails');
+    //    return $query->result();
+    $query = $this->db->query($sql);
+         return $query->result_array();
     }
 
 }

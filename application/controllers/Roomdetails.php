@@ -8,6 +8,7 @@ Class Roomdetails extends CI_Controller{
         // $this->Rooms_model->get_roomtypes();
         $this->load->model('Rooms_model');
     }
+
     public function index()
 	{
 		// $this->load->view('dashboard');
@@ -19,23 +20,35 @@ Class Roomdetails extends CI_Controller{
         $this->load->view('templates/footer');
     }
     
-    // public function loadForm 
-
     public function get_roomDetails(){
         $data = $this->Roomdetails_model->get_roomDetails();
         echo json_encode($data);
    }
 
+   public function add_roomdetails(){
+    // $data['title'] = 'Add New Guest';
+    $data['roomtypes'] = $this->Rooms_model->fetch_roomtypes();
+    // $data['roomname'] = $this->Booking_model->getRoomname();
+    $this->load->view('templates/header');
+    $this->load->view('pages/add_roomdetails',$data);
+    $this->load->view('templates/footer');
+}
 
 
-    // public function add_roomForm(){
-    //     // $data['title'] = 'Add New Guest';
-    //     $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
-    //     $this->load->view('templates/header');
-    //     $this->load->view('pages/roomdetails',$data);
-    //     $this->load->view('templates/footer');
-    // }
+public function edit_roomdetails($roomid){
+    // $data['title'] = 'Add New Guest';
+    // $roomid = $this->input->post('roomid');
+    $data['roomid'] = $roomid;
+    $data['roomtypes'] = $this->Rooms_model->fetch_roomtypes();
     
+    // $data['roomtypes'] = $this->Rooms_model->fetch_roomtypes();
+    // $data['roomname'] = $this->Booking_model->getRoomname();
+    $this->load->view('templates/header');
+    $this->load->view('pages/edit_roomdetails',$data);
+    $this->load->view('templates/footer');
+}
+
+
     public function getroomtypes(){
         // $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
       
@@ -46,6 +59,7 @@ Class Roomdetails extends CI_Controller{
         echo  $this->Rooms_model->fetch_roomtypes();
         // echo json_encode($data);
     }
+
     	//Check type exists
 	public function check_type_exists($roomNo){
 		// $this->form_validation->set_message('check_type_exists', 'That Type is already taken. Please Add different one');
@@ -79,16 +93,30 @@ Class Roomdetails extends CI_Controller{
     }
 
     public function update(){
+
         
     }
 
     public function delete(){
+        $roomid = $this->input->post('roomid');
+        $this->Roomdetails_model->delete_room($roomid);
+        redirect('Roomdetails');
+		// echo json_encode($response);       
+    }
+
+
+      // public function loadForm 
+
+      public function fetchRoomtypename(){
+        $roomid = $this->input->post('roomid');
+        $roomtypeid = $this->Roomdetails_model->fetch_roomtypeid($roomid);
+
+        $response = $this->Rooms_model->fetch_roomtypename($roomtypeid);
+        // echo $response;
+        echo json_encode($response);
         
     }
 
-    public function check_roomNo_exists(){
-        
-    }
 
 }
 
