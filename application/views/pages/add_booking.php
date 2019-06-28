@@ -114,6 +114,7 @@
         </div>
 
     </div>
+    <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-datepicker.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script>
@@ -122,6 +123,26 @@
 
     <script type='text/javascript'>
     // getcustomer();
+    $(function () {
+        var sd = new Date(), ed = new Date();
+
+        $('#startDate').datetimepicker({
+          pickTime: false,
+          format: "YYYY/MM/DD",
+          defaultDate: sd,
+          maxDate: ed
+        });
+
+        $('#endDate').datetimepicker({
+          pickTime: false,
+          format: "YYYY/MM/DD",
+          defaultDate: ed,
+          minDate: sd
+        });
+
+        //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
+        bindDateRangeValidation($("#form"), 'startDate', 'endDate');
+    });
     var bindDateRangeValidation = function (f, s, e) {
         if(!(f instanceof jQuery)){
     			console.log("Not passing a jQuery object");
@@ -199,26 +220,7 @@
     };
 
 
-    $(function () {
-        var sd = new Date(), ed = new Date();
 
-        $('#startDate').datetimepicker({
-          pickTime: false,
-          format: "YYYY/MM/DD",
-          defaultDate: sd,
-          maxDate: ed
-        });
-
-        $('#endDate').datetimepicker({
-          pickTime: false,
-          format: "YYYY/MM/DD",
-          defaultDate: ed,
-          minDate: sd
-        });
-
-        //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
-        bindDateRangeValidation($("#form"), 'startDate', 'endDate');
-    });
     // $(document).ready(function(){
         getcustomer();
 
@@ -291,13 +293,15 @@
       }
     }
 
-    
+
     function saveBookingDetail(){
      var customerName =$("#customerName").val();
      // alert(customerName);
      var roomNo =$("#roomno").val();
      var FromDate =$("#startDate").val();
+     alert("FromDate"+FromDate);
      var UptoDate =$("#endDate").val();
+      alert("UptoDate"+UptoDate);
      var notificationval = $("#notificationval").val();
      // alert(notificationval);
      if(customerName===""){

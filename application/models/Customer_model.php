@@ -65,4 +65,27 @@ class Customer_model extends CI_Model{
             return false;
         }
     }
+    public function get_doc_id($customerId){
+        $this->db->select('(CustomerProfile.customerProfileId)');
+        $this->db->from('CustomerProfile');
+        $this->db->where('CustomerProfile.customerId',$customerId);
+        $this->db->order_by('CustomerProfile.customerProfileId','DESC');
+        $this->db->limit(1);
+        $query = $this->db->get(); 
+        if($query->num_rows()==0)
+            return 1;
+        else
+            return $query->row(0)->customerProfileId+1;
+    }
+    public function add_doc_file($customerId,$filename){
+        $data = array(
+            'customerId' => $customerId,
+            'attachement'  => $filename
+        );
+        $this->db->insert('CustomerProfile',$data);
+    }
+    public function fetch_customer_doc($customerId){
+        $query = $this->db->get_where('CustomerProfile',array('customerId'=>$customerId));
+        return $query->result_array();
+    }
 }
