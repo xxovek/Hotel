@@ -243,7 +243,7 @@
     Dropzone.options.myDropzone = {
     init: function() {
         thisDropzone = this;
-        $.get('<?php echo site_url(); ?>/Customer/fetch', function(data) {
+        $.get('<?php echo site_url(); ?>/Customer/fetch/<?php echo $customer['customerId'];?>', function(data) {
             $.each(data, function(key,value){
                 var mockFile = { name: value.name, size: value.size };
                 thisDropzone.options.addedfile.call(thisDropzone, mockFile);

@@ -84,4 +84,8 @@ class Customer_model extends CI_Model{
         );
         $this->db->insert('CustomerProfile',$data);
     }
+    public function fetch_customer_doc($customerId){
+        $query = $this->db->get_where('CustomerProfile',array('customerId'=>$customerId));
+        return $query->result_array();
+    }
 }
