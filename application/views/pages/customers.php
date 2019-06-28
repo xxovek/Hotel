@@ -68,7 +68,6 @@
     </div>
     <script>
         show_customers();
-
         function show_customers() {
             $.ajax({
                 type: 'ajax',

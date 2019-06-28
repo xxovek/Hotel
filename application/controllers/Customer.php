@@ -57,9 +57,11 @@ class Customer extends CI_Controller
     public function add_documents($customerId)
     {
         $uploadDir = 'Documents';
+        $rowId = $this->Customer_model->get_doc_id($customerId);
         if (!empty($_FILES)) {
-            $tmpFile = $_FILES['file']['tmp_name'];
-            $filename = $uploadDir . '/Doc_' . $customerId . '-' . $_FILES['file']['name'];
+            $tmpFile  = $_FILES['file']['tmp_name'];
+            $filename = $uploadDir . '/Doc_' . $customerId . '_' .$rowId.'.jpeg';
+            $this->Customer_model->add_doc_file($customerId,$filename);
             move_uploaded_file($tmpFile, $filename);
         }
     }
