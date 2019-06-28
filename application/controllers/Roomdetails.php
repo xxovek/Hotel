@@ -84,9 +84,24 @@ public function edit_roomdetails($roomid){
 		
     }
 
-    public function update(){
+    public function fetch_roomdetails(){
+        $roomid = $this->input->post('roomid');
+		$data = $this->Roomdetails_model->fetch_roomdetails($roomid);
+        echo json_encode($data);
+    }
 
-        
+    public function update(){
+             
+        $roomNo = $this->input->post('roomno_input');
+		$ret = $this->check_type_exists($roomNo);
+			if($ret === false){
+			$response['msg'] = false; 
+		} else {
+			$this->Roomdetails_model->update_roomDetails();
+            $response['msg'] = true; 
+        }
+			echo json_encode($response);
+		        
     }
 
     public function delete(){
