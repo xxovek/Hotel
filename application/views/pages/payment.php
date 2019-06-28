@@ -1,10 +1,10 @@
 <ul class="breadcrumb">
     <li><a href="<?php echo site_url(); ?>/Dashboard">Home</a></li>
-    <li class="active">Orders</li>
+    <li class="active">Booking</li>
 </ul>
 <!-- END BREADCRUMB -->
 <div class="page-title">
-    <h2><span class="fa fa-arrow-circle-o-left"></span>Orders Data</h2>
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Payment Data</h2>
 </div>
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
@@ -17,7 +17,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">DataTable Export</h3>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-success" onclick="window.location='Orders/add_orders'"><i class="fa fa-bars"></i>New Orders</button>
+                        <button class="btn btn-success" onclick="window.location='Payment/add_payment'"><i class="fa fa-bars"></i>New Payment</button>
                     </div>
                     <div class="btn-group pull-right">
                         <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
@@ -47,12 +47,13 @@
                         <thead>
                             <tr>
                                 <th>Sr No</th>
-                                <th>Customer Name</th>
-                                <th>Mobile No</th>
-                                <th>Room No</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Contact Number</th>
+                                <th>Room Detail</th>
+                                <th>Booking From</th>
+                                <th>Booking Till</th>
+                                <th>Amount</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -68,11 +69,11 @@
     </div>
 </div>
 <script>
-    show_order();
-    function show_order() {
+    show_booking();
+    function show_booking() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('/Orders/get_orders'); ?>',
+            url: '<?php echo site_url('/Booking/get_booking'); ?>',
             async: true,
             dataType: 'json',
             success: function(response) {
@@ -84,13 +85,12 @@
                         '<td>' + response[i].FirstName+' '+ response[i].lastName+ '</td>' +
                         '<td>' + response[i].contactNumber + '</td>' +
                         '<td>' + response[i].roomNumber +' '+ response[i].roomType + '</td>' +
-                        '<td>' + response[i].productName + '</td>' +
-                        '<td>' + response[i].Quantity + '</td>' +
-                        '<td>' + response[i].orderDate + '</td>' +
+                        '<td>' + response[i].FromDate + '</td>' +
+                        '<td>' + response[i].UptoDate + '</td>' +
 
                         '<td><div class="btn-group btn-group-sm">' +
-                        '<button class="btn btn-default btn-rounded btn-sm" title="Edit Booking Details" onclick="edit_booking(' + response[i].orderId + ');"><i class="fa fa-edit"></i></button>' +
-                        '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Booking Details" onclick="remove_booking(' + response[i].orderId + ');"><i class="fa fa-times"></i></button>' +
+                        '<button class="btn btn-default btn-rounded btn-sm" title="Edit Booking Details" onclick="edit_booking(' + response[i].BookingId + ');"><i class="fa fa-edit"></i></button>' +
+                        '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Booking Details" onclick="remove_booking(' + response[i].BookingId + ');"><i class="fa fa-times"></i></button>' +
                         '</div></td></tr>';
                 }
                 $('#customerData').html(html);
@@ -102,18 +102,17 @@
     function remove_booking(BookingId) {
         $.ajax({
             type: 'POST',
-            url: '<?php echo site_url('/Orders/remove_order'); ?>',
+            url: '<?php echo site_url('/Booking/remove_booking'); ?>',
             data: {
               bookingId: BookingId
             },
             success: function(response) {
                 show_booking();
-                window.location.reload();
             }
         });
     }
 
     function edit_booking(BookingId) {
-        window.location = "<?php echo site_url('/Orders/edit_order/'); ?>" + BookingId;
+        window.location = "<?php echo site_url('/Booking/edit_booking/'); ?>" + BookingId;
     }
 </script>

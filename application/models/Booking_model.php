@@ -43,7 +43,7 @@ class Booking_model extends CI_Model{
     public function get_bookingdetails($bookingId=FALSE){
         if($bookingId==FALSE){
             $this->db->select("Bookings.BookingId,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
-            Customers.lastName,Customers.contactNumber,RoomDetails.roomNumber,RoomTypes.roomType");
+            Customers.lastName,Customers.contactNumber,RoomDetails.roomNumber,RoomTypes.roomId,RoomTypes.roomType");
             $this->db->from('Bookings');
             $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
             $this->db->join('RoomDetails', 'RoomDetails.roomId = Bookings.roomId','left');
