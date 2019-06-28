@@ -62,27 +62,11 @@ class Rooms_model extends CI_Model{
           return true;
         }
 
-    //     public function fetch_roomtypename($roomid){
-    //         $this->db->select('roomId,roomType');
-    //         $this->db->where('roomId',$roomid);
-    //         $query = $this->db->get('RoomTypes');
-    //         // $query = $this->db->get('RoomTypes');
-    //        return $query->result_array();
-    //    }
-       public function fetch_roomtypename($id){
-        //    echo $id ;
-           $sql = 'SELECT roomId,roomType FROM RoomTypes WHERE roomId = "$id"';
-        $query = $this->db->query($sql);
-         return $query->result_array();
-        }
-       
 
 
-    //    function getRoomname(){
-    //     $this->db->select('roomId,roomNumber');
-    //     $query = $this->db->get('RoomDetails');
-    //     return $query->result();
-    //   }
+
+
 
 }
+
 ?>

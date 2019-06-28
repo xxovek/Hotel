@@ -14,6 +14,7 @@ class Booking_model extends CI_Model{
       $query = $this->db->get('RoomDetails');
       return $query->result();
     }
+    
     function insertBookingDetail(){
       $data=array(
 

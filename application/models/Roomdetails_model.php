@@ -48,15 +48,13 @@ class Roomdetails_model extends CI_Model{
     }
 
     public function fetch_roomtypeid($roomid){
-        // echo $roomid ;
-        $sql = 'SELECT roomTypeId FROM RoomDetails WHERE roomId = "$roomid"';
-        // $this->db->select('roomTypeId');
-        // $this->db->where('roomId',$roomid);
-    //     $query = $this->db->get('RoomDetails');
-    //    return $query->result();
-    $query = $this->db->query($sql);
-         return $query->result_array();
-    }
+       
+        $query = $this->db->query("select RoomDetails.roomTypeId,RoomTypes.roomType from RoomDetails left join RoomTypes on RoomDetails.roomTypeId = RoomTypes.roomId where RoomDetails.roomId = '$roomid'");
+        return $query->row_array();
+        
+     }
+
+
 
 }
 ?>

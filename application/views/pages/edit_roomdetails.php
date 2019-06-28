@@ -137,11 +137,11 @@ function fetchroomtypename(){
   data :{roomid:roomid},
    dataType: 'json',
   success: function(response){
-    alert(response.roomId);
-    alert(response.RoomTypes);
-// alert("ok");
+    // alert(response.roomId);
+    // alert(response.roomType);
+// alert(response.roomtypeid);
 
-    // $("#roomtypeSel").val(response.roomId).trigger('change');
+    $("#roomtypeSel").val(response.roomTypeId).trigger('change');
   }
 });
 
