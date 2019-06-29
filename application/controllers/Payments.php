@@ -40,9 +40,7 @@ Class Payments extends CI_Controller{
 				$this->Payment_model->create_paymentstypes();
 				$response['msg'] = true; 
 				echo json_encode($response);
-			     // 	// Set message
-			     // 	// $this->session->set_flashdata('category_created', 'Your category has been created');
-
+			     
 			}
 
         }

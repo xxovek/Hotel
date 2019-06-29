@@ -21,13 +21,10 @@ Class Documents extends CI_Controller{
 			}
 		}
 
-
 	public function getTypes(){
 		$data = $this->Documents_model->get_documenttypes();
 		echo json_encode($data);
 	}
-	
-
 	
 
 	public function create(){
@@ -40,14 +37,10 @@ Class Documents extends CI_Controller{
 			$this->Documents_model->create_documentstypes();
 			$response['msg'] = true; 
 			echo json_encode($response);
-			 // 	// Set message
-			 // 	// $this->session->set_flashdata('category_created', 'Your category has been created');
-
+			
 		}
 
 	}
-
-
  	
 	  public function update(){
 		$this->Documents_model->update_type();//call to model function update_post

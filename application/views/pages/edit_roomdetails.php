@@ -176,7 +176,7 @@ success: function(response){
                     // checkbox_input = 'NO';
         // document.getElementById("checkbox_input").checked = true;
         // document.getElementById('checkbox_input').setAttribute('checked', 'checked');
-                }
+                }                
 }
 });
 
@@ -194,8 +194,7 @@ $(function() {
                   },
                   roomtypeSel: {
                       required: true
-                    //   minlength: 3,
-                    //   maxlength: 20
+                  
                   },
                   roomprice_input: {
                       required: true,
@@ -211,10 +210,7 @@ $(function() {
                   },
                
                   checkbox_input: {
-                    //   required: true
-                    //   number: true,
-                    //   minlength: 10,
-                    //   maxlength: 11
+                   
                   }
               }
           });
@@ -226,7 +222,6 @@ $(function() {
 function updateForm(){
     var returnVal = $("#jvalidate").valid();
     var roomid = <?php echo $roomid; ?>;
-    // alert("retval"+returnVal);
     var checkbox_input = '';
                         if(document.getElementById("checkbox_input").checked){
                             // checkbox_input = 'YES';
@@ -279,11 +274,6 @@ function updateForm(){
 
 function resetForm(){
     $('#jvalidate')[0].reset();
-
-    // $('#roomtypeSel').next('.bootstrap-select').removeClass('error').removeClass('valid');
-    // $('#roomtypeSel').trigger();
-    // $("#roomtypeSel").trigger("");
-    // $("#roomtypeSel").options[1].selected = true;
 }
                 
                 </script>

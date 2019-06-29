@@ -5,8 +5,7 @@ Class Products extends CI_Controller{
 
     public function index()
 	{
-		// $this->load->view('dashboard');
-		// $data['title'] = $data['post']['title'];
+		
         $this->load->view('templates/header');
         $this->load->view('pages/products');
         $this->load->view('templates/footer');
@@ -35,7 +34,6 @@ Class Products extends CI_Controller{
     public function delete(){
         $productid = $this->input->post('productid');
         $this->Product_model->delete($productid);
-       // redirect('Roomdetails');
     }
 
 

@@ -14,22 +14,11 @@ class Rooms_model extends CI_Model{
     public function create_roomtype(){
         $data = array(
             'roomType' => $this->input->post('typename')
-            // 'user_id' => $this->session->userdata('user_id')
         );
 
         return $this->db->insert('RoomTypes', $data);
     }
- 
-
-    // public function fetch_roomtypes(){
-    //     $query = $this->db->get('RoomTypes');
-    //     $output = '<option value="">Select Room Type</option>';
-    //     foreach ($query -> result() as $row){
-    //         $output .= '<option value="'.$row->roomId.'">'.$row->roomType.'</option>';
-    //     }
-    //     return $output;
-    // }
-    
+  
 
     function fetch_roomtypes() {
         $this->db->select('roomId,roomType');
@@ -61,11 +50,6 @@ class Rooms_model extends CI_Model{
             $this->db->delete('RoomTypes');
           return true;
         }
-
-
-
-
-
 
 }
 

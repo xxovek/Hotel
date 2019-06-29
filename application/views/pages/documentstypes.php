@@ -68,9 +68,9 @@
                                     <table id="Tbl_documenttypes" class="table">
                                         <thead>
                                             <tr>
-                                                <!-- <th>#</th> -->
+                                                <th>#</th>
 
-                                            <th>Type</th>
+                                                <th>Type</th>
                                                 <th>Created Date</th>
                                                 <th>Action</th>
                                         
@@ -206,6 +206,8 @@
                     var i;
                     for(i=0; i<response.length; i++){
                         html += '<tr>'+
+                                '<td>'+(i + 1)+'</td>'+
+
                                 '<td>'+response[i].DocumentType+'</td>'+
                                 '<td>'+response[i].created_at+'</td>'+
                                 '<td><div class="btn-group">'+  

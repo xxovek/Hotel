@@ -49,7 +49,6 @@
                                         <button class="btn btn-default" type="button" onClick="resetForm();" >Clear Form</button>
                                         <button type="submit" style="display:none" id="updateBtn" onclick="update();" class="btn btn-primary pull-right">Save</button>
 
-                                        <!-- <button class="btn btn-default" type="button" onclick="window.location='<?php echo site_url('Products/'); ?>'" >Back</button>                                          -->
                                         <button type="button"  class="btn btn-primary pull-right" id="submit_btn" onclick="saveForm();">Submit</button>
                                    </div>
 
@@ -68,10 +67,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">DataTable Export</h3>
-                <!-- <div class="btn-group pull-right">
-                    <button class="btn btn-success" onclick="window.location='add_product'" ><i class="fa fa-bars"></i>New Product</button>
-                </div> -->
-
+              
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                     <ul class="dropdown-menu">
@@ -163,7 +159,7 @@
                             show_Products();
                         },
                         error: function(xhr) {
-                            // alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
                         }
                     });
 

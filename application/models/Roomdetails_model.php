@@ -7,16 +7,23 @@ class Roomdetails_model extends CI_Model{
     }
 
     public function get_roomDetails(){
-        $query = $this->db->get('RoomDetails');
+
+
+        $query = $this->db->query(
+            "select RoomDetails.roomId,RoomDetails.roomNumber,
+            RoomDetails.roomTypeId,RoomDetails.pricePerNight,
+            RoomDetails.maxPersons,RoomDetails.status,
+            RoomDetails.isAvailable,RoomDetails.created_at,
+            RoomTypes.roomType from RoomDetails left join RoomTypes 
+            on RoomDetails.roomTypeId = RoomTypes.roomId"
+        );
+
         return $query->result_array();
     }
 
-    // public function getroomtypes(){
-    //     $query = $this->db->get('RoomTypes');
-    //     return $query->result_array();
-    // }
+   
 
-  
+    
 
     public function check_type_exists($roomNo){
         $query = $this->db->get_where('RoomDetails', array('roomNumber' => $roomNo));
@@ -53,6 +60,9 @@ class Roomdetails_model extends CI_Model{
         return $query->row_array();
         
      }
+
+
+
 
      public function update_roomDetails($roomid){
          $data = array(

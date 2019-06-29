@@ -20,7 +20,6 @@ class Payment_model extends CI_Model{
     public function create_paymentstypes(){
         $data = array(
             'paymentType' => $this->input->post('typename')
-            // 'user_id' => $this->session->userdata('user_id')
         );
 
         return $this->db->insert('PaymentTypes', $data);

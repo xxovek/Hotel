@@ -1,18 +1,11 @@
        
-               <!-- <script type='text/javascript' src='js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
-        <script type='text/javascript' src='js/plugins/validationengine/jquery.validationEngine.js'></script>      -->
-        <!-- START BREADCRUMB -->
+         
         <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
                     <li class="active">Rooms</li>
                     <li class="active">Rooms Details</li>
-                </ul>
-                <!-- END BREADCRUMB -->    
-
-                <!-- <div class="page-title">
-                  <h2><span class="fa fa-arrow-circle-o-left"></span>Customers Data</h2>
-                </div> -->
-
+        </ul>
+              
                 <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
        
@@ -24,7 +17,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title">DataTable Export</h3>
                 <div class="btn-group pull-right">
-                    <button class="btn btn-success" onclick="window.location='Roomdetails/add_roomdetails'" ><i class="fa fa-bars"></i>New Room Info</button>
+                    <button class="btn btn-success" onclick="window.location='<?php echo site_url('Roomdetails/add_roomdetails'); ?>'" ><i class="fa fa-bars"></i>New Room Info</button>
+
                 </div>
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
@@ -75,42 +69,18 @@
 <script>
 
 
-show_RoomDetails();
+   show_RoomDetails();
 
-function getroomtype(){
-    var base_url='<?php echo base_url(); ?>';
-// var html='<option value="" selected>Select Room Type </option>';
-// var html='<div class="btn-group bootstrap-select form-control select"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="roomtypeSel" title="Select Room Type" aria-expanded="false"><span class="filter-option pull-left">Select Room Type</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><div class="bootstrap-select-searchbox"><input type="text" class="input-block-level form-control" autocomplete="off"></div><ul class="dropdown-menu inner selectpicker" role="menu"></ul></div></div>';
-$.ajax({
-// type : "POST",
-url:base_url+'index.php/Roomdetails/getroomtypes',
-method:"POST",
-// dataType: 'json',
-success: function(data){
-// alert("ok");
-
-// var len = response.length;
-// var i=0;
-// if(len > 0){
-// for(var i=0;i<len;i++){
-//    html+='<option value="'+response[i].roomId+'">'+response[i].roomType+'</option>';
-// //    html+='<div class="btn-group bootstrap-select form-control select"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="roomtypeSel" title="Select Room Type" aria-expanded="false"><span class="filter-option pull-left">Select Room Type</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><div class="bootstrap-select-searchbox"><input type="text" class="input-block-level form-control" autocomplete="off"></div><ul class="dropdown-menu inner selectpicker" role="menu"></ul></div></div>'
-//     // $("#roomtypeSel").append('<option value="'+response[i].roomId+'">'+response[i].roomType+'</option>');
-// }
-   $("#roomtypeSel").html(data);
-// }
-// else{
-// }
-}
-});
-}
-
-
-// function show_form(){
-//    getroomtype();
-//     $("#submit_formRow").show();
-//     $("#tbl_row").hide();
-// }
+        function getroomtype(){
+            var base_url='<?php echo base_url(); ?>';
+        $.ajax({
+                url:base_url+'index.php/Roomdetails/getroomtypes',
+                method:"POST",
+                success: function(data){
+                $("#roomtypeSel").html(data);
+        }
+        });
+        }
 
 
 function show_RoomDetails() {
@@ -120,13 +90,14 @@ function show_RoomDetails() {
         async: true,
         dataType: 'json',
         success: function(response) {
+            // alert(response);
             var html = '';
             var i;
             for (i = 0; i < response.length; i++) {
                 html += '<tr>' +
                     '<td>' + (i + 1) + '</td>' +
                     '<td>' + response[i].roomNumber + '</td>' +
-                    '<td>' + response[i].roomTypeId+'</td>' +
+                    '<td>' + response[i].roomType+'</td>' +
                     '<td>' + response[i].pricePerNight + '</td>' +
                     '<td>' + response[i].maxPersons + '</td>' +
                     '<td>' + response[i].status + '</td>' +

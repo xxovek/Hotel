@@ -1,10 +1,8 @@
-<ul class="breadcrumb">
+                <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
                     <li class="active">Rooms</li>
                     <li class="active">Rooms Details</li>
                 </ul>
-
-
 
                 <div class="page-content-wrap">
 
@@ -44,8 +42,6 @@
                                 <div class="form-group">
                                 <label class="col-md-3 control-label">Room Type</label>
                                 <div class="col-md-3">
-                                    <!-- <span id="errmsgroomno"></span> -->
-                                    <!-- <select class="form-control" data-live-search="true" name="roomtypeSel" id="roomtypeSel" > -->
                                     <select class="form-control select" data-live-search="true" name="roomtypeSel" id="roomtypeSel">
                                    <option value="">Select Room Type</option>
                                     <?php
@@ -61,20 +57,12 @@
                                 </div>
                             </div>
 
-                            <!-- html+='<option value="'+response[i].roomId+'">'+response[i].roomType+'</option>'; -->
-
-
-
                                 <div class="form-group">
                                     <label class="col-md-3  control-label">Room Price</label>
                                     <div class="col-md-6 ">                                            
-                                        <!-- <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" id="roomprice_input" class="form-control"/>
-                                        </div>  -->
+                                       
                                         <div class="input-group">
                                                 <input type="text" class="form-control" id="roomprice_input" name="roomprice_input" >
-                                                <!-- <span class="input-group-addon">.00</span> -->
                                             </div>                                           
                                         <span class="help-block">This is room price of text field</span>
                                         <br><span id="roomprice_input_err"></span>
@@ -88,7 +76,6 @@
                                     <label class="col-md-3 control-label">Max Person Limit</label>
                                     <div class="col-md-6 ">                                            
                                         <div class="input-group">
-                                            <!-- <span class="input-group-addon"><span class="fa fa-pencil"></span></span> -->
                                             <input type="text" id="roomlimit_input" name="roomlimit_input" class="form-control"/>
                                         </div>                                            
                                         <span class="help-block">This is room persons limit of text field</span>
@@ -110,7 +97,7 @@
                             <div class="panel-footer">
                                 <button class="btn btn-default" type="button" onClick="resetForm();" >Clear Form</button>  
                                 <button class="btn btn-default" type="button" onclick="window.location='<?php echo site_url('Roomdetails/'); ?>'" >Back</button>                                         
-                                <button type="button"  class="btn btn-primary pull-right" onclick="saveForm();">Update</button>
+                                <button type="button"  class="btn btn-primary pull-right" onclick="saveForm();">Submit</button>
                             </div>
 
                         </div>
@@ -118,7 +105,6 @@
            </div>
 
        </div>
-       <!-- onclick="window.location= -->
                 </div>
                 <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
 
@@ -136,8 +122,7 @@ $(function() {
                   },
                   roomtypeSel: {
                       required: true
-                    //   minlength: 3,
-                    //   maxlength: 20
+                 
                   },
                   roomprice_input: {
                       required: true,
@@ -153,10 +138,7 @@ $(function() {
                   },
                
                   checkbox_input: {
-                    //   required: true
-                    //   number: true,
-                    //   minlength: 10,
-                    //   maxlength: 11
+                  
                   }
               }
           });
@@ -168,13 +150,8 @@ $(function() {
 function saveForm(){
     var returnVal = $("#jvalidate").valid();
    
-    // alert("retval"+returnVal);
     var checkbox_input = '';
-                        // if(document.getElementById("checkbox_input").checked){
-                        //     checkbox_input = 'YES';
-                        // }else{
-                        //     checkbox_input = 'NO';
-                        // }
+                      
                         if(document.getElementById("checkbox_input").checked){
                             // checkbox_input = 'YES';
                             checkbox_input = 1;
@@ -227,10 +204,6 @@ function saveForm(){
 function resetForm(){
     $('#jvalidate')[0].reset();
 
-    // $('#roomtypeSel').next('.bootstrap-select').removeClass('error').removeClass('valid');
-    // $('#roomtypeSel').trigger();
-    // $("#roomtypeSel").trigger("");
-    // $("#roomtypeSel").options[1].selected = true;
 }
                 
                 </script>
