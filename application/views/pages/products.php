@@ -68,9 +68,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">DataTable Export</h3>
-                <div class="btn-group pull-right">
+                <!-- <div class="btn-group pull-right">
                     <button class="btn btn-success" onclick="window.location='add_product'" ><i class="fa fa-bars"></i>New Product</button>
-                </div>
+                </div> -->
+
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                     <ul class="dropdown-menu">
@@ -120,94 +121,90 @@
 
 <script>
 
-$(function() {
-          var jvalidate = $("#jvalidate").validate({
-              ignore: [],
-              rules: {
-                productname_input: {
-                      required: true,
-                      minlength: 4,
-                      maxlength: 20
-                  },
-                  productprice_input: {
-                      required: true,
-                      minlength: 1,
-                      maxlength: 3
-                  }
-
-              }
-          });
-
-      });
-              
-
-      function update(){
-
-        var returnVal = $("#jvalidate").valid();
-   
-        if (returnVal) {
-                var formData = {
-                    productname_input: ($('#productname_input').val().toUpperCase()).trim(),
-                    productprice_input: $('#productprice_input').val(),
-                    productid:$('#productid').val()
-                };
-
-                $.ajax({
-                    type: 'POST',
-                    url: '<?php echo site_url('/Products/edit_product'); ?>',
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#jvalidate')[0].reset();
-                        $("#updateBtn").hide();
-                        $("#submit_btn").show();
-                        show_Products();
+        $(function() {
+            var jvalidate = $("#jvalidate").validate({
+                ignore: [],
+                rules: {
+                    productname_input: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 20
                     },
-                    error: function(xhr) {
-                        // alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                    productprice_input: {
+                        required: true,
+                        minlength: 1,
+                        maxlength: 3
                     }
-                });
 
-            }else{}
+                }
+            });
 
-        }
-
-      function saveForm(){
-
-          var returnVal = $("#jvalidate").valid();
-   
+        });
+              
+        function update(){
+            var returnVal = $("#jvalidate").valid();
+    
             if (returnVal) {
                     var formData = {
                         productname_input: ($('#productname_input').val().toUpperCase()).trim(),
-                        productprice_input: $('#productprice_input').val()
+                        productprice_input: $('#productprice_input').val(),
+                        productid:$('#productid').val()
                     };
 
                     $.ajax({
                         type: 'POST',
-                        url: '<?php echo site_url(); ?>/Products/create',
+                        url: '<?php echo site_url('/Products/edit_product'); ?>',
                         data: formData,
                         dataType: 'json',
                         success: function(response) {
-                           
-                                $('#jvalidate')[0].reset();
-                                window.location = "<?php echo site_url('Products/'); ?>";
-                                show_Products();
+                            $('#jvalidate')[0].reset();
+                            $("#updateBtn").hide();
+                            $("#submit_btn").show();
+                            show_Products();
                         },
                         error: function(xhr) {
-                            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                            // alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
                         }
                     });
 
                 }else{}
-     }
+        }
 
+        function saveForm(){
 
+            var returnVal = $("#jvalidate").valid();
+    
+                if (returnVal) {
+                        var formData = {
+                            productname_input: ($('#productname_input').val().toUpperCase()).trim(),
+                            productprice_input: $('#productprice_input').val()
+                        };
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '<?php echo site_url(); ?>/Products/create',
+                            data: formData,
+                            dataType: 'json',
+                            success: function(response) {
+                            
+                                    $('#jvalidate')[0].reset();
+                                    window.location = "<?php echo site_url('Products/'); ?>";
+                                    show_Products();
+                            },
+                            error: function(xhr) {
+                                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                            }
+                        });
+
+                    }else{}
+        }
 
         function resetForm(){
             $('#jvalidate')[0].reset();
+            $("#updateBtn").hide();
+            $("#submit_btn").show();
         }
    
-
          show_Products();
 
             function show_Products(){
@@ -251,7 +248,6 @@ $(function() {
             });
         }
 
-
         function edit_product(productid,productname,price) {
             $('#productname_input').val(productname);
             $('#productprice_input').val(price);
@@ -259,7 +255,6 @@ $(function() {
 
             $("#updateBtn").show();
             $("#submit_btn").hide();
-        // window.location = "<?php echo site_url('Products/edit_product/'); ?>" + productid;
         }
 
 </script>
