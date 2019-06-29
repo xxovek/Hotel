@@ -60,8 +60,8 @@ class Customer extends CI_Controller
         $rowId = $this->Customer_model->get_doc_id($customerId);
         if (!empty($_FILES)) {
             $tmpFile  = $_FILES['file']['tmp_name'];
-            $filename = $uploadDir . '/Doc_' . $customerId . '_' .$rowId.'.jpeg';
-            $this->Customer_model->add_doc_file($customerId,$filename);
+            $filename = $uploadDir . '/Doc_' . $customerId . '_' . $rowId . '.jpeg';
+            $this->Customer_model->add_doc_file($customerId, $filename);
             move_uploaded_file($tmpFile, $filename);
         }
     }
@@ -89,23 +89,24 @@ class Customer extends CI_Controller
         }
         echo json_encode($response);
     }
-    public function fetch($customerId){
-    $data = $this->Customer_model->fetch_customer_doc($customerId);
-    $result  = array();
-    foreach ( $data as $file ) {
-        $obj['name'] = $file['attachement'];
-        $obj['size'] = filesize($file['attachement']);
-        $result[] = $obj;
+    public function fetch($customerId)
+    {
+        $data = $this->Customer_model->fetch_customer_doc($customerId);
+        $result  = array();
+        foreach ($data as $file) {
+            $obj['name'] = $file['attachement'];
+            $obj['size'] = filesize($file['attachement']);
+            $result[] = $obj;
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
     }
-    header('Content-type: text/json');             
-    header('Content-type: application/json');
-    echo json_encode($result);
+    public function remove_customer_doc()
+    {
+        $filename = $this->input->post('name');
+        $file = $this->Customer_model->remove_customer_doc($filename);
+        if ($file)
+            unlink($filename);
     }
-   public function remove_customer_doc(){
-       $filename = $this->input->post('name');
-       $file = $this->Customer_model->remove_customer_doc($filename);
-       if($file)
-        unlink($filename);
-   } 
-
 }

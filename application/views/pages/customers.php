@@ -68,10 +68,11 @@
     </div>
     <script>
         show_customers();
+
         function show_customers() {
             $.ajax({
                 type: 'ajax',
-                url: '<?php echo site_url('/Customer/get_customer'); ?>',
+                url: '<?php echo site_url(' / Customer / get_customer '); ?>',
                 async: true,
                 dataType: 'json',
                 success: function(response) {
@@ -98,7 +99,7 @@
         function remove_customer(customerId) {
             $.ajax({
                 type: 'POST',
-                url: '<?php echo site_url('/Customer/remove_customer'); ?>',
+                url: '<?php echo site_url(' / Customer / remove_customer '); ?>',
                 data: {
                     customerId: customerId
                 },

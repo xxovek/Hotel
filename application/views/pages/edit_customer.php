@@ -98,61 +98,61 @@
                               </div>
                               <div class="col-md-6">
 
-                                      <div class="form-group">
-                                          <label class="col-md-3 col-xs-12 control-label">File</label>
-                                          <div class="col-md-6 col-xs-12">
-                                              <div id="my_camera"></div>
-                                              <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
-                                              <span class="help-block">Input type file</span>
-                                              <input type="hidden" name="image" class="image-tag">
-                                          </div>
+                                  <div class="form-group">
+                                      <label class="col-md-3 col-xs-12 control-label">File</label>
+                                      <div class="col-md-6 col-xs-12">
+                                          <div id="my_camera"></div>
+                                          <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
+                                          <span class="help-block">Input type file</span>
+                                          <input type="hidden" name="image" class="image-tag">
                                       </div>
+                                  </div>
 
-                                      <div class="form-group">
-                                          <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
-                                          <div class="col-md-3 col-xs-3">
-                                              <div id="results">
-                                                  <?php
-                                                  $url = 'upload/pic_'.$customer['customerId'].'.jpeg';
-                                                  if(!file_exists(base_url($url))){?>
-                                                    <img id="imageprev" src="<?php echo base_url($url);?>"/>
-                                                  <?php }else{}?>
-                                              </div>
-                                              <span class="help-block">File</span>
+                                  <div class="form-group">
+                                      <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
+                                      <div class="col-md-3 col-xs-3">
+                                          <div id="results">
+                                              <?php
+                                                $url = 'upload/pic_' . $customer['customerId'] . '.jpeg';
+                                                if (!file_exists(base_url($url))) { ?>
+                                                  <img id="imageprev" src="<?php echo base_url($url); ?>" />
+                                              <?php } else { } ?>
                                           </div>
+                                          <span class="help-block">File</span>
                                       </div>
+                                  </div>
 
-                        </div>
                               </div>
-
                           </div>
 
                       </div>
-                      <div class="panel-footer">
-                          <button class="btn btn-default" type="reset">Clear Form</button>
-                          <button class="btn btn-primary pull-right" type="button" onclick="saveSnap()">Submit</button>
-                      </div>
-                  </div>
 
+                  </div>
+                  <div class="panel-footer">
+                      <button class="btn btn-default" type="reset">Clear Form</button>
+                      <button class="btn btn-primary pull-right" type="button" onclick="saveSnap()">Submit</button>
+                  </div>
+          </div>
+
+      </div>
+      </form>
+
+      <div class="row">
+          <div class="col-md-9">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h3><span class="fa fa-download"></span> Documents Of Customer</h3>
+                      <p>Click here and browse file or image from your machine </p>
+                      <form action="<?php echo site_url('Customer/add_documents/' . $customer['customerId']); ?>" class="dropzone dropzone-mini" id="my-dropzone"></form>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
           </div>
           </form>
 
-          <div class="row">
-              <div class="col-md-9">
-                  <div class="panel panel-default">
-                      <div class="panel-body">
-                          <h3><span class="fa fa-download"></span> Documents Of Customer</h3>
-                          <p>Click here and browse file or image from your machine </p>
-                          <form action="<?php echo site_url('Customer/add_documents/' . $customer['customerId']); ?>" class="dropzone dropzone-mini" id="my-dropzone"></form>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3">
-              </div>
-              </form>
-
-          </div>
       </div>
+  </div>
 
 
   </div>
@@ -167,7 +167,7 @@
           jpeg_quality: 90
       });
 
-    Webcam.attach('#my_camera');
+      Webcam.attach('#my_camera');
 
       function take_snapshot() {
           Webcam.snap(function(data_uri) {
@@ -179,35 +179,35 @@
       function saveSnap() {
           var returnVal = $("#jvalidate").valid();
           // Get base64 value from <img id='imageprev'> source
-          if(returnVal){
-          var formData = {
-              fname: $('#firstname').val(),
-              lname: $('#lastname').val(),
-              address: $('#address').val(),
-              emailid: $('#emailid').val(),
-              contactNumber: $('#contactNumber').val(),
-              customerId: $('#customerId').val()
-          };
-          $.ajax({
-              type: 'POST',
-              url: '<?php echo site_url(); ?>/Customer/update_details',
-              data: formData,
-              success: function(response) {
-                var base64image = document.getElementById("imageprev").src;
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer'+customerId, function(code, text) {
-              console.log('Save successfully');
-          });
-              },
-              error: function(xhr) {
-                  alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-              }
-          });
+          if (returnVal) {
+              var formData = {
+                  fname: $('#firstname').val(),
+                  lname: $('#lastname').val(),
+                  address: $('#address').val(),
+                  emailid: $('#emailid').val(),
+                  contactNumber: $('#contactNumber').val(),
+                  customerId: $('#customerId').val()
+              };
+              $.ajax({
+                  type: 'POST',
+                  url: '<?php echo site_url(); ?>/Customer/update_details',
+                  data: formData,
+                  success: function(response) {
+                      var base64image = document.getElementById("imageprev").src;
+                      Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer' + customerId, function(code, text) {
+                          console.log('Save successfully');
+                      });
+                  },
+                  error: function(xhr) {
+                      alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                  }
+              });
           }
       }
 
       $(function() {
           var jvalidate = $("#jvalidate").validate({
-            ignore: [],
+              ignore: [],
               rules: {
                   firstname: {
                       required: true,
@@ -240,34 +240,41 @@
           });
       });
 
-    Dropzone.options.myDropzone = {
-    init: function() {
-        thisDropzone = this;
-        $.get('<?php echo site_url(); ?>/Customer/fetch/<?php echo $customer['customerId'];?>', function(data) {
-            $.each(data, function(key,value){
-                var mockFile = { name: value.name, size: value.size };
-                thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-                thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?php echo base_url();?>/"+value.name);
-            });
+      Dropzone.options.myDropzone = {
+          init: function() {
+              thisDropzone = this;
+              $.get('<?php echo site_url(); ?>/Customer/fetch/<?php echo $customer['
+                  customerId ']; ?>',
+                  function(data) {
+                      $.each(data, function(key, value) {
+                          var mockFile = {
+                              name: value.name,
+                              size: value.size
+                          };
+                          thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                          thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?php echo base_url(); ?>/" + value.name);
+                      });
 
-        });
-    }
-};
-Dropzone.autoDiscover = false;
-$(".dropzone").dropzone({
- addRemoveLinks: true,
- removedfile: function(file) {
-   var name = file.name; 
-   $.ajax({
-    type: 'POST',
-    url: '<?php echo site_url(); ?>/Customer/remove_customer_doc',
-    data: {name:name},
-    success: function(response) {
-       
-    }
-    });
-   var b;
-   return file.previewElement && null != (b = file.previewElement) && b.parentNode.removeChild(file.previewElement), this._updateMaxFilesReachedClass()
- }
-});
+                  });
+          }
+      };
+      Dropzone.autoDiscover = false;
+      $(".dropzone").dropzone({
+          addRemoveLinks: true,
+          removedfile: function(file) {
+              var name = file.name;
+              $.ajax({
+                  type: 'POST',
+                  url: '<?php echo site_url(); ?>/Customer/remove_customer_doc',
+                  data: {
+                      name: name
+                  },
+                  success: function(response) {
+
+                  }
+              });
+              var b;
+              return file.previewElement && null != (b = file.previewElement) && b.parentNode.removeChild(file.previewElement), this._updateMaxFilesReachedClass()
+          }
+      });
   </script>
