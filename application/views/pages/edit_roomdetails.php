@@ -28,9 +28,9 @@
                                                                          
                                         <div class="input-group">
                                             <span class=""></span>
-                                            <input type="text" id="roomno_input" name="roomno_input" class="form-control"/>
+                                            <input type="text" id="roomno_input" readonly name="roomno_input" class="form-control"/>
                                         </div>                                            
-                                        <span class="help-block">This is room number of text field</span>
+                                        <span class="help-block">Change not allowd,This is room number text</span>
                                    
                                         <br><span id="roomno_input_err"></span>
                                          </div>
@@ -97,7 +97,11 @@
                                 <div class="form-group">
                                     <label class="col-md-3  control-label">Availability</label>
                                     <div class="col-md-6 ">
-                                        <label class="check"><input type="checkbox" id="checkbox_input" checked="checked" name="checkbox_input" class="icheckbox" />Check Availability</label>
+                                        <label class="check">
+                                         <input type="checkbox" id="checkbox_input"  name="checkbox_input" class="icheckbox" /></label>
+                                         
+                                         Check Availability
+                                        
                                         <span class="help-block">Check yes or no, Available to use</span>
                                     </div>
                                 </div>
@@ -143,6 +147,40 @@ function fetchroomtypename(){
 
 }
 
+function fetchRoomInfo(roomid){
+
+$.ajax({
+type : "POST",
+url  : '<?php echo site_url(); ?>/Roomdetails/fetch_roomdetails',
+data :{roomid:roomid},
+dataType: 'json',
+success: function(response){
+    $("#roomno_input").val(response.roomNumber);
+    $("#roomprice_input").val(response.pricePerNight);
+    $("#roomlimit_input").val(response.maxPersons);
+    // $("#").val(response.);
+    alert(response.isAvailable);
+
+    if(response.isAvailable === 0){
+                    //   alert("if");
+        // $("#checkbox_input").prop("checked", false);
+        // document.getElementById("checkbox_input").checked = false;
+                    // checkbox_input = 'YES';
+                    $("#checkbox_input").prop("checked", false);
+
+        // document.getElementById('checkbox_input').removeAttribute('checked');
+                }else{
+                    //   alert("else");
+                    $("#checkbox_input").prop("checked", true);
+
+                    // checkbox_input = 'NO';
+        // document.getElementById("checkbox_input").checked = true;
+        // document.getElementById('checkbox_input').setAttribute('checked', 'checked');
+                }
+}
+});
+
+}
 
 
 $(function() {
@@ -184,39 +222,10 @@ $(function() {
       });
               
 
-      function fetchRoomInfo(roomid){
-
-        $.ajax({
-        type : "POST",
-        url  : '<?php echo site_url(); ?>/Roomdetails/fetch_roomdetails',
-        data :{roomid:roomid},
-        dataType: 'json',
-        success: function(response){
-            $("#roomno_input").val(response.roomNumber);
-            $("#roomprice_input").val(response.pricePerNight);
-            $("#roomlimit_input").val(response.maxPersons);
-            // $("#").val(response.);
-            // alert(response.isAvailable);
-
-            if(response.isAvailable === 0){
-                // $("#checkbox_input").prop("checked", false);
-                // document.getElementById("checkbox_input").checked = false;
-                            // checkbox_input = 'YES';
-                document.getElementById('checkbox_input').removeAttribute('checked');
-                        }else{
-                            // checkbox_input = 'NO';
-                // document.getElementById("checkbox_input").checked = true;
-                document.getElementById('checkbox_input').setAttribute('checked', 'checked');
-                // document.getElementById('checkbox_input').removeAttribute('checked');
-                        }
-        }
-        });
-
-}
 
 function updateForm(){
     var returnVal = $("#jvalidate").valid();
-   
+    var roomid = <?php echo $roomid; ?>;
     // alert("retval"+returnVal);
     var checkbox_input = '';
                         if(document.getElementById("checkbox_input").checked){
@@ -233,7 +242,9 @@ function updateForm(){
                   roomtype_input: $('#roomtypeSel').val(),
                   roomprice_input: $('#roomprice_input').val(),
                   roomlimit_input: $('#roomlimit_input').val(),
-                  checkbox_input: checkbox_input
+                  checkbox_input: checkbox_input,
+                  roomid:roomid
+                  
               };
 
               $.ajax({
@@ -252,7 +263,7 @@ function updateForm(){
                                     else{
                                             $('#jvalidate')[0].reset();
                                             window.location = "<?php echo site_url('Roomdetails/'); ?>";
-                                            show_RoomDetails();
+                                            //show_RoomDetails();
                                         }
                     
                   },
