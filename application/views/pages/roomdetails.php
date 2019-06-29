@@ -15,7 +15,7 @@
 
                 <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-
+       
 <div class="row" id="tbl_row">
     <div class="col-md-12">
 
@@ -24,7 +24,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">DataTable Export</h3>
                 <div class="btn-group pull-right">
-                    <button class="btn btn-success" onclick="window.location='add_roomdetails'" ><i class="fa fa-bars"></i>New Room Info</button>
+                    <button class="btn btn-success" onclick="window.location='Roomdetails/add_roomdetails'" ><i class="fa fa-bars"></i>New Room Info</button>
                 </div>
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>

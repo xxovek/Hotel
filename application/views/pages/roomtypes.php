@@ -16,7 +16,7 @@
  
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Room Types</strong> Add New</h3>
+                                <h3 class="panel-title" id="formname"><strong>Room Types</strong> Add New</h3>
                                 <ul class="panel-controls">
                                     <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                 </ul>
@@ -53,13 +53,8 @@
                         </div>
 
                         </form>
-                        
-                      
-                        
+                                                
                     </div>
-
-
-                 
 
                 </div>      
                 
