@@ -48,15 +48,28 @@ class Roomdetails_model extends CI_Model{
     }
 
     public function fetch_roomtypeid($roomid){
-        // echo $roomid ;
-        $sql = 'SELECT roomTypeId FROM RoomDetails WHERE roomId = "$roomid"';
-        // $this->db->select('roomTypeId');
-        // $this->db->where('roomId',$roomid);
-    //     $query = $this->db->get('RoomDetails');
-    //    return $query->result();
-    $query = $this->db->query($sql);
-         return $query->result_array();
-    }
+       
+        $query = $this->db->query("select RoomDetails.roomTypeId,RoomTypes.roomType from RoomDetails left join RoomTypes on RoomDetails.roomTypeId = RoomTypes.roomId where RoomDetails.roomId = '$roomid'");
+        return $query->row_array();
+        
+     }
+
+     public function update_roomDetails($roomid){
+         $data = array(
+            'roomNumber' => $this->input->post('roomno_input'),
+            'roomTypeId' => $this->input->post('roomtype_input') ,
+            'pricePerNight' =>$this->input->post('roomprice_input') ,
+            'maxPersons' => $this->input->post('roomlimit_input'),
+            'isAvailable' => $this->input->post('checkbox_input')
+         );
+         $this->db->where('roomId',$roomid);
+       return $this->db->update('RoomDetails',$data);
+     }
+
+     public function fetch_roomdetails($roomid){
+        $query = $this->db->query("SELECT * FROM RoomDetails WHERE roomId = '$roomid'");
+        return $query->row_array();
+     }
 
 }
 ?>

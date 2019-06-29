@@ -164,19 +164,25 @@ $(function() {
       });
               
 
-      $('#roomtypeSel').change(function(){
-    // $('#roomtypeSel').next('.bootstrap-select').removeClass('error').removeClass('valid');
-    $("#roomtypeSel").trigger("select");
-    });
+  
 function saveForm(){
     var returnVal = $("#jvalidate").valid();
    
     // alert("retval"+returnVal);
     var checkbox_input = '';
+                        // if(document.getElementById("checkbox_input").checked){
+                        //     checkbox_input = 'YES';
+                        // }else{
+                        //     checkbox_input = 'NO';
+                        // }
                         if(document.getElementById("checkbox_input").checked){
-                            checkbox_input = 'YES';
+                            // checkbox_input = 'YES';
+                            checkbox_input = 1;
+
                         }else{
-                            checkbox_input = 'NO';
+                            // checkbox_input = 'NO';
+                            checkbox_input = 0;
+
                         }
 
     if (returnVal) {
