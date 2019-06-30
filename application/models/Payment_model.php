@@ -53,7 +53,7 @@ class Payment_model extends CI_Model{
     // kunal created function
     public function getPaymentDetail($bookingId=FALSE){
         if($bookingId==FALSE){
-      $this->db->select("Bookings.BookingId,Bookings.Nights,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
+      $this->db->select("Bookings.BookingId,Customers.customerId,Bookings.Nights,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
       Customers.lastName,Customers.contactNumber,RoomDetails.pricePerNight,RoomDetails.maxPersons,RoomDetails.roomNumber,RoomTypes.roomType");
       $this->db->from('Bookings');
       $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
@@ -80,11 +80,47 @@ class Payment_model extends CI_Model{
       $query = $this->db->get('PaymentTypes');
       return $query->result();
     }
+    function getCustomerType(){
+      $this->db->select("Bookings.BookingId,Customers.customerId,Customers.FirstName,Customers.lastName");
+      $this->db->from('Bookings');
+      $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
+      $this->db->where('Bookings.Status !=', '1');
+      $this->db->group_by('Bookings.customerId');
+      $query = $this->db->get();
+      return $query->result();
+    }
 
+    function getPaymentDetailCustomer($customerId=FALSE){
+      $this->db->select("Bookings.BookingId,Bookings.Nights,Customers.customerId,Bookings.Nights,Bookings.FromDate,Bookings.UptoDate,Customers.FirstName,
+      Customers.lastName,Customers.contactNumber,RoomDetails.pricePerNight,RoomDetails.maxPersons,RoomDetails.roomNumber,RoomTypes.roomType");
+      $this->db->from('Bookings');
+      $this->db->where('Bookings.customerId',$customerId);
+      $this->db->join('Customers', 'Customers.customerId = Bookings.customerId','left');
+      $this->db->join('RoomDetails', 'RoomDetails.roomId = Bookings.roomId','left');
+      $this->db->join('RoomTypes', 'RoomTypes.roomId = RoomDetails.roomId','left');
+
+      $query = $this->db->get();
+      return $query->result();
+    }
+
+    function getOrderDetailCustomer($customerId=FALSE){
+      $this->db->select("Orders.orderId,Customers.FirstName,
+      Customers.lastName,Customers.contactNumber,Orders.Quantity,Products.productName,Products.productPrice,RoomDetails.roomNumber,RoomTypes.roomType,Orders.orderDate");
+      $this->db->from('Orders');
+      $this->db->where('Orders.customerId',$customerId);
+      $this->db->join('Customers', 'Customers.customerId = Orders.customerId','left');
+      $this->db->join('Products', 'Products.ProductId = Orders.productId','left');
+      $this->db->join('RoomDetails', 'RoomDetails.roomId = Orders.roomId','left');
+      $this->db->join('RoomTypes', 'RoomTypes.roomId = RoomDetails.roomId','left');
+
+      $query = $this->db->get();
+      return $query->result_array();
+    }
     function insertPaymentDetail(){
       $data=array(
 
-        'BookingId'    => $this->input->post('BookingName'),
+        'BookingId'    => $this->input->post('bookingId'),
+          'OrderId'    => $this->input->post('orderId'),
         'customerId'        => $this->input->post('customerid'),
         'paymentTypeId'       => $this->input->post('paymentType'),
         'amount'       => $this->input->post('amount')

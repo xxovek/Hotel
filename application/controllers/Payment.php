@@ -24,7 +24,8 @@ Class Payment extends CI_Controller{
       // }
       public function add_payment(){
           $data['title'] = 'Add New Guest';
-          $data['payment']= $this->Payment_model->getPaymentDetail();
+          // $data['payment']= $this->Payment_model->getPaymentDetail();
+          $data['customer'] = $this->Payment_model->getCustomerType();
           $data['paymentType'] = $this->Payment_model->getPaymentType();
           $this->load->view('templates/header');
           $this->load->view('pages/add_payment',$data);
@@ -33,6 +34,16 @@ Class Payment extends CI_Controller{
       public function getPaymentDetail(){
             $bookingId = $this->input->post('BookingName');
             $data = $this->Payment_model->getPaymentDetail($bookingId);
+            echo json_encode($data);
+      }
+      public function getPaymentDetailCustomer(){
+            $customerId = $this->input->post('BookingName');
+            $data = $this->Payment_model->getPaymentDetailCustomer($customerId);
+            echo json_encode($data);
+      }
+      public function getOrderDetailCustomer(){
+            $customerId = $this->input->post('BookingName');
+            $data = $this->Payment_model->getOrderDetailCustomer($customerId);
             echo json_encode($data);
       }
       // public function get_booking(){

@@ -34,62 +34,25 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                  <div class="form-group">
-                      <label class="col-md-3 col-xs-12 control-label">Booking Name</label>
-                      <div class="col-md-6 col-xs-12">
-                          <span id="errmsgbookingname"></span>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label>Customer Name</label>
+                      <span id="errmsgbookingname"></span>
+                      <select class="form-control select" name="BookingName" data-live-search="true" id="BookingName" onchange="checkbookinfo()">
+                         <option value="">Select Customer Name </option>
+                         <?php
+                        foreach($customer as $row)
+                        {
+                        echo '<option value="'.$row->customerId.'">'.$row->FirstName.'-'.$row->lastName.'</option>';
+                        }
+                        ?>
+                      </select>
+                      <input type="hidden" id="totalbookid" />
+                      <input type="hidden" id="totalorderid" />
+                    </div>
 
-                          <select class="form-control select" name="BookingName" data-live-search="true" id="BookingName" onchange="checkbookinfo()">
-                             <option value="">Select Booking </option>
-                             <?php
-                            foreach($payment as $row)
-                            {
-                            echo '<option value="'.$row->BookingId.'">'.$row->BookingId.'-'.$row->FirstName.'-'.$row->lastName.'</option>';
-                            }
-                            ?>
-                          </select>
-                          <input type="hidden" id="customerid" />
-                          <span class="help-block">Select box example</span>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-xs-12 control-label">From Date</label>
-                    <div class="col-md-6 col-xs-12">
-                      <!-- <span id="errmsgquantity"></span> -->
-                      <input type="text" class="form-control"  id="fromdate" placeholder="Enter From Date" style="color: black;" readonly/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-xs-12 control-label">Upto Date</label>
-                    <div class="col-md-6 col-xs-12">
-                      <!-- <span id="errmsgquantity"></span> -->
-                      <input type="text" class="form-control"  id="uptodate" placeholder="Enter Upto Date" style="color: black;" readonly/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-xs-12 control-label">Room No</label>
-                    <div class="col-md-6 col-xs-12">
-                      <!-- <span id="errmsgquantity"></span> -->
-                      <input type="text" class="form-control"  id="roomno" placeholder="Enter Room" style="color: black;" readonly/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-xs-12 control-label">Rate / Night</label>
-                    <div class="col-md-6 col-xs-12">
-                      <!-- <span id="errmsgquantity"></span> -->
-                      <input type="text" class="form-control"  id="ratepernight" placeholder="Enter Amount" style="color: black;" readonly/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-xs-12 control-label">Total Days</label>
-                    <div class="col-md-6 col-xs-12">
-                      <!-- <span id="errmsgquantity"></span> -->
-                      <input type="text" class="form-control"  id="totaldays" placeholder="Enter Total Days" style="color: black;"  readonly/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-xs-12 control-label">Payment Type</label>
-                    <div class="col-md-6 col-xs-12">
+                    <div class="col-sm-4">
+                      <label>Payment Type</label>
                       <span id="errpaymenttype"></span>
                       <select class="form-control select" name="paymentType" data-live-search="true" id="paymentType" >
                          <option value="">Select Payment Type </option>
@@ -101,15 +64,24 @@
                         ?>
                       </select>
                     </div>
-                  </div>
-                    <div class="form-group">
-                      <label class="col-md-3 col-xs-12 control-label">Amount</label>
-                      <div class="col-md-6 col-xs-12">
-                        <span id="erramount"></span>
-                        <!-- <span id="errmsgquantity"></span> -->
-                        <input type="text" class="form-control"  id="amount" placeholder="Enter Amount" style="color: black;"/>
-                      </div>
+
+                    <div class="col-sm-4">
+                      <label>Paying Bill Amount</label>
+                      <span id="erramount"></span>
+                      <input type="text" class="form-control"  id="amount" placeholder="Enter Amount" style="color: black;" readonly/>
+
                     </div>
+                  </div>
+                     <div class="row">
+                       <div class="form-group">
+                       </br>
+                       </div>
+                     </div>
+                      <div class="row">
+                    <span id="roomDetail"></span>  </div>
+                     <div class="row">
+                    <span id="orderDetail"></span>
+  </div>
                 </div>
 
 
@@ -128,34 +100,109 @@
 
 
 <script type='text/javascript'>
+
+function orderDetail(price){
+  var BookingName =$("#BookingName").val();
+  $.ajax({
+  type : "POST",
+  url  : "<?=base_url()?>index.php/Payment/getOrderDetailCustomer",
+   dataType: 'json',
+   data :{
+     BookingName:BookingName
+   },
+  success: function(response){
+    // alert(response);
+    var html='';
+    var price1 = 0;
+    var total = 0;
+
+          var count = response.length;
+            $("#totalorderid").val(count);
+      for(var i=0;i<count;i++){
+    html+='<div class="col-md-4 scCol">';
+    html+='    <div class="panel panel-primary">';
+    html+='        <div class="panel-heading">';
+    html+='            <h3 class="panel-title">Order ID: <span id=orderid'+(i+1)+'>'+response[i].orderId+'</span></h3>';
+    html+='        </div>';
+    html+='        <div class="panel-body">';
+    html+='        <div class="row"><label>Item Name</label>        '+response[i].productName+'</div>';
+    html+='        <div class="row"><label>Item Price</label>            '+response[i].productPrice+'</div>';
+    html+='        <div class="row"><label>Quantity</label>            '+response[i].Quantity+'</div>';
+    html+='        <div class="row"><label>Total Cost</label>         '+(response[i].Quantity*response[i].productPrice)+'</div>';
+    html+='        </div>';
+    html+='    </div>';
+    html+='</div>';
+    price1 += response[i].Quantity*response[i].productPrice;
+    }
+      $("#orderDetail").html(html);
+      total = price1 + price;
+         $("#amount").val(total);
+  }
+});
+}
 function checkbookinfo(){
         var BookingName =$("#BookingName").val();
-        // alert(BookingName);
+        // // alert(BookingName);
+        //  orderDetail();
         $.ajax({
         type : "POST",
-        url  : "<?=base_url()?>index.php/Payment/getPaymentDetail",
+        url  : "<?=base_url()?>index.php/Payment/getPaymentDetailCustomer",
          dataType: 'json',
          data :{
            BookingName:BookingName
          },
         success: function(response){
-          $("#customerid").val(response.customerId);
-          $("#fromdate").val(response.FromDate);
-          $("#uptodate").val(response.UptoDate);
-          $("#roomno").val(response.roomNumber);
-          $("#ratepernight").val(response.pricePerNight);
-          $("#totaldays").val(response.Nights);
-          $("#amount").val(response.pricePerNight*response.Nights);
-          // $("#fromdate").val();
+          // alert(response);
+          var count = response.length;
+          // alert(count);
+          $("#totalbookid").val(count);
+          var price = 0;
+          var html='';
+          for(var i=0;i<count;i++){
+            // alert(response[i].customerId);
+            html+='<div class="col-md-4 scCol">';
+            html+='    <div class="panel panel-primary">';
+            html+='        <div class="panel-heading">';
+            html+='            <h3 class="panel-title">Booking ID: <span id=bookid'+(i+1)+'>'+response[i].BookingId+'</span></h3>';
+            html+='        </div>';
+            html+='        <div class="panel-body">';
+            html+='        <div class="row"><label>Room No</label>        '+response[i].roomNumber+'</div>';
+            html+='        <div class="row"><label>From Date</label>            '+response[i].FromDate+'</div>';
+            html+='        <div class="row"><label>Upto Date</label>              '+response[i].UptoDate+'</div>';
+            html+='        <div class="row"><label>Rate / Night</label>         '+response[i].pricePerNight+'</div>';
+            html+='        <div class="row"><label>Total Days</label>         '+response[i].Nights+'</div>';
+            html+='        <div class="row"><label>Total Cost</label>         '+(response[i].Nights*response[i].pricePerNight)+'</div>';
+            html+='        </div>';
+            html+='    </div>';
+            html+='</div>';
+            price += response[i].Nights*response[i].pricePerNight;
+          }
+          $("#roomDetail").html(html);
+           $("#amount").val(price);
+           orderDetail(price);
         }
         });
 }
 function savepaymentDetail(){
- var BookingName =$("#BookingName").val();
- var customerid =$("#customerid").val();
+ var customerId =$("#BookingName").val();
+ // var customerid =$("#customerid").val();
  var paymentType =$("#paymentType").val();
  var amount =$("#amount").val();
-
+ var totalbookid=$("#totalbookid").val();
+ var totalorderid=$("#totalbookid").val();
+ // alert(totalbookid);
+ var bookingarr = [];
+ for(var i=1;i<=2;i++){
+   var bookid = $("#bookid"+i).text();
+   bookingarr.push(bookid);
+ }
+   alert(bookingarr);
+ var orderarr = [];
+ for(var i=1;i<=2;i++){
+   var orderid = $("#orderid"+i).text();
+   orderarr.push(orderid);
+ }
+  alert(orderarr);
  if(BookingName===""){
    $("#errmsgbookingname").html("<font color='red'>Please Select Customer Name</font>");
  }
@@ -178,8 +225,9 @@ function savepaymentDetail(){
             url  : "<?=base_url()?>index.php/Payment/savePaymentDetail",
              // dataType: 'json',
              data :{
-               BookingName:BookingName,
-               customerid:customerid,
+               bookingId:bookingarr,
+               orderId:orderarr,
+               customerid:customerId,
                paymentType:paymentType,
                amount:amount
              },
