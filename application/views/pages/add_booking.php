@@ -104,7 +104,7 @@
 
 
                     <div class="panel-footer">
-                        <button class="btn btn-default">Clear Form</button>
+                        <button class="btn btn-default" type="reset">Clear Form</button>
                         <button class="btn btn-primary pull-right" type="button" onclick="saveBookingDetail()">Submit</button>
                     </div>
                 </div>

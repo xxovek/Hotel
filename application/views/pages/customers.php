@@ -68,6 +68,7 @@
     </div>
     <script>
         show_customers();
+
         function show_customers() {
             $.ajax({
                 type: 'ajax',
@@ -109,6 +110,6 @@
         }
 
         function edit_customer(customerId) {
-            window.location = "<?php echo site_url('Customer/edit_customer/'); ?>" + customerId;
+            window.location = "<?php echo site_url('Customer/edit_customer/');?>" + customerId;
         }
     </script>

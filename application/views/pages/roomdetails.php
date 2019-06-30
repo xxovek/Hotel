@@ -1,141 +1,14 @@
        
-               <!-- <script type='text/javascript' src='js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
-        <script type='text/javascript' src='js/plugins/validationengine/jquery.validationEngine.js'></script>      -->
-        <!-- START BREADCRUMB -->
+         
         <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>/Dashboard">Home</a></li>                    
                     <li class="active">Rooms</li>
                     <li class="active">Rooms Details</li>
-                </ul>
-                <!-- END BREADCRUMB -->    
-
-                <!-- <div class="page-title">
-                  <h2><span class="fa fa-arrow-circle-o-left"></span>Customers Data</h2>
-                </div> -->
-
+        </ul>
+              
                 <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-
-       <div class="row" id="submit_formRow" style="display:none">
-           <div class="col-md-12">
-           <form class="form-horizontal" id="submit_form">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Room Details</strong> Add New</h3>
-                                <ul class="panel-controls">
-                                    <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="panel-body">
-                                <p></p>
-                            </div>
-                                <div class="panel-body">                                                                        
-                                
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Room No.</label>
-                                    <div class="col-md-6 col-xs-12">                                            
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" id="roomno_input" class="form-control"/>
-                                        </div>                                            
-                                        <span class="help-block">This is room no of text field</span>
-                                        <br><span id="roomno_input_err"></span>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Room Type</label>
-                                    <div class="col-md-6 col-xs-12">                                            
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" id="roomtype_input" class="form-control"/>
-                                        </div>                                            
-                                        <span class="help-block">This is room type of text field</span>
-                                        <br><span id="roomtype_input_err"></span>
-
-                                    </div>
-                                </div> -->
-                                
-                                <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Room Type</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <span id="errmsgroomno"></span>
-                                    <select class="form-control" data-live-search="true" name="roomtypeSel" id="roomtypeSel" >
-                 
-                                    <!-- <?php
-                                        foreach($roomtypes as $row)
-                                        {
-                                        echo '<option value="'.$row->roomId.'">'.$row->roomType.'</option>';
-                                        }
-                                    ?> -->
-                                    </select>
-                                    <span class="help-block">Select Room Type</span>
-                                    <br><span id="roomtype_input_err"></span>
-
-                                </div>
-                            </div>
-
-                            <!-- html+='<option value="'+response[i].roomId+'">'+response[i].roomType+'</option>'; -->
-
-
-
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Room Price</label>
-                                    <div class="col-md-6 col-xs-12">                                            
-                                        <!-- <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" id="roomprice_input" class="form-control"/>
-                                        </div>  -->
-                                        <div class="input-group">
-                                                <input type="text" class="form-control" id="roomprice_input" >
-                                                <span class="input-group-addon">.00</span>
-                                            </div>                                           
-                                        <span class="help-block">This is room price of text field</span>
-                                        <br><span id="roomprice_input_err"></span>
-
-                                    </div>
-                                </div>
-
-
-                               
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Max Person Limit</label>
-                                    <div class="col-md-6 col-xs-12">                                            
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" id="roomlimit_input" onkeypress="return isNumberKey(event);" class="form-control"/>
-                                        </div>                                            
-                                        <span class="help-block">This is room persons limit of text field</span>
-                                        <br><span id="roomlimit_input_err"></span>
-                                   
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Availability</label>
-                                    <div class="col-md-6 col-xs-12">
-                                        <label class="check"><input type="checkbox" id="checkbox_input" class="icheckbox" checked="checked"/>Check Availability</label>
-                                        <span class="help-block">Check yes or no, easy to use</span>
-                                    </div>
-                                </div>
-                            
-                            </div>
-
-                            <div class="panel-footer">
-                                <button class="btn btn-default" type="reset" >Clear Form</button>  
-                                <button class="btn btn-default" onClick="submit_form.resetForm();$('#gender').next('.bootstrap-select').removeClass('error').removeClass('valid')">Back</button>                                         
-                                <button type="submit"  class="btn btn-primary pull-right">Submit</button>
-                            </div>
-
-                        </div>
-                        </form>
-           </div>
-
-       </div>
-
-
-
-
+       
 <div class="row" id="tbl_row">
     <div class="col-md-12">
 
@@ -144,7 +17,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title">DataTable Export</h3>
                 <div class="btn-group pull-right">
-                    <button class="btn btn-success" onclick="show_form();" ><i class="fa fa-bars"></i>New Room Info</button>
+                    <button class="btn btn-success" onclick="window.location='<?php echo site_url('Roomdetails/add_roomdetails'); ?>'" ><i class="fa fa-bars"></i>New Room Info</button>
+
                 </div>
                 <div class="btn-group pull-right">
                     <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
@@ -194,211 +68,19 @@
 </div>
 <script>
 
-function isNumberKey(event) {
-  var charCode = (window.event) ? event.keyCode  : event.which ;
- if (charCode > 31 && (charCode < 48|| charCode > 57) && charCode!=46 )
- return false;
- return true;
-}
 
+   show_RoomDetails();
 
-// $(document).ready(function(){
-    show_RoomDetails();
-    // $("#submit_formRow").show();
-// getroomtype();
-
-
-// });
-
-function getroomtype(){
-    var base_url='<?php echo base_url(); ?>';
-// var html='<option value="" selected>Select Room Type </option>';
-// var html='<div class="btn-group bootstrap-select form-control select"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="roomtypeSel" title="Select Room Type" aria-expanded="false"><span class="filter-option pull-left">Select Room Type</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><div class="bootstrap-select-searchbox"><input type="text" class="input-block-level form-control" autocomplete="off"></div><ul class="dropdown-menu inner selectpicker" role="menu"></ul></div></div>';
-$.ajax({
-// type : "POST",
-url:base_url+'index.php/Roomdetails/getroomtypes',
-method:"POST",
-// dataType: 'json',
-success: function(data){
-// alert("ok");
-
-// var len = response.length;
-// var i=0;
-// if(len > 0){
-// for(var i=0;i<len;i++){
-//    html+='<option value="'+response[i].roomId+'">'+response[i].roomType+'</option>';
-// //    html+='<div class="btn-group bootstrap-select form-control select"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="roomtypeSel" title="Select Room Type" aria-expanded="false"><span class="filter-option pull-left">Select Room Type</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><div class="bootstrap-select-searchbox"><input type="text" class="input-block-level form-control" autocomplete="off"></div><ul class="dropdown-menu inner selectpicker" role="menu"></ul></div></div>'
-//     // $("#roomtypeSel").append('<option value="'+response[i].roomId+'">'+response[i].roomType+'</option>');
-// }
-   $("#roomtypeSel").html(data);
-// }
-// else{
-// }
-}
-});
-}
-
-
-function show_form(){
-   getroomtype();
-    $("#submit_formRow").show();
-    $("#tbl_row").hide();
-}
-
-
-$("#submit_form").on("submit",function(e){
-    e.preventDefault();
-    // alert("ok");
-
-    var roomno_input = ($('#roomno_input').val().toUpperCase()).trim();
-    // var roomtype_input = ($('#roomtype_input').val().toUpperCase()).trim();
-    var roomtype_input = $('#roomtypeSel').val();
-    // alert
-    
-    var roomprice_input = ($('#roomprice_input').val().toUpperCase()).trim();
-    var roomlimit_input = ($('#roomlimit_input').val().toUpperCase()).trim();
-    // var checkbox_input = ($('#checkbox_input').val().toUpperCase()).trim();
-    var checkbox_input = '';
-    if(document.getElementById("checkbox_input").checked){
-        checkbox_input = 'YES';
-    }else{
-        checkbox_input = 'NO';
-    }
-    // alert(checkbox_input);
-
-    if(roomno_input === ""){
-         $("#roomno_input_err").html("Room Number is required.");
-                //       setTimeout(function(){
-                //     $("#roomno_input_err").html("");
-                //   }, 5000);
-                  }else{
-                    $("#roomno_input_err").html("");
-                      if(roomtype_input === ""){
-         $("#roomtype_input_err").html("Room Type is required.");
-
-                      }else{
-                    $("#roomtype_input_err").html("");
-                    if(roomprice_input === ""){
-         $("#roomprice_input_err").html("Room Price is required.");
-
-                      }else{
-                    $("#roomprice_input_err").html("");
-                    if(roomlimit_input === ""){
-         $("#roomlimit_input_err").html("Room Capacity/Limit is required.");
-
-                      }
-                    else{
-                        $("#roomlimit_input_err").html("");
-                   
-    var base_url='<?php echo base_url(); ?>';
-    $.ajax({
-        url:base_url+'index.php/Roomdetails/create',
-        type:'POST',
-        dataType:'json',
-        data:{roomno_input:roomno_input,roomtype_input:roomtype_input,roomprice_input:roomprice_input,
-        roomlimit_input:roomlimit_input,checkbox_input:checkbox_input
-                },
-                success:function(response){
-                    alert(response.msg);
-                   if(response.msg == false){
-                      $("#roomno_input_err").html("That Room Number is already taken. Please Add different one.");
-                      setTimeout(function(){
-                    $("#roomno_input_err").html("");
-                  }, 5000);
-                   }
-                  else{
-                        $('#submit_form')[0].reset();
-                        // $("#errmsg").html("");
-                        $("#tbl_row").show();
-                        $("#submit_formRow").hide();
-                        show_RoomDetails();
-                      }
-                  }
-                  }); 
-                  //  return false;
-            }
+        function getroomtype(){
+            var base_url='<?php echo base_url(); ?>';
+        $.ajax({
+                url:base_url+'index.php/Roomdetails/getroomtypes',
+                method:"POST",
+                success: function(data){
+                $("#roomtypeSel").html(data);
         }
-
-}
-
-}
-// }
-                    //  else{
-                    // $("#errmsg").html("Type is Required.");
-
-                    //     setTimeout(function(){
-                    //         $("#errmsg").html("");
-                    //     //   window.location.reload(1);
-                    //     }, 5000);
-
-                    // }
-});
-
-
-// $("#submit_form").on("submit",function(e){
-//     e.preventDefault();
-
-//     var roomno_input = ($('#roomno_input').val().toUpperCase()).trim();
-//     var roomtype_input = ($('#roomtype_input').val().toUpperCase()).trim();
-//     var roomprice_input = ($('#roomprice_input').val().toUpperCase()).trim();
-//     var roomlimit_input = ($('#roomlimit_input').val().toUpperCase()).trim();
-//     var checkbox_input = ($('#checkbox_input').val().toUpperCase()).trim();
-    
-
-//     if(roomno_input != "" ){
-//        $("#errmsgcustomername").html("<font color='red'>Please Select Customer Name</font>");
-
-//     }else{
-//        $("#errmsgcustomername").html("");
-//             if(roomtype_input != ""){
-//                 $("#errmsgcustomername").html("<font color='red'>Please Select Customer Name</font>");
-//             }else{
-//                     $("#errmsgcustomername").html("");
-//                 if(roomprice_input != ""){
-//                     $("#errmsgcustomername").html("<font color='red'>Please Select Customer Name</font>");
-//                 }else{
-//                     if(roomlimit_input != ""){
-
-//                     }else{
-
-//                 var base_url='<?php echo base_url(); ?>'
-//                 $.ajax({
-//                   url:base_url+'index.php/Roomdetails/create',
-//                   type:'POST',
-//                 dataType:'json',
-//                 data:{roomno_input:roomno_input,roomtype_input:roomtype_input,roomprice_input:roomprice_input
-//                     roomlimit_input:roomlimit_input,checkbox_input:checkbox_input
-//                 },
-//                   success:function(response){
-//                    if(response.msg == false){
-//                       $("#errmsg").html("That Type is already taken. Please Add different one");
-//                       setTimeout(function(){
-//                     $("#errmsg").html("");
-//                   }, 5000);
-//                    }
-//                   else{
-//                         $('#submit_form')[0].reset();
-//                         // $("#errmsg").html("");
-//                         show_RoomDetails();
-//                       }
-//                   }
-//                   }); 
-//                     return false;
-//             }}}}
-            
-//                      else{
-//                     $("#errmsg").html("Type is Required.");
-
-//                         setTimeout(function(){
-//                             $("#errmsg").html("");
-//                         //   window.location.reload(1);
-//                         }, 5000);
-
-//                     }
-
-// });
-
-
+        });
+        }
 
 
 function show_RoomDetails() {
@@ -408,20 +90,21 @@ function show_RoomDetails() {
         async: true,
         dataType: 'json',
         success: function(response) {
+            // alert(response);
             var html = '';
             var i;
             for (i = 0; i < response.length; i++) {
                 html += '<tr>' +
                     '<td>' + (i + 1) + '</td>' +
                     '<td>' + response[i].roomNumber + '</td>' +
-                    '<td>' + response[i].roomTypeId+'</td>' +
+                    '<td>' + response[i].roomType+'</td>' +
                     '<td>' + response[i].pricePerNight + '</td>' +
                     '<td>' + response[i].maxPersons + '</td>' +
                     '<td>' + response[i].status + '</td>' +
                     '<td>' + response[i].isAvailable + '</td>' +
                     '<td><div class="btn-group btn-group-sm">' +
-                    '<button class="btn btn-default btn-rounded btn-sm" title="Edit Customers Details" onclick="edit_customer(' + response[i].roomId + ');"><i class="fa fa-edit"></i></button>' +
-                    '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Customers Details" onclick="remove_customer(' + response[i].roomId + ');"><i class="fa fa-times"></i></button>' +
+                    '<button class="btn btn-default btn-rounded btn-sm" title="Edit Customers Details" onclick="edit_room(' + response[i].roomId + ');"><i class="fa fa-edit"></i></button>' +
+                    '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Customers Details" onclick="remove_room(' + response[i].roomId + ');"><i class="fa fa-times"></i></button>' +
                     '</div></td></tr>';
             }
             $('#Tbl_rooms_body').html(html);
@@ -430,70 +113,21 @@ function show_RoomDetails() {
     });
 }
 
-// function show_form(){
-//     $("#submit_formRow").show();
-//     $("#tbl_row").hide();
-// }
 
+function remove_room(roomid) {
+    $.ajax({
+        type: 'POST',
+        url: '<?php echo site_url('/Roomdetails/delete'); ?>',
+        data: {
+            roomid: roomid
+        },
+        success: function(response) {
+            show_RoomDetails();
+        }
+    });
+}
 
-// var submit_form = $("#submit_form").validate({
-//                 ignore: [],
-//                 rules: {                                            
-//                         login: {
-//                                 required: true,
-//                                 minlength: 2,
-//                                 maxlength: 8
-//                         },
-//                         password: {
-//                                 required: true,
-//                                 minlength: 5,
-//                                 maxlength: 10
-//                         },
-//                         're-password': {
-//                                 required: true,
-//                                 minlength: 5,
-//                                 maxlength: 10,
-//                                 equalTo: "#password2"
-//                         },
-//                         age: {
-//                                 required: true,
-//                                 min: 18,
-//                                 max: 100
-//                         },
-//                         email: {
-//                                 required: true,
-//                                 email: true
-//                         },
-//                         date: {
-//                                 required: true,
-//                                 date: true
-//                         },
-//                         credit: {
-//                                 required: true,
-//                                 creditcard: true
-//                         },
-//                         site: {
-//                                 required: true,
-//                                 url: true
-//                         }
-//                     }                                        
-//                 });  
-
-
-// function remove_customer(customerId) {
-//     $.ajax({
-//         type: 'POST',
-//         url: '<?php echo site_url('/Customer/remove_customer'); ?>',
-//         data: {
-//             customerId: customerId
-//         },
-//         success: function(response) {
-//             show_customers();
-//         }
-//     });
-// }
-
-// function edit_customer(customerId) {
-//     window.location = "<?php echo site_url('Customer/edit_customer/'); ?>" + customerId;
-// }
+function edit_room(roomid) {
+    window.location = "<?php echo site_url('Roomdetails/edit_roomdetails/'); ?>" + roomid;
+}
 </script>

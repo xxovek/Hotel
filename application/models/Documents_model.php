@@ -12,7 +12,6 @@ class Documents_model extends CI_Model{
     public function create_documentstypes(){
         $data = array(
             'DocumentType' => $this->input->post('typename')
-            // 'user_id' => $this->session->userdata('user_id')
         );
 
         return $this->db->insert('Documents', $data);

@@ -94,7 +94,7 @@
                                     <table id="Tbl_paymenttypes" class="table">
                                         <thead>
                                             <tr>
-                                                <!-- <th>#</th> -->
+                                                <th>#</th>
 
                                                 <th>Type</th>
                                                 <th>Created Date</th>
@@ -113,7 +113,6 @@
         </div>
 
 
-<!-- onclick="edit_row('<?php echo $pt['paymentTypeId'];?>'',''<?php echo $pt['paymentType'];?>');" -->
             </div>
             <!-- END PAGE CONTENT WRAPPER -->       
             <script>
@@ -171,7 +170,6 @@
 
                        setTimeout(function(){
                            $("#errmsg").html("");
-                       //   window.location.reload(1);
                        }, 5000);
                    }
             
@@ -209,7 +207,6 @@
 
                         setTimeout(function(){
                             $("#errmsg").html("");
-                        //   window.location.reload(1);
                         }, 5000);
                     }
              
@@ -232,6 +229,7 @@
                     var i;
                     for(i=0; i<response.length; i++){
                         html += '<tr>'+
+                                '<td>'+(i + 1)+'</td>'+
                                 '<td>'+response[i].paymentType+'</td>'+
                                 '<td>'+response[i].created_at+'</td>'+
                                 '<td><div class="btn-group">'+  

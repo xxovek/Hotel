@@ -11,12 +11,11 @@
                 
                 <div class="row">
                     <div class="col-md-12"  id="div_submitFrm">
-                    <!-- action="<?php echo site_url();?>/rooms/create" -->
                     <form class="form-horizontal"  class="form-horizontal" id="submitFrm" method="post" method="post">
  
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Room Types</strong> Add New</h3>
+                                <h3 class="panel-title" id="formname"><strong>Room Types</strong> Add New</h3>
                                 <ul class="panel-controls">
                                     <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                 </ul>
@@ -53,13 +52,8 @@
                         </div>
 
                         </form>
-                        
-                      
-                        
+                                                
                     </div>
-
-
-                 
 
                 </div>      
                 
@@ -83,8 +77,8 @@
                                         
                                            
                                         </tbody>
-</table> 
-</div>
+                                    </table> 
+                </div>
                </div>
             </div>
         </div>
@@ -118,8 +112,6 @@
                     });
             }
 
-
-
             $('#updateBtn').on('click',function(e){
               
               e.preventDefault();
@@ -133,8 +125,7 @@
                dataType:'json',
                data:{typename:typename,typeid:typeid},
                  success:function(response){
-                    // $('#Tbl_roomtypes_body').empty();
-                    // $('#Tbl_roomtypes').DataTable();
+                
                     LoadTBLData();
 
                        $('#submitFrm')[0].reset();
@@ -150,7 +141,6 @@
 
                        setTimeout(function(){
                            $("#errmsg").html("");
-                       //   window.location.reload(1);
                        }, 5000);
                    }
             
@@ -178,11 +168,7 @@
                   else{
                         $('#submitFrm')[0].reset();
                         $("#errmsg").html("");
-                        // $('#Tbl_roomtypes').reload();
-                    // $('#Tbl_roomtypes_body').empty();
-
-                    // $('#Tbl_roomtypes').DataTable();
-                   // $('#Tbl_roomtypes_body').empty();
+                     
                         LoadTBLData();
                       }
                   }
@@ -193,22 +179,17 @@
 
                         setTimeout(function(){
                             $("#errmsg").html("");
-                        //   window.location.reload(1);
                         }, 5000);
                     }
              
             });
 
-
-
             // functionname(\''+ issue_id +'\',\''+response[i]['IssuesDate']+'\')
             function LoadTBLData(){
-                // $('#Tbl_roomtypes_body').empty();
                 
                 var base_url='<?php echo base_url();?>';
                     $.ajax({
                         type:'ajax',
-                        // url:base_url+'<?php echo site_url('/Rooms/getTypes');?>',
                         url:base_url+'index.php/Rooms/getTypes',
                         async : true,
                         dataType:'json',
@@ -223,25 +204,11 @@
                         response[i].created_at+'</td><td><div class="btn-group"><button class="btn btn-default btn-rounded btn-sm" onclick="edit_row(\''
                         +response[i].roomId+'\',\''+response[i].roomType+'\');"><span class="fa fa-edit"></span></button><button  class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('
                         +response[i].roomId+');"><span class="fa fa-times"></span></button></div></td></tr>');
-                        // html += '<tr>'+
-                        //         '<td>'+response[i].roomType+'</td>'+
-                        //         '<td>'+response[i].created_at+'</td>'+
-                        //         '<td><div class="btn-group">'+  
-                        //         '<button class="btn btn-default btn-rounded btn-sm" onclick="edit_row(\''+response[i].roomId+'\',\''+response[i].roomType+'\');"><span class="fa fa-edit"></span></button>'+
-                        //         '<button  class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('+response[i].roomId+');"><span class="fa fa-times"></span></button>'+
-                        //         '</div></td></tr>';
-                        // $('#Tbl_roomtypes').DataTable().reload();
-
+                       
                     }
                     $('#Tbl_roomtypes').DataTable();
-                    // $('#Tbl_roomtypes').each(function() {
-                    // dt = $(this).dataTable();
-                    //  dt.fnDraw();
-                    //     })
 
                     }
-                        // $('#Tbl_roomtypes_body').html(html);
-                        // $('#Tbl_roomtypes').DataTable();
                        
                     });
                 }
