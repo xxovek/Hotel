@@ -17,9 +17,7 @@
                                     <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                 </ul>
                             </div>
-                            <div class="panel-body">
-                                <p></p>
-                            </div>
+                           
                                 <div class="panel-body">                                                                        
                                 
                                 <div class="form-group">
