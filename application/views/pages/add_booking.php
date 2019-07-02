@@ -122,23 +122,22 @@
 
 
     <script type='text/javascript'>
-    // getcustomer();
+
+
+    getcustomer();
     $(function () {
         var sd = new Date(), ed = new Date();
 
         $('#startDate').datetimepicker({
           pickTime: false,
-          format: "YYYY/MM/DD",
-          defaultDate: sd,
-          maxDate: ed
+          format: "YYYY/MM/DD"
         });
 
         $('#endDate').datetimepicker({
           pickTime: false,
-          format: "YYYY/MM/DD",
-          defaultDate: ed,
-          minDate: sd
-        });
+          format: "YYYY/MM/DD"
+
+          });
 
         //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
         bindDateRangeValidation($("#form"), 'startDate', 'endDate');
@@ -157,47 +156,47 @@
             return isValid;
         }
 
-        var bindValidator = function () {
-            var bstpValidate = jqForm.data('bootstrapValidator');
-            var validateFields = {
-                startDate: {
-                    validators: {
-                        notEmpty: { message: 'This field is required.' },
-                        callback: {
-                            message: 'Start Date must less than or equal to End Date.',
-                            callback: function (startDate, validator, $field) {
-                                return checkDateRange(startDate, $('#' + endDateId).val())
-                            }
-                        }
-                    }
-                },
-                endDate: {
-                    validators: {
-                        notEmpty: { message: 'This field is required.' },
-                        callback: {
-                            message: 'End Date must greater than or equal to Start Date.',
-                            callback: function (endDate, validator, $field) {
-                                return checkDateRange($('#' + startDateId).val(), endDate);
-                            }
-                        }
-                    }
-                },
-              	customize: {
-                    validators: {
-                        customize: { message: 'customize.' }
-                    }
-                }
-            }
-            if (!bstpValidate) {
-                jqForm.bootstrapValidator({
-                    excluded: [':disabled'],
-                })
-            }
-
-            jqForm.bootstrapValidator('addField', startDateId, validateFields.startDate);
-            jqForm.bootstrapValidator('addField', endDateId, validateFields.endDate);
-
-        };
+        // var bindValidator = function () {
+        //     var bstpValidate = jqForm.data('bootstrapValidator');
+        //     var validateFields = {
+        //         startDate: {
+        //             validators: {
+        //                 notEmpty: { message: 'This field is required.' },
+        //                 callback: {
+        //                     message: 'Start Date must less than or equal to End Date.',
+        //                     callback: function (startDate, validator, $field) {
+        //                         return checkDateRange(startDate, $('#' + endDateId).val())
+        //                     }
+        //                 }
+        //             }
+        //         },
+        //         endDate: {
+        //             validators: {
+        //                 notEmpty: { message: 'This field is required.' },
+        //                 callback: {
+        //                     message: 'End Date must greater than or equal to Start Date.',
+        //                     callback: function (endDate, validator, $field) {
+        //                         return checkDateRange($('#' + startDateId).val(), endDate);
+        //                     }
+        //                 }
+        //             }
+        //         },
+        //       	customize: {
+        //             validators: {
+        //                 customize: { message: 'customize.' }
+        //             }
+        //         }
+        //     }
+        //     if (!bstpValidate) {
+        //         jqForm.bootstrapValidator({
+        //             excluded: [':disabled'],
+        //         })
+        //     }
+        //
+        //     jqForm.bootstrapValidator('addField', startDateId, validateFields.startDate);
+        //     jqForm.bootstrapValidator('addField', endDateId, validateFields.endDate);
+        //
+        // };
 
         var hookValidatorEvt = function () {
             var dateBlur = function (e, bundleDateId, action) {
@@ -215,14 +214,13 @@
             });
         }
 
-        bindValidator();
+        // bindValidator();
         hookValidatorEvt();
     };
 
 
 
-    // $(document).ready(function(){
-        getcustomer();
+    getcustomer();
 
     function getcustomer(){
 
@@ -296,12 +294,13 @@
 
     function saveBookingDetail(){
      var customerName =$("#customerName").val();
-     // alert(customerName);
      var roomNo =$("#roomno").val();
-     var FromDate =$("#startDate").val();
-     alert("FromDate"+FromDate);
+     var FromDate =$("#startDate").val()
      var UptoDate =$("#endDate").val();
-      alert("UptoDate"+UptoDate);
+     var date1 = new Date(FromDate);
+     var date2 = new Date(UptoDate);
+     var diffDays = date2.getDate() - date1.getDate();
+     // alert(typeof(diffDays));
      var notificationval = $("#notificationval").val();
      // alert(notificationval);
      if(customerName===""){
@@ -309,7 +308,7 @@
      }
      else{
       $("#errmsgcustomername").html("");
-      if(FromDate===""){
+      if(FromDate==="" || diffDays === 0){
       $("#errmsgfromdate").html("<font color='red'>Please Select From Date</font>");
       }
       else
@@ -341,7 +340,9 @@
                customerName:customerName,
                roomNo:roomNo,
                FromDate:FromDate,
-               UptoDate:UptoDate
+               UptoDate:UptoDate,
+               diffDays:diffDays,
+               Status:3
              },
             success: function(response){
 
