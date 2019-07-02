@@ -319,7 +319,7 @@
             var TableData = new Array();
             $('#sampleTbl2 tr').each(function(row, tr) {
             let cmt = $(tr).find('td:eq(0)').data('id');
-            let amt = $(tr).find('td:eq(2)').data('id');
+            let amt = $(tr).find('td:eq(1)').data('id');
             //   let perc = $(tr).find('td:eq(1)').data('id')
             TableData[row] = {
                             "item": cmt,
@@ -334,34 +334,37 @@
             row.parentNode.removeChild(row);
         }
 
-        // $("#item_input").on('change',function(){
-        //         var arr = $(this).val() || "";
-        //         str = arr.split('-');
+        $("#item_input").on('change',function(){
+                var arr = $(this).val() || "";
+                // str = arr.split('-');
 
-        //         var TableData1;
-        //         TableData1 = storeTblValuesItem();
-        //         // alert(TableData1.[0]['compo']);
-        //         for (let i = 0; i < TableData1.length; i++) {
-        //         //alert(TableData1[i]['compo']);
-        //         if(TableData1[i]['compo'] == str[0] ){
-        //             str[0] = "";
-        //         }
-        //         }
+                var TableData1;
+                TableData1 = storeTblValuesItem();
+                // alert(TableData1.[0]['compo']);
+                for (let i = 0; i < TableData1.length; i++) {
+                //alert(TableData1[i]['compo']);
+                if(TableData1[i]['item'] == arr ){
+                    arr = "";
+                }
+                }
 
-        //         if(str[0] === ""){
-        //         $('#ItemSel_err').html("<font color='red' size='2'>Already Selected</font>");
-        //         setTimeout( function(){
-        //             $("#item_input").trigger('change').val("");
-        //             $('#ItemSel_err').html("");
-        //         },3000);
-        //         }else {
-        //         $("#cm").val(str[1]);
-        //         //  $("#cm").text(str[1]);
-        //         // $("#options").trigger('change').val("");
-        //         $('#cm').attr('name', str[0]);
-        //         }
-        //         // debugger
-        // });
+                if(arr === ""){
+                $('#ItemSel_err').html("<font color='red'>Already Selected</font>");
+                        setTimeout( function(){
+                            //$("#item_input").trigger('change').val("");
+                            $('#ItemSel_err').html("");
+                        },1000);
+                }else {
+
+               // $("#cm").val(str[1]);
+                //  $("#cm").text(str[1]);
+                // $("#options").trigger('change').val("");
+              //  $('#cm').attr('name', str[0]);
+                }
+                // debugger
+        });
+
+
 
         $(function() {
                 var jvalidate = $("#jvalidate").validate({
@@ -412,6 +415,8 @@
         
         function saveForm(){
             var returnVal = $("#jvalidate").valid();
+            TableDataArr = storeTblValuesItem();
+
         
             var checkbox_input = '';
                             
@@ -431,7 +436,8 @@
                         roomtype_input: $('#roomtypeSel').val(),
                         roomprice_input: $('#roomprice_input').val(),
                         roomlimit_input: $('#roomlimit_input').val(),
-                        checkbox_input: checkbox_input
+                        checkbox_input: checkbox_input,
+                        TableDataArr:TableDataArr
                     };
 
                     $.ajax({

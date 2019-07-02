@@ -8,8 +8,7 @@ Class Roomdetails extends CI_Controller{
         $this->load->model('Rooms_model');
     }
 
-    public function index()
-	{
+    public function index(){
        $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
 
         $this->load->view('templates/header');
