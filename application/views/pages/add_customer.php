@@ -32,7 +32,7 @@
 
                           <div class="row">
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
 
                                   <div class="form-group">
                                       <label class="col-md-4 control-label">First Name</label>
@@ -96,8 +96,8 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-6">
-                                  <button type="button" class="btn btn-primary" onClick="start_camera()" id="startC">start Camera</button>
+                              <div class="col-md-4">
+                                  <button type="button" class="btn btn-primary" onClick="start_camera()" id="startC">Capture Photo</button>
                                   <div id="cam">
                                       <div class="form-group">
                                           <label class="col-md-3 col-xs-12 control-label">File</label>
@@ -114,6 +114,29 @@
                                           <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
                                           <div class="col-md-3 col-xs-3">
                                               <div id="results">Your captured image will appear here...</div>
+                                              <span class="help-block">Checkbox sample, easy to use</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <button type="button" class="btn btn-primary" onClick="start_camera_doc()" id="startD">Capture Document</button>
+                                  <div id="camD">
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">File</label>
+
+                                          <div class="col-md-6 col-xs-12">
+                                              <div id="my_camera_doc"></div>
+                                              <button type="button" class="btn btn-block btn-primary" name="filenameDoc" id="filenameDoc" title="Capture Image" onClick="take_snapshot_doc()">Capture Image</button>
+                                              <span class="help-block">Input type file</span>
+                                              <input type="hidden" name="imageD[]" class="image-tag-d">
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">Checkbox</label>
+                                          <div class="col-md-3 col-xs-3">
+                                              <div id="resultsD">Your captured image will appear here...</div>
                                               <span class="help-block">Checkbox sample, easy to use</span>
                                           </div>
                                       </div>
@@ -190,13 +213,24 @@
           Webcam.attach('#my_camera');
           $('#startC').hide();
       }
+      $('#camD').hide();
+      function start_camera_doc() {
+          $('#camD').show();
+          Webcam.attach('#my_camera_doc');
+          $('#startD').hide();
+      }
 
 
       function take_snapshot() {
           Webcam.snap(function(data_uri) {
               $(".image-tag").val(data_uri);
               document.getElementById('results').innerHTML = '<img id="imageprev" src="' + data_uri + '"/>';
-
+          });
+      }
+      function take_snapshot_doc() {
+          Webcam.snap(function(data_uri) {
+              $(".image-tag-d").val(data_uri);
+              document.getElementById('resultsD').innerHTML = '<img id="imageprevD" src="' + data_uri + '"/>';
           });
       }
 
@@ -218,8 +252,11 @@
                   dataType: 'json',
                   success: function(response) {
                       var base64image = document.getElementById("imageprev").src;
-
+                      var base64imageD = document.getElementById("imageprevD").src;
                       Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" + response.customerId, function(code, text) {
+                          console.log('Save successfully');
+                      });
+                      Webcam.upload(base64imageD, "<?php echo site_url(); ?>/Customer/add_documents/" + response.customerId, function(code, text) {
                           console.log('Save successfully');
                       });
                   },
