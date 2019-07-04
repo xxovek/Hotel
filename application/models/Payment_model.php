@@ -115,16 +115,49 @@ class Payment_model extends CI_Model{
       $query = $this->db->get();
       return $query->result_array();
     }
+    public function getPaymentTable(){
+      
+    }
     function insertPaymentDetail(){
       $data=array(
 
-        'BookingId'    => $this->input->post('bookingId'),
-          'OrderId'    => $this->input->post('orderId'),
+
         'customerId'        => $this->input->post('customerid'),
         'paymentTypeId'       => $this->input->post('paymentType'),
         'amount'       => $this->input->post('amount')
       );
       $result=$this->db->insert('Payment', $data);
+      $last_id = $this->db->insert_id();
+      $bookingId    = $this->input->post('bookingId');
+
+      $lenbookingId = count($bookingId);
+      for($i=0;$i<$lenbookingId;$i++){
+        $data1=array(
+             'paymentId' => $last_id,
+             'bookingsOrderId' => $bookingId[$i]
+        );
+        $this->db->insert('BookingOrders', $data1);
+        $data2 = array(
+            'Status' => 1
+        );
+        $this->db->where('BookingId',$bookingId[$i]);
+        $this->db->update('Bookings',$data2);
+      }
+      $orderId   = $this->input->post('orderId');
+      $lenorderId = count($orderId);
+      for($i=0;$i<$lenorderId;$i++){
+        $data1=array(
+          'paymentId' => $last_id,
+          'bookingsOrderId' => $orderId[$i]
+        );
+        $this->db->insert('BookingOrders', $data1);
+        $data2 = array(
+            'Status' => 1
+        );
+        $this->db->where('orderId',$orderId[$i]);
+        $this->db->update('Orders',$data2);
+      }
+
       return $result;
     }
 

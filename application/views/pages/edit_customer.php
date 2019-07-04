@@ -194,7 +194,7 @@
               data: formData,
               success: function(response) {
                 var base64image = document.getElementById("imageprev").src;
-          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer'+customerId, function(code, text) {
+          Webcam.upload(base64image, '<?php echo site_url(); ?>/Customer/save_customer/'+customerId, function(code, text) {
               console.log('Save successfully');
           });
               },

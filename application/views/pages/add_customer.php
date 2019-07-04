@@ -155,10 +155,7 @@
 
           </div>
       </div>
-
-
   </div>
-
   <script type='text/javascript' src='<?php echo base_url(); ?>js/plugins/jquery-validation/jquery.validate.js'></script>
   <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
   <script language="JavaScript">
@@ -259,6 +256,7 @@
                       Webcam.upload(base64imageD, "<?php echo site_url(); ?>/Customer/add_documents/" + response.customerId, function(code, text) {
                           console.log('Save successfully');
                       });
+                      window.location = 'Booking/add_booking/'+response.customerId;
                   },
                   error: function(xhr) {
                       alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
