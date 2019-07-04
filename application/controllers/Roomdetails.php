@@ -8,8 +8,7 @@ Class Roomdetails extends CI_Controller{
         $this->load->model('Rooms_model');
     }
 
-    public function index()
-	{
+    public function index(){
        $data['roomtypes'] = $this->Rooms_model->get_roomtypes();
 
         $this->load->view('templates/header');
@@ -41,7 +40,7 @@ public function edit_roomdetails($roomid){
 
 
     public function getroomtypes(){
-        $data = $this->Rooms_model->fetch_roomtypes();
+        // $data = $this->Rooms_model->fetch_roomtypes();
         echo  $this->Rooms_model->fetch_roomtypes();
     }
 
