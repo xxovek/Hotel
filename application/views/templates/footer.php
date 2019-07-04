@@ -53,8 +53,8 @@
         <!-- <script type='text/javascript' src='<?php echo base_url();?>js/plugins/bootstrap/bootstrap-select.js'></script> -->
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/owl/owl.carousel.min.js"></script>
 
-        <!-- <script type="text/javascript" src="<?php echo base_url();?>js/plugins/moment.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/daterangepicker/daterangepicker.js"></script> -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/moment.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- END THIS PAGE PLUGINS-->
 
            <!-- START THIS PAGE PLUGINS-->
@@ -83,7 +83,7 @@
 
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap-file-input.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/plugins/bootstrap/bootstrap-select.js"></script>
-        <!-- <script type="text/javascript" src="<?php echo base_url();?>js/plugins/tagsinput/jquery.tagsinput.min.js"></script> -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
         <!-- END THIS PAGE PLUGINS -->
 
     </body>

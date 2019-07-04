@@ -21,6 +21,8 @@ class Booking_model extends CI_Model{
         'customerId'    => $this->input->post('customerName'),
         'roomId'        => $this->input->post('roomNo'),
         'FromDate'       => $this->input->post('FromDate'),
+        'Nights'        => $this->input->post('diffDays'),
+        'Status'       => $this->input->post('Status'),
         'UptoDate'       => $this->input->post('UptoDate')
       );
       $result=$this->db->insert('Bookings', $data);

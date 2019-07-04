@@ -22,9 +22,6 @@ class Roomdetails_model extends CI_Model{
     }
 
    
-
-    
-
     public function check_type_exists($roomNo){
         $query = $this->db->get_where('RoomDetails', array('roomNumber' => $roomNo));
         if(empty($query->row_array())){
@@ -43,9 +40,54 @@ class Roomdetails_model extends CI_Model{
             'isAvailable' => $this->input->post('checkbox_input')
             // 'status'     => $this->input->post('typename')
             // 'user_id' => $this->session->userdata('user_id')
-        );
 
-        return $this->db->insert('RoomDetails', $data);
+        );
+            $tblArr =   $this->input->post('TableDataArr');
+       // echo count($tblArr);
+            
+        // $tblArr = (
+        //     [0] => Array
+        //         (
+        //             [item] => 86
+        //             [qty] => 2
+        //         )
+        
+        //     [1] => Array
+        //         (
+        //             [item] => 87
+        //             [qty] => 3
+        //         )
+        
+        //     [2] => Array
+        //         (
+        //             [item] => 89
+        //             [qty] => 3
+        //         )
+        
+        // )
+
+        $sql_insRoomDetali = $this->db->insert('RoomDetails', $data);
+
+   
+        $last_insert_id = $this->db->insert_id();
+
+        // $sql = "INSERT INTO Room_amenties (parameter, value)values (?, ?)";
+        $sql = "insert into Room_amenties (roomId, parameter, value)
+        values (?, ?, ?)";
+            for($i = 0; $i < count($tblArr);$i++){
+
+                $TblData = array(
+                    'roomId'    => $last_insert_id,
+                    'parameter' => $tblArr[$i]['item'],
+                    'value'     =>  $tblArr[$i]['qty']
+                );
+                $this->db->query($sql,$TblData);
+            }
+
+        // print_r($tblArr);
+
+        // print_r($tblArr[0]['item']) ;
+        return true;
     }
 
     public function delete_room($id){
@@ -82,4 +124,6 @@ class Roomdetails_model extends CI_Model{
      }
 
 }
+
+
 ?>
