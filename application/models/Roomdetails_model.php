@@ -16,7 +16,6 @@ class Roomdetails_model extends CI_Model{
             RoomTypes.roomType from RoomDetails left join RoomTypes
             on RoomDetails.roomTypeId = RoomTypes.roomId"
         );
-
         return $query->result_array();
     }
 
@@ -36,30 +35,26 @@ class Roomdetails_model extends CI_Model{
             'pricePerNight' =>$this->input->post('roomprice_input') ,
             'maxPersons' => $this->input->post('roomlimit_input'),
             'isAvailable' => $this->input->post('checkbox_input')
-          
         );
             $tblArr =   $this->input->post('TableDataArr');
-       // echo count($tblArr);
 
+        // echo count($tblArr);
         // $tblArr = (
         //     [0] => Array
         //         (
         //             [item] => 86
         //             [qty] => 2
         //         )
-
         //     [1] => Array
         //         (
         //             [item] => 87
         //             [qty] => 3
         //         )
-
         //     [2] => Array
         //         (
         //             [item] => 89
         //             [qty] => 3
         //         )
-
         // )
 
         $sql_insRoomDetali = $this->db->insert('RoomDetails', $data);
@@ -77,10 +72,8 @@ class Roomdetails_model extends CI_Model{
                 );
                 $this->db->query($sql,$TblData);
             }
-
         // print_r($tblArr);
-
-        // print_r($tblArr[0]['item']) ;
+        // print_r($tblArr[0]['item']);
         return true;
     }
 
@@ -91,43 +84,61 @@ class Roomdetails_model extends CI_Model{
     }
 
     public function fetch_roomtypeid($roomid){
-
         $query = $this->db->query("select RoomDetails.roomTypeId,RoomTypes.roomType from RoomDetails left join RoomTypes on RoomDetails.roomTypeId = RoomTypes.roomId where RoomDetails.roomId = '$roomid'");
         return $query->row_array();
-
      }
+
+
+
 
      public function update_roomDetails($roomid){
          $data = array(
-            'roomNumber' => $this->input->post('roomno_input'),
-            'roomTypeId' => $this->input->post('roomtype_input') ,
+            'roomNumber'    => $this->input->post('roomno_input'),
+            'roomTypeId'    => $this->input->post('roomtype_input') ,
             'pricePerNight' =>$this->input->post('roomprice_input') ,
-            'maxPersons' => $this->input->post('roomlimit_input'),
-            'isAvailable' => $this->input->post('checkbox_input')
+            'maxPersons'    => $this->input->post('roomlimit_input'),
+            'isAvailable'   => $this->input->post('checkbox_input')
          );
+
+         $tblArr =   $this->input->post('TableDataArr');
+
          $this->db->where('roomId',$roomid);
-       return $this->db->update('RoomDetails',$data);
+        $sql_updateRoomDetali = $this->db->update('RoomDetails',$data);
+
+         $this->db->where('roomId',$roomid);
+         $sql_deleteRoomDetali = $this->db->delete('Room_amenties');
+
+         
+         $sql = "insert into Room_amenties (roomId, parameter, value)
+         values (?, ?, ?)";
+             for($i = 0; $i < count($tblArr);$i++){
+ 
+                 $TblData = array(
+                     'roomId'    => $roomid,
+                     'parameter' => $tblArr[$i]['item'],
+                     'value'     =>  $tblArr[$i]['qty']
+                 );
+                 $this->db->query($sql,$TblData);
+             }
+
+         return true;
      }
+
 
      public function fetch_roomdetails($roomid){
         $query = $this->db->query("SELECT * FROM RoomDetails WHERE roomId = '$roomid'");
         return $query->row_array();
      }
 
-     //fetch amenities using room id //
+     //fetch amenities using room id
 
      public function showtbldataforroomdetail($roomid){
-       // $this->db->where('roomId',$roomid);
-       // $query = $this->db->get('Amenities');
-       // $query = $this->db->query("SELECT * FROM Room_amenties WHERE roomId = '$roomid'");
-       // $query = $this->db->get_where('Room_amenties', array('roomId' => $roomid));
-       // return $query->row_array();
+       $query = $this->db->query("SELECT  parameter,value,Amenities.amentyId,Amenities.name FROM Room_amenties left join Amenities on Room_amenties.parameter = Amenities.amentyId WHERE roomId = '$roomid'");
 
-       $query = $this->db->query("SELECT * FROM Room_amenties WHERE roomId = '$roomid'");
        return $query->result_array();
      }
 
-
+     
 }
 
 

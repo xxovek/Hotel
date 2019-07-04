@@ -64,7 +64,6 @@ Class Roomdetails extends CI_Controller{
 	}
 
     public function create(){
-
         $roomNo = $this->input->post('roomno_input');
 		$ret = $this->check_type_exists($roomNo);
 			if($ret === false){
@@ -73,8 +72,7 @@ Class Roomdetails extends CI_Controller{
 			$this->Roomdetails_model->create_roomDetails();
             $response['msg'] = true;
         }
-			echo json_encode($response);
-
+		echo json_encode($response);
     }
 
     public function fetch_roomdetails(){
@@ -84,7 +82,6 @@ Class Roomdetails extends CI_Controller{
     }
 
     public function update(){
-
             $roomid = $this->input->post('roomid');
 			$this->Roomdetails_model->update_roomDetails($roomid);
             $response['msg'] = true;
@@ -105,6 +102,8 @@ Class Roomdetails extends CI_Controller{
         $data = $this->Roomdetails_model->fetch_roomtypeid($roomid);
         echo json_encode($data);
     }
+
+    
 
 }
 

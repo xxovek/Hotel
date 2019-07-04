@@ -15,22 +15,22 @@ class Rooms_model extends CI_Model{
         $data = array(
             'roomType' => $this->input->post('typename')
         );
-
         return $this->db->insert('RoomTypes', $data);
     }
   
 
-    function fetch_roomtypes() {
+    function fetch_roomtypes(){
         $this->db->select('roomId,roomType');
         $query = $this->db->get('RoomTypes');
         return $query->result();
-}
+    }
 
     public function update_type(){
         $typeid = $this->input->post('typeid');
         $data = array(
             'roomType' => $this->input->post('typename')
           );
+
           $this->db->where('roomId',$typeid);
           return $this->db->update('RoomTypes',$data);
     }
@@ -48,8 +48,11 @@ class Rooms_model extends CI_Model{
         public function delete_type($id){
             $this->db->where('roomId',$id);
             $this->db->delete('RoomTypes');
-          return true;
+            return true;
         }
+ 
+
+
 
 }
 

@@ -339,6 +339,7 @@ $(function() {
 
       });
 
+
  function fetchamenitiesTblData(roomid){
    // var roomid = <?php echo $roomid; ?>;
    var formData = {
@@ -351,7 +352,7 @@ $(function() {
      data: formData,
      dataType: 'json',
      success: function(response){
-       alert(response[0].parameter);
+    //    alert(response[0].parameter);
      // [
      //   {"room-amentiesId":7,"roomId":25,"parameter":"1","value":"2","created_at":"2019-07-04 09:42:39","updated_at":"2019-07-04 09:42:39"},
      //   {"room-amentiesId":8,"roomId":25,"parameter":"3","value":"2","created_at":"2019-07-04 09:42:39","updated_at":"2019-07-04 09:42:39"},
@@ -361,7 +362,7 @@ $(function() {
        var markup = "";
 
            for(var i=0 ; i < response.length ; i++){
-             markup += "<tr><td  data-id='"+ response[i].parameter +"'>"+response[i].parameter+"</td><td data-id='"+ response[i].value +"' >"+response[i].value+"</td><td><button type='button' onclick='remove_row(this);' class='btn btn-danger btn-rounded btn-sm'><i class='fa fa-times'></i></button></td></tr>";
+             markup += "<tr><td  data-id='"+ response[i].parameter +"'>"+response[i].name+"</td><td data-id='"+ response[i].value +"' >"+response[i].value+"</td><td><button type='button' onclick='remove_row(this);' class='btn btn-danger btn-rounded btn-sm'><i class='fa fa-times'></i></button></td></tr>";
            }
            $("#Tab_logic").append(markup);
 
@@ -413,8 +414,11 @@ $(function() {
 
 
 function updateForm(){
+
     var returnVal = $("#jvalidate").valid();
     var roomid = <?php echo $roomid; ?>;
+    TableDataArr = storeTblValuesItem();
+
     var checkbox_input = '';
                         if(document.getElementById("checkbox_input").checked){
                             // checkbox_input = 'YES';
@@ -426,13 +430,13 @@ function updateForm(){
 
     if (returnVal) {
               var formData = {
-                 roomno_input: ($('#roomno_input').val().toUpperCase()).trim(),
+                  roomno_input: ($('#roomno_input').val().toUpperCase()).trim(),
                   roomtype_input: $('#roomtypeSel').val(),
                   roomprice_input: $('#roomprice_input').val(),
                   roomlimit_input: $('#roomlimit_input').val(),
                   checkbox_input: checkbox_input,
-                  roomid:roomid
-
+                  roomid:roomid,
+                  TableDataArr:TableDataArr
               };
 
               $.ajax({

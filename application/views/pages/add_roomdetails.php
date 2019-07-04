@@ -315,14 +315,15 @@
                         item_input: {
                             required: true
 
-                        },
-                        quntity_input:{
-                            required: true,
-                            number: true,
-                            minlength: 1,
-                            maxlength: 2
-
                         }
+                        // ,
+                        // quntity_input:{
+                        //     required: true,
+                        //     number: true,
+                        //     minlength: 1,
+                        //     maxlength: 2
+
+                        // }
                     }
                 });
 
