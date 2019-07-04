@@ -1,16 +1,16 @@
 
-                <!-- START BREADCRUMB -->
+            <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><a href="<?php echo site_url();?>">Home</a></li>                    
                     <li class="active">Dashboard</li>
                 </ul>
                 <div class="page-content-wrap">
                     
-                    <!-- START WIDGETS -->                    
+            <!-- START WIDGETS -->                    
                     <div class="row">
                         <div class="col-md-3">
                             
-                            <!-- START WIDGET SLIDER -->
+            <!-- START WIDGET SLIDER -->
                             <div class="widget widget-default widget-carousel">
                                 <div class="owl-carousel" id="owl-example">
                                     <div>                                    
@@ -33,12 +33,12 @@
                                     <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                                 </div>                             
                             </div>         
-                            <!-- END WIDGET SLIDER -->
+            <!-- END WIDGET SLIDER -->
                             
                         </div>
                         <div class="col-md-3">
                             
-                            <!-- START WIDGET MESSAGES -->
+            <!-- START WIDGET MESSAGES -->
                             <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
                                 <div class="widget-item-left">
                                     <span class="fa fa-envelope"></span>
@@ -52,12 +52,12 @@
                                     <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                                 </div>
                             </div>                            
-                            <!-- END WIDGET MESSAGES -->
+            <!-- END WIDGET MESSAGES -->
                             
                         </div>
                         <div class="col-md-3">
                             
-                            <!-- START WIDGET REGISTRED -->
+            <!-- START WIDGET REGISTRED -->
                             <div class="widget widget-default widget-item-icon" onclick="location.href='<?php echo site_url('Customer');?>'">
                                 <div class="widget-item-left">
                                     <span class="fa fa-user"></span>
@@ -71,12 +71,12 @@
                                     <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                                 </div>                            
                             </div>                            
-                            <!-- END WIDGET REGISTRED -->
+            <!-- END WIDGET REGISTRED -->
                             
                         </div>
                         <div class="col-md-3">
                             
-                            <!-- START WIDGET CLOCK -->
+            <!-- START WIDGET CLOCK -->
                             <div class="widget widget-info widget-padding-sm">
                                 <div class="widget-big-int plugin-clock">00:00</div>                            
                                 <div class="widget-subtitle plugin-date">Loading...</div>
@@ -95,22 +95,22 @@
                                     </div>
                                 </div>                            
                             </div>                        
-                            <!-- END WIDGET CLOCK -->
+            <!-- END WIDGET CLOCK -->
                             
                         </div>
                     </div>
-                    <!-- END WIDGETS -->                    
+            <!-- END WIDGETS -->                    
                     
                     <div class="row">
                       
 						<div class="col-md-6">
                             
-                            <!-- START PROJECTS BLOCK -->
+            <!-- START PROJECTS BLOCK -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="panel-title-box">
                                         <h3>Rooms Details</h3>
-                                        <!-- <span>Projects activity</span> -->
+                                    <!-- <span>Projects activity</span> -->
                                     </div>                                    
                                     <ul class="panel-controls" style="margin-top: 2px;">
                                         <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
@@ -133,7 +133,6 @@
                                                     <th width="50%">Room Type</th>
                                                     <th width="30%">Total Available</th>
                                                     <th width="20%">Booked</th>
-                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -148,30 +147,29 @@
                                                     </td>
                                                 </tr>
                                                 <?php  endforeach;?>
-                                                                                              
-                                                
+                                                  
                                             </tbody>
                                         </table>
                                     </div>
                                     
                                 </div>
                             </div>
-                            <!-- END PROJECTS BLOCK -->
+            <!-- END PROJECTS BLOCK -->
                             
                         </div>
                     </div>
                     
                    
                     
-                    <!-- START DASHBOARD CHART -->
+            <!-- START DASHBOARD CHART -->
 					<div class="chart-holder" id="dashboard-area-1" style="height: 200px;"></div>
 					<div class="block-full-width">
                                                                        
                     </div>                    
-                    <!-- END DASHBOARD CHART -->
+            <!-- END DASHBOARD CHART -->
                     
                 </div>
-                <!-- END PAGE CONTENT WRAPPER -->                                
+        <!-- END PAGE CONTENT WRAPPER -->                                
            
 
 
