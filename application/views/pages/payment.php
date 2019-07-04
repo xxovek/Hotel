@@ -69,11 +69,11 @@
     </div>
 </div>
 <script>
-    show_booking();
-    function show_booking() {
+    show_payment();
+    function show_payment() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('/Booking/get_booking'); ?>',
+            url: '<?php echo site_url('/Payment/getPaymentTable'); ?>',
             async: true,
             dataType: 'json',
             success: function(response) {
@@ -98,21 +98,21 @@
             }
         });
     }
-
-    function remove_booking(BookingId) {
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo site_url('/Booking/remove_booking'); ?>',
-            data: {
-              bookingId: BookingId
-            },
-            success: function(response) {
-                show_booking();
-            }
-        });
-    }
-
-    function edit_booking(BookingId) {
-        window.location = "<?php echo site_url('/Booking/edit_booking/'); ?>" + BookingId;
-    }
+    //
+    // function remove_booking(BookingId) {
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '<?php echo site_url('/Booking/remove_booking'); ?>',
+    //         data: {
+    //           bookingId: BookingId
+    //         },
+    //         success: function(response) {
+    //             show_booking();
+    //         }
+    //     });
+    // }
+    //
+    // function edit_booking(BookingId) {
+    //     window.location = "<?php echo site_url('/Booking/edit_booking/'); ?>" + BookingId;
+    // }
 </script>

@@ -103,7 +103,7 @@
 
 function orderDetail(price){
   var BookingName =$("#BookingName").val();
-  $.ajax({
+   $.ajax({
   type : "POST",
   url  : "<?=base_url()?>index.php/Payment/getOrderDetailCustomer",
    dataType: 'json',
@@ -115,10 +115,9 @@ function orderDetail(price){
     var html='';
     var price1 = 0;
     var total = 0;
-
-          var count = response.length;
-            $("#totalorderid").val(count);
-      for(var i=0;i<count;i++){
+    var count = response.length;
+    $("#totalorderid").val(count);
+    for(var i=0;i<count;i++){
     html+='<div class="col-md-4 scCol">';
     html+='    <div class="panel panel-primary">';
     html+='        <div class="panel-heading">';
@@ -134,9 +133,9 @@ function orderDetail(price){
     html+='</div>';
     price1 += response[i].Quantity*response[i].productPrice;
     }
-      $("#orderDetail").html(html);
-      total = price1 + price;
-         $("#amount").val(total);
+    $("#orderDetail").html(html);
+    total = price1 + price;
+    $("#amount").val(total);
   }
 });
 }
@@ -196,13 +195,11 @@ function savepaymentDetail(){
    var bookid = $("#bookid"+i).text();
    bookingarr.push(bookid);
  }
-   alert(bookingarr);
  var orderarr = [];
  for(var i=1;i<=2;i++){
    var orderid = $("#orderid"+i).text();
    orderarr.push(orderid);
  }
-  alert(orderarr);
  if(BookingName===""){
    $("#errmsgbookingname").html("<font color='red'>Please Select Customer Name</font>");
  }
@@ -234,6 +231,7 @@ function savepaymentDetail(){
             success: function(response){
             // alert(response);
             $("#showbtn").click();
+            window.location.reload();
             }
             });
           }
