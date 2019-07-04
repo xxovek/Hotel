@@ -15,6 +15,12 @@ class Roomamenties_model extends CI_Model{
         }
     }
 
+    public function fetch_amienities(){
+        $this->db->select('amentyId,name');
+        $query = $this->db->get('Amenities');
+        return $query->result();
+    }
+
     public function showtbldata(){
         $query = $this->db->get('Amenities');
         return $query->result_array();
@@ -28,10 +34,10 @@ class Roomamenties_model extends CI_Model{
     }
 
     public function updaterow($id){
-        
+
         $data = array(
             'name' => $this->input->post('amenityName')
-            
+
          );
          $this->db->where('amentyId',$id);
        return $this->db->update('Amenities',$data);
@@ -43,7 +49,9 @@ class Roomamenties_model extends CI_Model{
         $this->db->delete('Amenities');
       return true;
     }
-    
+
+
+
 }
 
 ?>

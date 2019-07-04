@@ -6,6 +6,7 @@ Class Roomdetails extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('Rooms_model');
+        // $this->load->modal('Roomamenties_model');
     }
 
     public function index(){
@@ -15,7 +16,13 @@ Class Roomdetails extends CI_Controller{
         $this->load->view('pages/roomdetails');
         $this->load->view('templates/footer');
     }
-    
+
+    public function showtbldata(){
+      $roomid = $this->input->post('roomid');
+      $data = $this->Roomdetails_model->showtbldataforroomdetail($roomid);
+      echo json_encode($data);
+    }
+
     public function get_roomDetails(){
         $data = $this->Roomdetails_model->get_roomDetails();
         echo json_encode($data);
@@ -23,20 +30,23 @@ Class Roomdetails extends CI_Controller{
 
    public function add_roomdetails(){
     $data['roomtypes'] = $this->Rooms_model->fetch_roomtypes();
+    $data['amenities'] = $this->Roomamenties_model->fetch_amienities();
     $this->load->view('templates/header');
     $this->load->view('pages/add_roomdetails',$data);
     $this->load->view('templates/footer');
 }
 
 
-public function edit_roomdetails($roomid){
-    $data['roomid'] = $roomid;
-    $data['roomtypes'] = $this->Rooms_model->fetch_roomtypes();
 
-    $this->load->view('templates/header');
-    $this->load->view('pages/edit_roomdetails',$data);
-    $this->load->view('templates/footer');
-}
+  public function edit_roomdetails($roomid){
+      $data['roomid'] = $roomid;
+      $data['roomtypes'] = $this->Rooms_model->fetch_roomtypes();
+      $data['amenities'] = $this->Roomamenties_model->fetch_amienities();
+
+      $this->load->view('templates/header');
+      $this->load->view('pages/edit_roomdetails',$data);
+      $this->load->view('templates/footer');
+  }
 
 
     public function getroomtypes(){
@@ -54,17 +64,17 @@ public function edit_roomdetails($roomid){
 	}
 
     public function create(){
-       
+
         $roomNo = $this->input->post('roomno_input');
 		$ret = $this->check_type_exists($roomNo);
 			if($ret === false){
-			$response['msg'] = false; 
+			$response['msg'] = false;
 		} else {
 			$this->Roomdetails_model->create_roomDetails();
-            $response['msg'] = true; 
+            $response['msg'] = true;
         }
 			echo json_encode($response);
-		
+
     }
 
     public function fetch_roomdetails(){
@@ -74,11 +84,11 @@ public function edit_roomdetails($roomid){
     }
 
     public function update(){
-             
+
             $roomid = $this->input->post('roomid');
 			$this->Roomdetails_model->update_roomDetails($roomid);
-            $response['msg'] = true; 
-			echo json_encode($response);   
+            $response['msg'] = true;
+			echo json_encode($response);
     }
 
     public function delete(){
@@ -88,7 +98,7 @@ public function edit_roomdetails($roomid){
     }
 
 
-      // public function loadForm 
+      // public function loadForm
 
       public function fetchRoomtypename(){
         $roomid = $this->input->post('roomid');

@@ -17,15 +17,15 @@
                                     <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                 </ul>
                             </div>
-                                <div class="panel-body"><p></p>
-                                </div>
+                                <div class="panel-body"><p></p></div>
+
                                 <div class="panel-body">                                                                        
                                     
                                     <div class="row">
                                         
                                         <div class="col-md-6">
                                         <div class="form-group">
-                                        <label class="col-md-3  control-label">Room No.</label>
+                                        <label class="col-md-3 control-label">Room No.</label>
                                         <div class="col-md-6"> 
                                         
                                             <div class="input-group">
@@ -90,9 +90,7 @@
                                       </div>
                                     </div>
                                  
-                                            
-                                         
-                                            
+                                        
                                         </div>
 
 
@@ -109,18 +107,17 @@
                                                         <select class="form-control select" data-live-search="true" name="item_input" id="item_input">
                                                         <option value="">Select Item</option>
                                                         <?php
-                                                            foreach($roomtypes as $row)
+                                                            foreach($amenities as $row)
                                                             {
-                                                            echo '<option value="'.$row->roomId.'">'.$row->roomType.'</option>';
+                                                            echo '<option value="'.$row->amentyId.'">'.$row->name.'</option>';
                                                             }
                                                         ?>
                                                         </select>
                                                     </div>
-                                                    <!-- <span class="help-block">This field is required </span> -->
-
 
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                             <div class="form-group">
                                                       <label class="col-md-3 control-label">Quantity</label>
@@ -138,50 +135,15 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
-                                            <!-- <div class="col-md-1"> -->
                                                     <div class="form-group">
                                                         <button type="button"  id="add-row" onclick="add_row();" class="btn btn-success btn-rounded btn-sm" ><i class="fa fa-plus"></i></button>
                                                     </div>
-                                                <!-- </div> -->
                                             </div>
                                             
                                             </div>                                
 
                                                                                        
-                                                <!-- <div class="row">
-                                                        <div class="col-md-3" id="cmDiv">
-                                                                <div class="form-group">
-                                                                <label class="col-md-3 control-label" >Item</label>
-                                                                <div class="col-md-6">
-
-                                                                <div class="input-group">
-                                                                <input type="text" id="item_input" name="item_input" readonly class="form-control"/>
-                                                                </div>
-                                                                
-                                                                </div>
-                                                                </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-3" id="cmDiv">
-                                                            <div class="form-group">
-                                                            <label class="col-md-3 control-label" >Quantity</label>
-                                                                <div class="col-md-6">
-
-                                                                <div class="input-group">
-                                                                <input type="text" id="quntity_input" name="quntity_input" readonly class="form-control"/>
-                                                                </div>
-                                                            
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                
-                                                        <div class="col-md-1">
-                                                            <div class="form-group">
-                                                            <button type="button"  id="add-row" onclick="add_row();" class="btn btn-success btn-rounded btn-sm" ><i class="fa fa-plus"></i></button>
-                                                            </div>
-                                                        </div>
-                                            
-                                                    </div>   -->
+                                                
                                                     <br>
 
                                                     <div class="form-group">
@@ -190,50 +152,7 @@
                                                             
                                                                 <div class="scrollcell">
                                                                     <tbody id="fetchcellvalue2">
-                                                                    <!-- <tr>
-                                                                    <td>item1 itemitem1</td>
-                                                                    <td>item2 itemitem1</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                    <td>itemitem1 item1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td>itemitem1 item1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr> -->
-                                                                    <!-- <tr>
-                                                                    <td>itemitem1 item1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td>itemitem1 item1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td>itemitem1 item1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                    <td>itemitem1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                    <td>itemitem1 item1</td>
-                                                                    <td>fetchcellvalue2</td>
-                                                                    <td><button type="button" class="btn btn-danger btn-rounded btn-sm"><i class="fa fa-times"></i></button></td>
-                                                                    </tr> -->
-
+                                                                    
                                                                     </tbody>
                                                                 </div>
                                                         </table>
@@ -250,7 +169,8 @@
                                         
                                     </div>
 
-                                </div>
+                                <!-- </div> -->
+                                
 
 
                                 <div class="panel-footer">
