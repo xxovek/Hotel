@@ -279,8 +279,6 @@
         function add_row(){
             var returnVal = $("#jvalidate").valid();
             if (returnVal) {
-
-
                 var selectedVal = document.getElementById('item_input').value;
 
                 // var item_input = $('#item_input').val().text();
@@ -292,7 +290,6 @@
                     // var markup = "<tr ><td contenteditable='false'  data-id='"+ Component_id +"'>" + Component_val + "</td><td contenteditable='false' data-id='"+ percentVal +"'>"+percentVal+"</td><td onkeypress='return isNumberKey(event);' style='background-color:#eee;opacity:1'  data-id='"+ Amount_val +"'>" + Amount_val
                     // + "</td><td class=''><button type='button' class='btn btn-danger' id='remove' onclick='remove_row(this);'><i class='fa fa-minus'></i></button></td></tr>";
                  
-
                  var markup = "<tr><td  data-id='"+ selectedVal +"'>"+selectedText+"</td><td data-id='"+ qty_input +"' >"+qty_input+"</td><td><button type='button' onclick='remove_row(this);' class='btn btn-danger btn-rounded btn-sm'><i class='fa fa-times'></i></button></td></tr>";
                     $("#Tab_logic").append(markup);
 
@@ -416,20 +413,16 @@
         function saveForm(){
             var returnVal = $("#jvalidate").valid();
             TableDataArr = storeTblValuesItem();
-
         
             var checkbox_input = '';
                             
                                 if(document.getElementById("checkbox_input").checked){
                                     // checkbox_input = 'YES';
                                     checkbox_input = 1;
-
                                 }else{
                                     // checkbox_input = 'NO';
                                     checkbox_input = 0;
-
                                 }
-
             if (returnVal) {
                     var formData = {
                         roomno_input: ($('#roomno_input').val().toUpperCase()).trim(),

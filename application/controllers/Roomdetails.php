@@ -40,7 +40,7 @@ public function edit_roomdetails($roomid){
 
 
     public function getroomtypes(){
-        $data = $this->Rooms_model->fetch_roomtypes();
+        // $data = $this->Rooms_model->fetch_roomtypes();
         echo  $this->Rooms_model->fetch_roomtypes();
     }
 

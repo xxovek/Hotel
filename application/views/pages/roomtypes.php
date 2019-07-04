@@ -11,11 +11,11 @@
                 
                 <div class="row">
                     <div class="col-md-12"  id="div_submitFrm">
-                    <form class="form-horizontal"  class="form-horizontal" id="submitFrm" method="post" method="post">
+                    <form class="form-horizontal"  class="form-horizontal" id="submitFrm" method="post">
  
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title" id="formname"><strong>Room Types</strong> Add New</h3>
+                                <h3 class="panel-title" id="formname"><strong>Room Types</strong></h3>
                                 <ul class="panel-controls">
                                     <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                 </ul>
@@ -90,8 +90,6 @@
                LoadTBLData();
 
             function edit_row(typeid,typename){
-               
-              
                 document.getElementById("id").value = typeid;
   
                 document.getElementById("roomtypeName").value = typename;

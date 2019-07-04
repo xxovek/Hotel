@@ -6,14 +6,12 @@
 
     <div class="page-content-wrap">
 
-
                         <div class="row">
                             <div class="col-md-12"  id="div_submitFrm">
                             <form class="form-horizontal"  class="form-horizontal" id="jvalidate" method="post">
-        
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title" id="formname"><strong>Rooms Amenity</strong> Add New</h3>
+                                        <h3 class="panel-title" id="formname"><strong>Rooms Amenity</strong>Form</h3>
                                         <ul class="panel-controls">
                                             <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                         </ul>
@@ -44,7 +42,7 @@
                                     <div class="panel-footer">
                                         <button class="btn btn-default" type="button" onClick="resetForm();">Clear Form</button>                                    
                                         <button type="button"  id="submitbtn" onclick="saveForm();" class="btn btn-primary pull-right">Submit</button>
-                                        <button type="button" style="display:none" id="updateBtn" class="btn btn-primary pull-right">Save</button>
+                                        <button type="button" style="display:none" id="updateBtn" onclick="updateForm();" class="btn btn-primary pull-right">Save</button>
                                 
                                     </div>
                                 </div>
@@ -116,7 +114,7 @@
 
     <script>
 
-    
+    showTblData();
     
     $(function() {
                 var jvalidate = $("#jvalidate").validate({
@@ -126,7 +124,7 @@
                         amenityName:{
                             required: true,
                             number: false,
-                            minlength: 3,
+                            minlength: 2,
                             maxlength: 20
 
                         }
@@ -136,12 +134,37 @@
             });
 
             function showTblData(){
-        
 
+                    $.ajax({
+                    type: 'ajax',
+                    url: '<?php echo site_url('/Roomamenties/showtbldata'); ?>',
+                    async: true,
+                    dataType: 'json',
+                    success: function(response) {
+                        // alert(response);
+                        var html = '';
+                        var i;
+                        for (i = 0; i < response.length; i++) {
+                            html += '<tr>' +
+                                '<td>' + (i + 1) + '</td>' +
+                                '<td>' + response[i].name + '</td>' +
+                                '<td><div class="btn-group btn-group-sm">' +
+                                '<button class="btn btn-default btn-rounded btn-sm" title="Edit Customers Details" onclick="edit_row(\''
+                                +response[i].amentyId+'\',\''+response[i].name+'\');" ><i class="fa fa-edit"></i></button>' +
+                                '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Customers Details" onclick="delete_row(' + response[i].amentyId + ');"><i class="fa fa-times"></i></button>' +
+                                '</div></td></tr>';
+                        }
+                        $('#Tbl_amenity_body').html(html);
+                        $('#Tbl_amenity').DataTable();
+                    }
+                });
+        
             }
 
             function resetForm(){
                 $('#jvalidate')[0].reset();
+                $("#updateBtn").hide();
+                $("#submitbtn").show();
             }
 
             function saveForm(){
@@ -150,7 +173,7 @@
 
                 if (returnVal) {
                         var formData = {
-                            roomno_input: ($('#amenityName').val().toUpperCase()).trim()
+                            amenityName: ($('#amenityName').val().toUpperCase()).trim()
                         };
 
 
@@ -170,6 +193,7 @@
                                             else{
                                                     $('#jvalidate')[0].reset();
                                                     window.location = "<?php echo site_url('Roomamenties/'); ?>";
+                                                   
                                                     showTblData();
                                                 }
                             
@@ -183,11 +207,66 @@
                 
             }
 
-            function delete_row(){
+            function updateForm(){
+                var returnVal = $("#jvalidate").valid();
+                //alert("ok");
+
+                if (returnVal) {
+                        var formData = {
+                            amenityName: ($('#amenityName').val().toUpperCase()).trim(),
+                            id:$('#id').val()
+                        };
+
+
+                        $.ajax({
+                        type: 'POST',
+                        url: '<?php echo site_url(); ?>/Roomamenties/updateForm',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            // alert(response.msg);
+                                            if(response.msg == false){
+                                                $("#errmsg").html("That Amenity Name is already taken. Please Add different one.");
+                                                setTimeout(function(){
+                                                $("#errmsg").html("");
+                                            }, 5000);
+                                            }
+                                            else{
+                                                    $('#jvalidate')[0].reset();
+                                                    window.location = "<?php echo site_url('Roomamenties/'); ?>";
+                                                   
+                                                    showTblData();
+                                                }
+                            
+                        },
+                        error: function(xhr) {
+                            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                        }
+                    });
+
+                }else{}
+            }
+
+            function delete_row(id){
+                // alert(id);
+                $.ajax({
+                    type: 'POST',
+                     url: '<?php echo site_url('/Roomamenties/delete_row'); ?>',
+                     data: {id: id},
+                success: function(response) {
+                    showTblData();
+                }
+            });
 
             }
 
-            function edit_row(){
+            function edit_row(id,name){
+                // alert(id);
+                document.getElementById("id").value = id;
+  
+                document.getElementById("amenityName").value = name;
+                $("#updateBtn").show();
+                $("#submitbtn").hide();
 
             }
 
