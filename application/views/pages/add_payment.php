@@ -100,7 +100,7 @@
 
 
 <script type='text/javascript'>
-
+$("#BookingName").val('<?php echo $customerId;?>').trigger('change');
 function orderDetail(price){
   var BookingName =$("#BookingName").val();
    $.ajax({
@@ -231,7 +231,7 @@ function savepaymentDetail(){
             success: function(response){
             // alert(response);
             $("#showbtn").click();
-            window.location.reload();
+            window.location = "<?php echo site_url('Payment');?>";
             }
             });
           }

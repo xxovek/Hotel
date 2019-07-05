@@ -22,7 +22,8 @@ Class Payment extends CI_Controller{
       //   $data = $this->Booking_model->checkroomavaiableBookingDetail();
       //    echo json_encode($data);
       // }
-      public function add_payment(){
+      public function add_payment($customerId=FALSE){
+          $data['customerId'] = $customerId;
           $data['title'] = 'Add New Guest';
           // $data['payment']= $this->Payment_model->getPaymentDetail();
           $data['customer'] = $this->Payment_model->getCustomerType();
@@ -50,6 +51,12 @@ Class Payment extends CI_Controller{
       public function getPaymentTable(){
           $data = $this->Payment_model->getPaymentTable();
           echo json_encode($data);
+      }
+      public function showPdfPage($paymentId){
+        $data['customer'] = $this->Payment_model->getCustomerDetailPayment($paymentId);
+        $this->load->view('templates/header');
+        $this->load->view('pages/showPdfPage',$data);
+        $this->load->view('templates/footer');
       }
 }
 

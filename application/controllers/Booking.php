@@ -21,7 +21,8 @@ Class Booking extends CI_Controller{
         $data = $this->Booking_model->checkroomavaiableBookingDetail();
          echo json_encode($data);
       }
-      public function add_booking(){
+      public function add_booking($customerId=FALSE){
+          $data['customerId'] = $customerId;
           $data['title'] = 'Add New Guest';
           $data['customername'] = $this->Booking_model->getCustomername();
           $data['roomname'] = $this->Booking_model->getRoomname();
