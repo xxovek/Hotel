@@ -64,8 +64,8 @@
                                 <a href="<?php echo site_url();?>"><span class="fa fa-home"></span> Rooms</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Rooms"><span class="fa fa-inbox"></span> Rooms Types</a></li>
-                                    <li><a href="<?php echo site_url();?>/Roomdetails"><span class="fa fa-file-text"></span> Rooms Details</a></li>
                                     <li><a href="<?php echo site_url();?>/Roomamenties"><span class="fa fa-pencil"></span> Rooms Amenties</a></li>
+                                    <li><a href="<?php echo site_url();?>/Roomdetails"><span class="fa fa-file-text"></span> Rooms Details</a></li>
                                 </ul>
                             </li>
                             <li class="xn-openable">
