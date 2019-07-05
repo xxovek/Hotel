@@ -183,7 +183,7 @@ $html ='<!DOCTYPE html>
     						<td style="width:40mm;">
 
 								<div style="color: #555555;font-family: Arial, sans-serif;font-size: 18px;font-family: SourceSansPro;text-align:right;">
-								  <div class="row"><strong>Invoice No</strong>'.$paymentId.'</div>
+								  <div class="row"><strong>Invoice No</strong></div>
                   <div class="row"><strong>Date</strong></div>
 								</div>
 

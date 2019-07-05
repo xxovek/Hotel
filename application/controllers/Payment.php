@@ -54,6 +54,7 @@ Class Payment extends CI_Controller{
       }
       public function showPdfPage($paymentId){
         $data['customer'] = $this->Payment_model->getCustomerDetailPayment($paymentId);
+      //  $data['paymentId'] = $paymentId;
         $this->load->view('templates/header');
         $this->load->view('pages/showPdfPage',$data);
         $this->load->view('templates/footer');

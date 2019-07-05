@@ -91,7 +91,7 @@
                         '<td>' + response[i].amount + '</td>' +
                         '<td><div class="btn-group btn-group-sm">' +
                         '<button class="btn btn-default btn-rounded btn-sm" title="Payment Details" onclick="edit_payment(' + response[i].paymentId + ');"><i class="fa fa-file-pdf-o"></i></button>' +
-                        '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Booking Details" onclick="remove_payment(' + response[i].paymentId + ');"><i class="fa fa-times"></i></button>' +
+                        // '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Booking Details" onclick="remove_payment(' + response[i].paymentId + ');"><i class="fa fa-times"></i></button>' +
                         '</div></td></tr>';
                 }
                 $('#customerData').html(html);
