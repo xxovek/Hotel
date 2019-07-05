@@ -65,6 +65,17 @@ class Customer extends CI_Controller
             move_uploaded_file($tmpFile, $filename);
         }
     }
+    public function add_documents_D($customerId)
+    {
+        $uploadDir = 'Documents';
+        $rowId = $this->Customer_model->get_doc_id($customerId);
+        if (!empty($_FILES)) {
+            $tmpFile  = $_FILES['webcam']['tmp_name'];
+            $filename = $uploadDir . '/Doc_' . $customerId . '_' . $rowId . '.jpeg';
+            $this->Customer_model->add_doc_file($customerId, $filename);
+            move_uploaded_file($tmpFile, $filename);
+        }
+    }
     public function checkAvailablity()
     {
         $email = $this->input->post('emailId');

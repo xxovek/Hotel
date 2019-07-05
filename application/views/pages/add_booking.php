@@ -123,7 +123,7 @@
 
     <script type='text/javascript'>
 
-
+    $("#customerName").val('<?php echo $customerId;?>').trigger('change');
     getcustomer();
     $(function () {
         var sd = new Date(), ed = new Date();
@@ -347,7 +347,7 @@
             success: function(response){
 
             $("#showbtn").click();
-            window.location.reload();
+             window.location = "<?php echo site_url('Payment/add_payment/');?>"+customerName;
             }
             });
           }
