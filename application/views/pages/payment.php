@@ -47,13 +47,13 @@
                         <thead>
                             <tr>
                                 <th>Sr No</th>
-                                <th>Name</th>
+                                <th> Customer Name</th>
                                 <th>Contact Number</th>
-                                <th>Room Detail</th>
-                                <th>Booking From</th>
-                                <th>Booking Till</th>
+                                <th>Customer Email</th>
+                                <th>Payment Date</th>
+                                <th>Payment Mode</th>
                                 <th>Amount</th>
-                                <th>Status</th>
+                                <!-- <th>Status</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -84,13 +84,14 @@
                         '<td>' + (i+1)+ '</td>' +
                         '<td>' + response[i].FirstName+' '+ response[i].lastName+ '</td>' +
                         '<td>' + response[i].contactNumber + '</td>' +
-                        '<td>' + response[i].roomNumber +' '+ response[i].roomType + '</td>' +
-                        '<td>' + response[i].FromDate + '</td>' +
-                        '<td>' + response[i].UptoDate + '</td>' +
-
+                        '<td>' + response[i].email + '</td>' +
+                        //'<td>' + response[i].roomNumber +' '+ response[i].roomType + '</td>' +
+                        '<td>' + response[i].created_at + '</td>' +
+                        '<td>' + response[i].paymentType + '</td>' +
+                        '<td>' + response[i].amount + '</td>' +
                         '<td><div class="btn-group btn-group-sm">' +
-                        '<button class="btn btn-default btn-rounded btn-sm" title="Edit Booking Details" onclick="edit_booking(' + response[i].BookingId + ');"><i class="fa fa-edit"></i></button>' +
-                        '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Booking Details" onclick="remove_booking(' + response[i].BookingId + ');"><i class="fa fa-times"></i></button>' +
+                        '<button class="btn btn-default btn-rounded btn-sm" title="Payment Details" onclick="edit_payment(' + response[i].paymentId + ');"><i class="fa fa-file-pdf-o"></i></button>' +
+                        '<button  class="btn btn-danger btn-rounded btn-sm" title="Remove Booking Details" onclick="remove_payment(' + response[i].paymentId + ');"><i class="fa fa-times"></i></button>' +
                         '</div></td></tr>';
                 }
                 $('#customerData').html(html);
@@ -112,7 +113,7 @@
     //     });
     // }
     //
-    // function edit_booking(BookingId) {
-    //     window.location = "<?php echo site_url('/Booking/edit_booking/'); ?>" + BookingId;
-    // }
+    function edit_payment(PaymentId) {
+        window.location = "<?php echo site_url('/Payment/showPdfPage/'); ?>" + PaymentId;
+    }
 </script>

@@ -129,7 +129,7 @@
                                               <div id="my_camera_doc"></div>
                                               <button type="button" class="btn btn-block btn-primary" name="filenameDoc" id="filenameDoc" title="Capture Image" onClick="take_snapshot_doc()">Capture Image</button>
                                               <span class="help-block">Input type file</span>
-                                              <input type="hidden" name="imageD[]" class="image-tag-d">
+                                              <input type="hidden" name="imageD" class="image-tag-d">
                                           </div>
                                       </div>
 
@@ -250,13 +250,14 @@
                   success: function(response) {
                       var base64image = document.getElementById("imageprev").src;
                       var base64imageD = document.getElementById("imageprevD").src;
+                      alert(base64image);
                       Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" + response.customerId, function(code, text) {
                           console.log('Save successfully');
                       });
-                      Webcam.upload(base64imageD, "<?php echo site_url(); ?>/Customer/add_documents/" + response.customerId, function(code, text) {
+                      Webcam.upload(base64imageD, "<?php echo site_url(); ?>/Customer/add_documents_D/" + response.customerId, function(code, text) {
                           console.log('Save successfully');
                       });
-                      window.location = 'Booking/add_booking/'+response.customerId;
+                      window.location = "<?php echo site_url('Booking/add_booking/');?>"+response.customerId;
                   },
                   error: function(xhr) {
                       alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
