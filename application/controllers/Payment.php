@@ -53,7 +53,7 @@ Class Payment extends CI_Controller{
           echo json_encode($data);
       }
       public function showPdfPage($PaymentId=FALSE){
-      //$data['customer'] = $this->Payment_model->getCustomerDetailPayment($paymentId);
+      $data['customer'] = $this->Payment_model->getCustomerDetailPayment($PaymentId);
       $data['bookings'] = $this->Payment_model->getPaymentIdBookings($PaymentId);
       $data['orders'] = $this->Payment_model->getPaymentIdOrders($PaymentId);
       //  $data['paymentId'] = $paymentId;
