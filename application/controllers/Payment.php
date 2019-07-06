@@ -52,8 +52,10 @@ Class Payment extends CI_Controller{
           $data = $this->Payment_model->getPaymentTable();
           echo json_encode($data);
       }
-      public function showPdfPage($paymentId){
-        $data['customer'] = $this->Payment_model->getCustomerDetailPayment($paymentId);
+      public function showPdfPage($PaymentId=FALSE){
+      //$data['customer'] = $this->Payment_model->getCustomerDetailPayment($paymentId);
+      $data['bookings'] = $this->Payment_model->getPaymentIdBookings($PaymentId);
+      $data['orders'] = $this->Payment_model->getPaymentIdOrders($PaymentId);
       //  $data['paymentId'] = $paymentId;
         $this->load->view('templates/header');
         $this->load->view('pages/showPdfPage',$data);

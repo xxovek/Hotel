@@ -168,25 +168,44 @@ class Payment_model extends CI_Model{
       return $result;
     }
 
-    function getCustomerDetailPayment($paymentId=FALSE){
-      $this->db->select("Orders.orderId,Customers.FirstName,
-      Customers.lastName,Customers.contactNumber,Orders.Quantity,Products.productName,Products.productPrice,RoomDetails.roomNumber,RoomTypes.roomType,Orders.orderDate");
-      $this->db->from('Orders');
-      $this->db->where('Orders.customerId',$customerId);
-      $this->db->join('Customers', 'Customers.customerId = Orders.customerId','left');
-      $this->db->join('Products', 'Products.ProductId = Orders.productId','left');
-      $this->db->join('RoomDetails', 'RoomDetails.roomId = Orders.roomId','left');
+    // function getCustomerDetailPayment($paymentId=FALSE){
+    //   $this->db->select("Orders.orderId,Customers.FirstName,
+    //   Customers.lastName,Customers.contactNumber,Orders.Quantity,Products.productName,Products.productPrice,RoomDetails.roomNumber,RoomTypes.roomType,Orders.orderDate");
+    //   $this->db->from('Orders');
+    //   $this->db->where('Orders.customerId',$customerId);
+    //   $this->db->join('Customers', 'Customers.customerId = Orders.customerId','left');
+    //   $this->db->join('Products', 'Products.ProductId = Orders.productId','left');
+    //   $this->db->join('RoomDetails', 'RoomDetails.roomId = Orders.roomId','left');
+    //   $this->db->join('RoomTypes', 'RoomTypes.roomId = RoomDetails.roomId','left');
+    //
+    //   $query = $this->db->get();
+    //   return $query->result_array();
+    // }
+    function getPaymentIdBookings($paymentId=FALSE){
+      $this->db->select("Bookings.BookingId,Bookings.FromDate,Bookings.Nights,Bookings.UptoDate,
+      Bookings.roomId,RoomDetails.roomNumber,RoomDetails.pricePerNight,RoomDetails.maxPersons,RoomTypes.roomType,
+      Customers.FirstName,Customers.lastName,Customers.contactNumber");
+      $this->db->from('Bookings');
+      $this->db->join('PaymentBooking', 'PaymentBooking.bookingsOrderId = Bookings.BookingId','left');
+      $this->db->join('Customers', 'Bookings.customerId = Customers.customerId','left');
+      $this->db->join('RoomDetails', 'RoomDetails.roomId = Bookings.roomId','left');
       $this->db->join('RoomTypes', 'RoomTypes.roomId = RoomDetails.roomId','left');
-
+      $this->db->where('PaymentBooking.paymentId',$paymentId);
       $query = $this->db->get();
       return $query->result_array();
 
-//       select Payment.paymentId,Payment.amount,Customers.customerId,Customers.address,Customers.FirstName,Customers.lastName,Customers.email,Customers.contactNumber,PaymentTypes.paymentType from Payment
-// Left join Customers on Payment.customerId = Customers.customerId
-// Left join PaymentTypes on Payment.paymentTypeId = PaymentTypes.paymentTypeId
-// where Payment.paymentId = 7
     }
-
+    function getPaymentIdOrders($paymentId=FALSE){
+      $this->db->select("Orders.Quantity,Orders.orderDate,Orders.roomId,Orders.productId,Products.productName,
+      Products.productPrice,Customers.FirstName,Customers.lastName,Customers.contactNumber");
+      $this->db->from('Orders');
+      $this->db->join('PaymentOrder', 'PaymentOrder.bookingsOrderId = Orders.orderId','left');
+      $this->db->join('Products', 'Products.ProductId = Orders.productId','left');
+      $this->db->join('Customers', 'Customers.customerId = Orders.customerId','left');
+      $this->db->where('PaymentOrder.paymentId',$paymentId);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
 }
 
 ?>

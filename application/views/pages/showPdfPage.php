@@ -6,7 +6,33 @@ use Dompdf\Dompdf;
 
 /* instantiate and use the dompdf class */
 $dompdf = new Dompdf();
+$output = '';
+// print_r($bookings);
 
+// foreach($bookings as $row)
+// {
+  $output .='<tr>
+  <td>lkk</td>
+  <td>5</td>
+  <td>6</td>
+  <td>1</td>
+  <td>1</td>
+
+  </tr>';
+// }
+//   $output .='<tr>
+//     <td style="width:5%;">'.$row['patientMorningbefore'].'</td>
+//     <td style="width:5%;">'.$row['patientMorningafter'].'</td>
+//     <td style="width:5%;">'.$row['patientEveningbefore'].'</td>
+//     <td style="width:5%;">'.$row['patientEveningafter'].'</td>
+//     <td style="width:5%;">'.$row['patientNightbefore'].'</td>
+//     <td style="width:5%;">'.$row['patientNightafter'].'</td>
+//   </tr>';
+// }
+// foreach($productname as $row)
+// {
+// echo '<option value="'.$row->ProductId.'">'.$row->productName.'-'.$row->productPrice.'</option>';
+// }
 $html ='<!DOCTYPE html>
 <html>
   <head>
@@ -216,8 +242,12 @@ $html ='<!DOCTYPE html>
     								<td style="width:10%;"><strong>Date</strong></td>
     								<td><strong>Description</strong></td>
     								<td style="width:10%;"><strong>Quantity</strong></td>
-    								<td style="width:10%;"><strong>Amount</strong></td>
+    								<td style="width:10%;"><strong>Amount
+                    </strong></td>
     						</tr>
+                '.$output.'
+            
+
     						</table>
     		    </div>
     		</div>
