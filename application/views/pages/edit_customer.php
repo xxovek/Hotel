@@ -194,10 +194,13 @@
               url: '<?php echo site_url(); ?>/Customer/update_details',
               data: formData,
               success: function(response) {
+              
                 var base64image = document.getElementById("imageprev").src;
-          Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" +formData.customerId, function(code, text) {
+                
+           Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" +formData.customerId, function(code, text) {
               console.log('Save successfully');
           });
+          window.location = "<?php echo site_url('Customer');?>";
               },
               error: function(xhr) {
                   alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
