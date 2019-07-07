@@ -222,7 +222,7 @@ $html ='<!DOCTYPE html>
     						<td style="width:50mm;">
     						</td>
                 <td style="width:35mm;">
-                <h2>Payment Receipt</h2>
+                <h1>Payment Receipt</h1>
     						</td>
 								<td style="width:40mm;">
 								</td>
@@ -250,9 +250,37 @@ $html ='<!DOCTYPE html>
 
 
     						</table>
-    		    </div>
-    		</div>
 
+                <table border="1" style="width:100%;padding-top:10px;">
+
+            				<tr>
+            						<td style="width:50mm;">
+                        Your Sign / Date
+            						</td>
+
+        								<td style="width:40mm;">
+                          Reciever Sign / Date
+        								</td>
+
+            				</tr>
+                    <tr>
+                    <td style="width:50mm;padding:15;">
+
+                                						</td>
+
+                            								<td style="width:40mm;padding:15;">
+
+                            								</td>
+
+                                				</tr>
+
+            		</table>
+    		    </div>
+
+    		</div>
+       <footer style="text-align:center;"><font size="15px">'.$companyinformation['HotelName'].'</font></footer>
+       <footer style="text-align:center;"><font size="12px">'.$companyinformation['address'].'</font></footer>
+        <footer style="text-align:center;padding-top:5px;"><font size="10px" color="red">This is an electronically generated receipt, no signature is required</font></footer>
   </body>
 </html>
 
