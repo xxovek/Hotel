@@ -116,6 +116,7 @@
                                                   $url = 'upload/pic_'.$customer['customerId'].'.jpeg';
                                                   if(!file_exists(base_url($url))){?>
                                                     <img id="imageprev" src="<?php echo base_url($url);?>"/>
+                                                    <input type="hidden" id="imgH" value="0"/>
                                                   <?php }else{}?>
                                               </div>
                                               <span class="help-block">File</span>
@@ -170,6 +171,7 @@
     Webcam.attach('#my_camera');
 
       function take_snapshot() {
+          $('#imgH').val(1);
           Webcam.snap(function(data_uri) {
               $(".image-tag").val(data_uri);
               document.getElementById('results').innerHTML = '<img id="imageprev" src="' + data_uri + '"/>';
@@ -194,12 +196,19 @@
               url: '<?php echo site_url(); ?>/Customer/update_details',
               data: formData,
               success: function(response) {
-              
+               
                 var base64image = document.getElementById("imageprev").src;
                 
-           Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" +formData.customerId, function(code, text) {
+                if( $('#imgH').val()==0)
+            {
+        }
+        else
+            {
+    Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" +formData.customerId, function(code, text) {
               console.log('Save successfully');
           });
+  }
+          
           window.location = "<?php echo site_url('Customer');?>";
               },
               error: function(xhr) {
@@ -216,7 +225,7 @@
                   firstname: {
                       required: true,
                       minlength: 2,
-                      maxlength: 8
+                      maxlength: 50
                   },
                   lastname: {
                       required: true,
@@ -225,7 +234,7 @@
                   },
                   address: {
                       required: true,
-                      minlength: 18,
+                      minlength: 5,
                       maxlength: 100
                   },
                   emailid: {
@@ -238,7 +247,9 @@
                   },
                   contactNumber: {
                       required: true,
-                      number: true
+                      number: true,
+                      minlength: 10,
+                      maxlength: 10
                   }
               }
           });

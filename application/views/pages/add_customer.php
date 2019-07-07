@@ -107,6 +107,8 @@
                                               <button type="button" class="btn btn-block btn-primary" name="filename" id="filename" title="Capture Image" onClick="take_snapshot()">Capture Image</button>
                                               <span class="help-block">Input type file</span>
                                               <input type="hidden" name="image" class="image-tag">
+                                              <input type="hidden" id="img1" value="0"/>
+                                              <input type="hidden" id="img2" value="0"/>
                                           </div>
                                       </div>
 
@@ -219,12 +221,14 @@
 
 
       function take_snapshot() {
+        $('#img1').val(1);
           Webcam.snap(function(data_uri) {
               $(".image-tag").val(data_uri);
               document.getElementById('results').innerHTML = '<img id="imageprev" src="' + data_uri + '"/>';
           });
       }
       function take_snapshot_doc() {
+        $('#img2').val(1);
           Webcam.snap(function(data_uri) {
               $(".image-tag-d").val(data_uri);
               document.getElementById('resultsD').innerHTML = '<img id="imageprevD" src="' + data_uri + '"/>';
@@ -248,15 +252,18 @@
                   data: formData,
                   dataType: 'json',
                   success: function(response) {
-                      var base64image = document.getElementById("imageprev").src;
-                      var base64imageD = document.getElementById("imageprevD").src;
-                      alert(base64image);
+                     if($('#img1').val()==1){
+                        var base64image = document.getElementById("imageprev").src;
                       Webcam.upload(base64image, "<?php echo site_url(); ?>/Customer/save_customer/" + response.customerId, function(code, text) {
                           console.log('Save successfully');
                       });
+                     }
+                     if($('#img2').val()==1){
+                        var base64imageD = document.getElementById("imageprevD").src;
                       Webcam.upload(base64imageD, "<?php echo site_url(); ?>/Customer/add_documents_D/" + response.customerId, function(code, text) {
                           console.log('Save successfully');
                       });
+                     }
                       window.location = "<?php echo site_url('Booking/add_booking/');?>"+response.customerId;
                   },
                   error: function(xhr) {
@@ -273,12 +280,12 @@
                   firstname: {
                       required: true,
                       minlength: 2,
-                      maxlength: 8
+                      maxlength: 50
                   },
                   lastname: {
                       required: true,
                       minlength: 3,
-                      maxlength: 20
+                      maxlength: 50
                   },
                   address: {
                       required: true,
@@ -297,7 +304,7 @@
                       required: true,
                       number: true,
                       minlength: 10,
-                      maxlength: 11
+                      maxlength: 10
                   }
               }
           });
