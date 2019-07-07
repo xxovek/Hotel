@@ -206,6 +206,12 @@ class Payment_model extends CI_Model{
       $query = $this->db->get();
       return $query->result_array();
     }
+    function getCompanyInformation($paymentId=FALSE){
+        $this->db->select("UserMaster.HotelName,UserMaster.address");
+        $this->db->from('UserMaster');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 }
 
 ?>
