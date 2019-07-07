@@ -59,7 +59,7 @@ Class Payment extends CI_Controller{
       $data['orders'] = $this->Payment_model->getPaymentIdOrders($PaymentId);
       //  $data['paymentId'] = $paymentId;
         $this->load->view('templates/header');
-        $this->load->view('pages/showPdfPage',$data);
+        $this->load->view('pages/showreceipt',$data);
         $this->load->view('templates/footer');
       }
 }
