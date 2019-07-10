@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <!-- META SECTION -->
-        <title>Hotel Admin - Dashboard</title>
+        <title>HOTEL- ADMIN</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +24,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="<?php echo base_url();?>/Dashboard">Joli Admin</a>
+                        <a href="<?php echo base_url();?>/Dashboard"> <span id="hotelname"></span></a>
                         <a href="<?php echo base_url();?>" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -36,13 +36,10 @@
                                 <img src="<?php echo base_url();?>assets/images/users/avatar.jpg" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name">John Doe</div>
-                                <div class="profile-data-title">Web Developer/Designer</div>
+                                <div class="profile-data-name"></div>
+                                <div class="profile-data-title">Hotel  Admin</div>
                             </div>
-                            <!-- <div class="profile-controls">
-                                <a href="<?php echo base_url();?>pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
-                                <a href="<?php echo base_url();?>pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
-                            </div> -->
+                          
                         </div>
                     </li>
                     <li class="xn-title">Navigation</li>
@@ -56,11 +53,8 @@
                     <li class="">
                         <a href="<?php echo site_url();?>/Customer"><span class="fa fa-users"></span> <span class="xn-text">Customers</span></a>
                     </li>
-                    <!-- <li class="">
-                        <a href="<?php echo site_url();?>/Customers"><span class="fa fa-desktop"></span> <span class="xn-text">Orders</span></a>
-                    </li>   -->
-
-                    <li class="xn-openable">
+                   
+                            <li class="xn-openable">
                                 <a href="<?php echo site_url();?>"><span class="fa fa-home"></span> Rooms</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Rooms"><span class="fa fa-inbox"></span> Rooms Types</a></li>
@@ -73,8 +67,6 @@
                                 <ul>
                                     <li ><a href="<?php echo site_url();?>/Orders"><span class="fa fa-list"></span>Orders</a></li>
                                     <li ><a href="<?php echo site_url();?>/Products"><span class="fa fa-list"></span>Products</a></li>
-                                    <!-- <li><a href="<?php echo site_url();?>pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li> -->
-                                    <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->
                                 </ul>
                             </li>
                             <li class="xn-openable">
@@ -82,8 +74,6 @@
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Payment"><span class="fa fa-money"></span>Payment</a></li>
                                     <li><a href="<?php echo site_url();?>/Payments"><span class="fa fa-money"></span>Payments Types</a></li>
-                                    <!-- <li><a href="<?php echo site_url();?>pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li> -->
-                                    <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->
                                 </ul>
                             </li>
 
@@ -91,12 +81,8 @@
                                 <a href="<?php echo site_url();?>"><span class="fa fa-file-text-o"></span> Documents</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Documents"><span class="fa fa-inbox"></span>Documents Types</a></li>
-                                    <!-- <li><a href="<?php echo site_url();?>pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li> -->
-                                    <!-- <li><a href="<?php echo site_url();?>pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li> -->
                                 </ul>
                             </li>
-
-
 
 
                 </ul>
@@ -130,3 +116,36 @@
 
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->
+
+        <script>
+            fetch_admininfo();
+
+            function fetch_admininfo(){
+                $.ajax({
+                    type: 'ajax',
+                    url: '<?php echo site_url('/Login/fetch_admininfo'); ?>',
+                    async: true,
+                    dataType: 'json',
+                    success: function(response) {
+                        $("#hotelname").html(response[0].HotelName);
+                        $(".profile-data-name").html(response[0].userName.toUpperCase());
+                    }
+
+                });                
+            }
+
+
+
+            $('li').removeClass('active');
+
+            var regex = /[A-Za-z _]+.php/g;
+            var input = location.pathname;
+
+            if(regex.test(input)) {
+              var matches = input.match(regex);
+                 $('a[href="'+matches[0]+'"]').closest('li').addClass('treeview active');
+                 $('a[href="'+matches[0]+'"]').closest('ul').closest('li').addClass('active');
+                }
+
+
+        </script>

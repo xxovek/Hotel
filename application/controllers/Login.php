@@ -29,4 +29,16 @@ class Login extends CI_Controller
 		$this->session->unset_userdata('logged_in');
 		redirect('Login');
 	}
+
+
+	public function fetch_admininfo(){
+		$id = $this->session->userdata('user_id');	
+		
+		$data = $this->Admin_model->fetch_admininfo($id);
+		echo json_encode($data);
+
+	
+	}
+
+
 }
