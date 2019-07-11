@@ -173,8 +173,6 @@
                             $(this).closest('li').addClass('de active');
                             $(this).closest('ul').closest('li').addClass('xn-openable active');
                             $(this).closest('ul').closest('li').closest('ul').closest('li').addClass('active');
-
-
                         }
                     });
                 }
