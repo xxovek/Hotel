@@ -1,0 +1,20 @@
+1. Can we do booking detail is editable after payment done?. 
+
+2. If booking is editable then we can increase decrease days, issue arises in payment and bill.
+
+3. In new booking today's date is accepted in UPTO DATE input. it is not a problem, 
+    but if FORM DATE is greater than UPTO DATE bill amount and days goes in minus.
+    Ex.  if FORM DATE 2019/07/17 and UPTO DATE (todays date) 2019/07/11 then no of days
+         -6 and bill amount goes in minus as -21000.
+
+4. If Room type is deleted from table then record regarding that id shown on dashboard 
+   Rooms Details with blank typename. 
+
+5. If room amenity is deleted from amenities list then it should be delete from Room_amenities table.
+    because if it is used in room details form then it fetched as null and show in edit room 
+    detail form.
+
+6. If Payment Type is DELETED then it fetch as null in its all regarding records.
+
+7. 
+

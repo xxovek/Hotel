@@ -25,7 +25,7 @@
                 <div class="message-box message-box-success animated fadeIn" id="message-box-success">
                     <div class="mb-container">
                         <div class="mb-middle">
-                            <div class="mb-title"><span class="fa fa-check"></span> Success</div>
+                            <div class="mb-title"><span class="fa fa-check"></span>Success</div>
                             <div class="mb-content">
                                 <p>Successfully Saved Content.</p>
                             </div>
@@ -59,7 +59,7 @@
                             <span id="errmsgfromdate"></span>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                <input type="text" class="form-control"   id="startDate" onchange="checkroomavability()" value="">
+                                <input type="text" class="form-control" readonly  id="startDate" onchange="checkroomavability()" value="">
                             </div>
                             <span class="help-block">Click on input field to get datepicker</span>
                         </div>
@@ -70,7 +70,7 @@
                           <span id="errmsguptodate"></span>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                <input type="text" class="form-control"  id="endDate" onchange="checkroomavability()" value="">
+                                <input type="text" class="form-control" readonly id="endDate" onchange="checkroomavability()" value="">
                             </div>
                             <span class="help-block">Click on input field to get datepicker</span>
                         </div>
@@ -239,6 +239,7 @@ function getbooking(){
   }
 });
 }
+
 // function getcustomer(){
 //
 //  $.ajax({
@@ -261,6 +262,8 @@ function getbooking(){
 //  }
 //  });
 // }
+
+
 function checkroomavability(){
   var FromDate =$("#startDate").val();
   var UptoDate =$("#endDate").val();
