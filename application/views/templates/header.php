@@ -23,54 +23,64 @@
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
-                    <li class="xn-logo">
-                        <a href="<?php echo base_url();?>/Dashboard"> <span id="hotelname"></span></a>
-                        <a href="<?php echo base_url();?>" class="x-navigation-control"></a>
-                    </li>
-                    <li class="xn-profile">
-                        <a href="<?php echo base_url();?>" class="profile-mini">
-                            <img src="<?php echo base_url();?>assets/images/users/avatar.jpg" alt="John Doe"/>
-                        </a>
-                        <div class="profile">
-                            <div class="profile-image">
-                                <img src="<?php echo base_url();?>assets/images/users/avatar.jpg" alt="John Doe"/>
-                            </div>
-                            <div class="profile-data">
-                                <div class="profile-data-name"></div>
-                                <div class="profile-data-title">Hotel  Admin</div>
-                            </div>
-                          
-                        </div>
-                    </li>
+                        <li class="xn-logo">
+                        <a href="<?php echo site_url();?>/Dashboard"> <span id="hotelname"></span></a>
+
+                            <!-- <a href="<?php echo base_url();?>/Dashboard"> <span id="hotelname"></span></a> -->
+                            <a href="<?php echo base_url();?>" class="x-navigation-control"></a>
+                        </li>
+                                <li class="xn-profile">
+                                    <a href="<?php echo base_url();?>" class="profile-mini">
+                                        <img src="<?php echo base_url();?>assets/images/users/avatar.jpg" alt="John Doe"/>
+                                    </a>
+                                    <div class="profile">
+                                        <div class="profile-image">
+                                            <img src="<?php echo base_url();?>assets/images/users/avatar.jpg" alt="John Doe"/>
+                                        </div>
+                                        <div class="profile-data">
+                                            <div class="profile-data-name"></div>
+                                            <div class="profile-data-title">Hotel Admin</div>
+                                        </div>
+                                    
+                                    </div>
+                                </li>
+
                     <li class="xn-title">Navigation</li>
 
-                    <li class="active">
+
+        <ul class="navmenu">
+        
+                    <li class="de ">
                         <a href="<?php echo site_url();?>/Dashboard"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a>
                     </li>
-                    <li class="">
+
+                    <li class="de ">
                         <a href="<?php echo site_url();?>/Booking"><span class="fa fa-list"></span> <span class="xn-text">Bookings</span></a>
                     </li>
-                    <li class="">
+
+                    <li class="de ">
                         <a href="<?php echo site_url();?>/Customer"><span class="fa fa-users"></span> <span class="xn-text">Customers</span></a>
                     </li>
                    
-                            <li class="xn-openable">
-                                <a href="<?php echo site_url();?>"><span class="fa fa-home"></span> Rooms</a>
+                            <li class="xn-openable active" >
+                                <a href="<?php echo site_url();?>"><span class="fa fa-home"></span>Rooms</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Rooms"><span class="fa fa-inbox"></span> Rooms Types</a></li>
                                     <li><a href="<?php echo site_url();?>/Roomamenties"><span class="fa fa-pencil"></span> Rooms Amenties</a></li>
                                     <li><a href="<?php echo site_url();?>/Roomdetails"><span class="fa fa-file-text"></span> Rooms Details</a></li>
                                 </ul>
                             </li>
+
                             <li class="xn-openable">
-                                <a href="<?php echo site_url();?>"><span class="fa fa-th-list"></span> Orders</a>
+                                <a href="<?php echo site_url();?>"><span class="fa fa-th-list"></span>Orders</a>
                                 <ul>
                                     <li ><a href="<?php echo site_url();?>/Orders"><span class="fa fa-list"></span>Orders</a></li>
                                     <li ><a href="<?php echo site_url();?>/Products"><span class="fa fa-list"></span>Products</a></li>
                                 </ul>
                             </li>
+
                             <li class="xn-openable">
-                                <a href="<?php echo site_url();?>"><span class="fa fa-money"></span> Payments</a>
+                                <a href="<?php echo site_url();?>"><span class="fa fa-money"></span>Payments</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Payment"><span class="fa fa-money"></span>Payment</a></li>
                                     <li><a href="<?php echo site_url();?>/Payments"><span class="fa fa-money"></span>Payments Types</a></li>
@@ -78,11 +88,12 @@
                             </li>
 
                             <li class="xn-openable">
-                                <a href="<?php echo site_url();?>"><span class="fa fa-file-text-o"></span> Documents</a>
+                                <a href="<?php echo site_url();?>"><span class="fa fa-file-text-o"></span>Documents</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Documents"><span class="fa fa-inbox"></span>Documents Types</a></li>
                                 </ul>
                             </li>
+        </ul>
 
 
                 </ul>
@@ -135,17 +146,37 @@
             }
 
 
+            // $('li').removeClass('active');
+            // var regex = /[A-Za-z _]+.php/g;
+            // var input = location.pathname;
+            // if(regex.test(input)) {
+            //   var matches = input.match(regex);
+            //      $('a[href="'+matches[0]+'"]').closest('li').addClass('treeview active');
+            //      $('a[href="'+matches[0]+'"]').closest('ul').closest('li').addClass('active');
+            //     }
+            //    $('li').removeClass('active');
 
-            $('li').removeClass('active');
 
-            var regex = /[A-Za-z _]+.php/g;
-            var input = location.pathname;
+                $(function (){
+                        setNavigation();
+                    });
 
-            if(regex.test(input)) {
-              var matches = input.match(regex);
-                 $('a[href="'+matches[0]+'"]').closest('li').addClass('treeview active');
-                 $('a[href="'+matches[0]+'"]').closest('ul').closest('li').addClass('active');
+                function setNavigation() {
+                    var path = window.location.pathname;
+                    path = path.replace(/\/$/, "");
+                    path = decodeURIComponent(path);
+                   // alert(path);
+
+                    $(".navmenu a").each(function () {
+                        var href = $(this).attr('href');
+                        if (path.substring(0, href.length) === href) {
+                            $(this).closest('li').addClass('de active');
+                            $(this).closest('ul').closest('li').addClass('xn-openable active');
+                            $(this).closest('ul').closest('li').closest('ul').closest('li').addClass('active');
+
+
+                        }
+                    });
                 }
-
 
         </script>
