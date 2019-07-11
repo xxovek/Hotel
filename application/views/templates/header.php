@@ -62,7 +62,7 @@
                         <a href="<?php echo site_url();?>/Customer"><span class="fa fa-users"></span> <span class="xn-text">Customers</span></a>
                     </li>
                    
-                            <li class="xn-openable active" >
+                            <li class="xn-openable" >
                                 <a href="<?php echo site_url();?>"><span class="fa fa-home"></span>Rooms</a>
                                 <ul>
                                     <li><a href="<?php echo site_url();?>/Rooms"><span class="fa fa-inbox"></span> Rooms Types</a></li>
@@ -169,6 +169,7 @@
 
                     $(".navmenu a").each(function () {
                         var href = $(this).attr('href');
+                       // alert(href);
                         if (path.substring(0, href.length) === href) {
                             $(this).closest('li').addClass('de active');
                             $(this).closest('ul').closest('li').addClass('xn-openable active');
