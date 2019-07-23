@@ -21,7 +21,7 @@ class Roomdetails_model extends CI_Model{
 
     public function check_type_exists($roomNo){
         $query = $this->db->get_where('RoomDetails', array('roomNumber' => $roomNo));
-        if(empty($query->row_array())){
+        if($query->num_rows() == 1){
             return true;
         } else {
             return false;
