@@ -31,7 +31,7 @@ class Documents_model extends CI_Model{
     // Check username exists
 		public function check_type_exists($typeName){
 			$query = $this->db->get_where('Documents', array('DocumentType' => $typeName));
-			if(empty($query->row_array())){
+			if($query->num_rows() == 1){
 				return true;
 			} else {
 				return false;
