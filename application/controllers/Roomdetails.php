@@ -55,23 +55,25 @@ Class Roomdetails extends CI_Controller{
     }
 
     	//Check type exists
-	public function check_type_exists($roomNo){
-		if($this->Roomdetails_model->check_type_exists($roomNo)){
-			return true;
-		} else {
-			return false;
-		}
-	}
+	// public function check_type_exists($roomNo){
+	// 	if($this->Roomdetails_model->check_type_exists($roomNo)){
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
 
     public function create(){
         $roomNo = $this->input->post('roomno_input');
-		$ret = $this->check_type_exists($roomNo);
-			if($ret === false){
-			$response['msg'] = false;
-		} else {
-			$this->Roomdetails_model->create_roomDetails();
+
+        if($this->Roomdetails_model->check_type_exists($roomNo)){
+            $response['msg'] = false;
+        }else{
+            $this->Roomdetails_model->create_roomDetails();
             $response['msg'] = true;
         }
+
+
 		echo json_encode($response);
     }
 
